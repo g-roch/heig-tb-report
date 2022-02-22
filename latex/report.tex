@@ -1,0 +1,109 @@
+%! Author = Gaby Roch
+%! Date = 15.10.21
+
+
+% Preamble
+%\documentclass[a4paper,oneside,12pt,french,draft]{heig-tb}
+%\documentclass[a4paper,twoside,12pt,french,draft]{heig-tb}
+\documentclass[a4paper,twoside,12pt,french]{heig-bachelor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% package include
+%
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{listofitems}
+\usepackage{minitoc}
+\mtcsetdepth{minitoc}{2} % Profondeur des minitoc
+%\mtcsettitle{minitoc}{\chaptername{}s} % Set title of minitoc
+\renewcommand\afterchapter{
+  \begin{center}
+  \begin{minipage}{0.75\linewidth}
+    \minitoc
+  \end{minipage}
+  \end{center}\vspace{2em}}
+%\usepackage{heig}
+\usepackage[
+    style=alphabetic,
+    backref=true,
+    %style=numeric,
+    %style=reading,
+]{biblatex}
+\usepackage{biblio-everywhere} % show bibliographie as footnote and en document
+\usepackage{lipsum}
+
+\usepackage{subfiles}
+
+%\usepackage{catchfile}
+
+% on utilise un index
+\usepackage{imakeidx}
+\makeindex
+
+% toc, lof, lot, index, ... dans toc
+\usepackage{tocbibind}
+
+% On charge les métas informations du TB
+\input{_meta}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{document}
+
+    \frontmatter
+    \maketitle
+
+    \subfile{publishable-summary}
+
+    \makeatletter % Required for \@ macro
+    \begin{signedpage}{Préambule}{\@shortschool\\[0.5em] Le Chef du Département}{\@location}{\@date}
+
+        Ce travail de Bachelor (ci-après TB) est réalisé en fin de cursus d’études, en vue de l’obtention du titre de Bachelor of Science HES-SO en \@bachelorof.
+
+        En tant que travail académique, son contenu, sans préjuger de sa valeur, n'engage ni la responsabilité de l'auteur, ni celles du jury du travail de Bachelor et de l'École.
+
+        Toute utilisation, même partielle, de ce TB doit être faite dans le respect du droit d’auteur.
+    \end{signedpage}
+
+    \begin{signedpage}{Authentification}{\@author}{\@location}{\@date}
+        \if@authorgenderfem La soussignée\else Le soussigné\fi, \@author,
+        atteste par la présente avoir réalisé
+        \if@authorgenderfem seule\else seul\fi
+        ce travail et n’avoir utilisé aucune autre source que celles expressément mentionnées.
+    \end{signedpage}
+    \makeatother
+
+    \summary[0]
+
+    \mainmatter
+
+
+    \chapter{Cahier des charges}
+    \subfile{content/cahier-des-charges}
+    \subfile{content/example}
+
+
+    \appendix
+    \part{Annexes}
+
+    \dominitoc
+    \tableofcontents
+    \listoffigures
+    \listoftables
+    \subfile{bibliography}
+    %\addcontentsline{toc}{chapter}{\indexname}
+    \printindex
+    \lstlistoflistings
+    \listofbclogo
+
+    % Glossaire
+    % Abréviations
+
+    \backmatter
+
+\end{document}

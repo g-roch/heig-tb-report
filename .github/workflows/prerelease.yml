@@ -1,0 +1,49 @@
+name: Prerelease
+on: 
+  push: 
+    branches:
+      - main
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    name: Build LaTeX document
+    steps:
+      
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Create tag
+        id: create_tag
+        run: |
+          lasttag=$(git tag --list --no-contains HEAD --merged HEAD --sort=authordate 'v[0-9]*' | tail -1)
+          tag=$(git describe --tags --match 'v[0-9]*')
+          echo "::set-output name=tag::build-$tag"
+          echo "::set-output name=name::$tag"
+          echo "::set-output name=lasttag::$lasttag"
+
+      - name: Compile LaTeX document
+        uses: ./.github/action
+        with:
+          target: all
+
+      - name: Compile LaTeX diff document
+        uses: ./.github/action
+        continue-on-error: true
+        with:
+          target: lastdiff
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: lastdiff/CHANGELOG.txt
+          prerelease: true
+          name: ${{ steps.create_tag.outputs.name }}
+          tag_name: ${{ steps.create_tag.outputs.tag }}
+          fail_on_unmatched_files: false
+          files: |
+            latex/*.pdf
+            diff-${{ steps.create_tag.outputs.lasttag }}/*.pdf
+            diff-${{ steps.create_tag.outputs.lasttag }}.zip
+

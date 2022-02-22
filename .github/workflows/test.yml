@@ -1,0 +1,26 @@
+name: Test
+on: 
+  push: 
+    branches-ignore:
+      - main
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    name: Test build LaTeX document
+    steps:
+      
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Compile LaTeX document
+        uses: ./.github/action
+        with:
+          target: all
+
+      - name: Compile LaTeX diff document
+        uses: ./.github/action
+        with:
+          target: lastdiff
+

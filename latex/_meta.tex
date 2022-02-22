@@ -1,0 +1,104 @@
+
+\usepackage{heig}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Configuration des répertoires
+%
+\graphicspath{ {./images} }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chargment du fichier de bibliographie
+%
+\bibliography{biblio}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Information à propos du travail de bachelor
+%
+% Pour utiliser une valeur dans le document, prefixer le nom
+% pas @ ou @short. example : 
+%    \title → \@title
+%    \title → \@shorttitle
+%
+% \title[Short title]{TB title}
+% Titre du travail de bachelo
+\title[short title]{Titre du TB}
+
+% \titlesuffix[suffix for short title]{suffix for TB title}
+% Suffix au titre du TB (ex: "Résumé publiable" ou "Journal de travail")
+% À ne définir que dans les documents où il est util
+%\titlesuffix[suffix for short title]{suffix for TB title}
+
+% \version[version other place]{verion on titlepage}
+% Version du travail
+\version[\inputMake{_dyn/git-version-short}]{\inputMake{_dyn/git-version}}
+
+% \illustration[filename]
+% Illustration de la page de titre
+%  - Si pas de fichier préciser, la valeur est illustration
+%  - Si la commande n'est pas appellé, il n'y a pas d'illustration
+\illustration
+
+% \illustrationheight[height]
+% Hauteur de l'illustration (défaut: 23em)
+%\illustrationheight[23em]
+
+% \author[initial]{name}
+% Nom et initial de l'étudiant
+\author[NÉ]{Nom de l'étudiant}
+
+% \authorfem or \authormasc
+% Pour la langue française, le genre de l'étudiant·e pour les accords
+% (You can use it with \if@authorgenderfem)
+\authorfem
+%\authormasc
+
+
+% \school[acronym]{name}
+% Nom et abréviation de l'école
+\school[HEIG-VD]{Haute École d'Ingénierie et de Gestion du Canton de Vaud}
+
+% \department[acronym]{name}
+% Nom du département
+\department[TIC]{Technologies de l'Information et de la Communication}
+
+% \faculty[acronym]{name}
+% Nom de la faculté
+\faculty[TELE]{Télécommunications}
+
+% \orientation[acronym]{name}
+% Nom de l'orientation
+\orientation[TS]{Sécurité de l'information}
+
+% \bachelorof[acronym]{name}
+% Type de travail de bachelor, utiliser dans le préambule
+\bachelorof{Ingénierie} % Ingénierie ou Économie d'entreprise
+
+% \confidential
+% Indique que le TB est confidentiel
+\confidential
+
+% \proposedby{person's name}{Company name}{Company address}
+% Entreprise ayant proposé le travail de bachelor
+%  - S'il n'y a pas d'entreprise commenter la ligne
+\proposedby{Prénom-nom}{Entreprise}{Adresse\\NPA Ville}
+
+% \teacher[initial]{name}
+% Nom et initial de l'enseignant·e
+\teacher[PN]{P. nom}
+
+% Gender of the teacher (for french version)
+% (You can use it with \if@teachergenderfem)
+\teacherfem
+%\teachermasc
+
+% \schoolyear{20xx--20xx}
+% Academic year of bachelor
+\schoolyear{2020--2021}
+
+% Date du rendu (utiliser à diverse endroit)
+\date{\today}
+
+% Lieu de rendu (pour la signature)
+\location{Yverdon-les-Bains}
+

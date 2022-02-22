@@ -1,0 +1,121 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{heig}[2021/11/29 Meta-inforation for HEIG TB documents]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% définition des setters
+%
+% \title[Short title]{TB title}
+\renewcommand{\title}[2][]{
+    \ifthenelse{\equal{#1}{}}{\def\@shorttitle{#2}}{\def\@shorttitle{#1}}%
+    \def\@title{#2}
+    \hypersetup{pdftitle={\@shorttitle}}
+}
+
+% \titlesuffix[pub. summary]{publiable summary}
+\newif\if@titlesuffix \@titlesuffixfalse
+\newcommand{\titlesuffix}[2][]{
+    \ifthenelse{\equal{#1}{}}{\def\@shorttitlesuffix{#2}}{\def\@shorttitlesuffix{#1}}%
+    \def\@titlesuffix{#2}
+    \hypersetup{pdftitle={\@shorttitle\ --- \@shorttitlesuffix}}
+    \@titlesuffixtrue
+}
+
+% \version[version other place]{verion on titlepage}
+\newcommand{\version}[2][]{
+    \ifthenelse{\equal{#1}{}}{\def\@shortversion{#2}}{\def\@shortversion{#1}}%
+    \def\@version{#2}
+}
+
+% \illustration[filename=illustration]
+\newif\if@illustration \@illustrationfalse
+\newcommand{\illustration}[1][illustration]{
+    \def\@illustration{#1}
+    \@illustrationtrue
+}
+
+% \illustrationheight[size=23em]
+\def\@illustrationheight{23em}
+\newcommand{\illustrationheight}[1][23em]{
+    \def\@illustrationheight{#1}
+}
+
+
+% \author[initial]{Student name}
+\renewcommand{\author}[2][]{
+    \ifthenelse{\equal{#1}{}}{\def\@shortauthor{#2}}{\def\@shortauthor{#1}}%
+    \def\@author{#2}
+    \hypersetup{pdfauthor={\@author}}
+}
+
+% \authormasc & \authorfem
+\newif\if@authorgenderfem \@authorgenderfemfalse
+\newcommand{\authormasc}{\@authorgenderfemfalse}
+\newcommand{\authorfem}{\@authorgenderfemtrue}
+
+% \date not modified
+
+% \school[acronym]{School acronym}
+\newcommand{\school}[2][]{
+    \ifthenelse{\equal{#1}{}}{\def\@shortschool{#2}}{\def\@shortschool{#1}}%
+    \def\@school{#2}
+}
+
+% \department[acronym]{Department acronym}
+\newcommand{\department}[2][]{
+    \ifthenelse{\equal{#1}{}}{\def\@shortdepartment{#2}}{\def\@shortdepartment{#1}}%
+    \def\@department{#2}
+}
+
+% \faculty[acronym]{Faculty name}
+\newcommand{\faculty}[2][]{
+    \ifthenelse{\equal{#1}{}}{\def\@shortfaculty{#2}}{\def\@shortfaculty{#1}}%
+    \def\@faculty{#2}
+}
+
+% \orientation[acronym]{Orientation name}
+\newcommand{\orientation}[2][]{
+    \ifthenelse{\equal{#1}{}}{\def\@shortorientation{#2}}{\def\@shortorientation{#1}}%
+    \def\@orientation{#2}
+}
+
+% \bachelorof{Type of Bachelor}
+\newcommand{\bachelorof}[1]{\def\@bachelorof{#1}}
+
+% \confidential
+\newif\if@confidential \@confidentialfalse
+\newcommand{\confidential}{\@confidentialtrue}
+\newcommand{\@confidential}{\if@confidential \confidentialname \else \nonconfidentialname \fi}
+\newcommand{\@ifconfidential}{\if@confidential \confidentialname \fi}
+
+% \proposedby{Person name}{institution}{adress}
+\newif\if@proposedby \@proposedbyfalse
+\newcommand{\proposedby}[3]{
+    \@proposedbytrue
+    \def\@proposedbyname{#1}
+    \def\@proposedbyinst{#2}
+    \def\@proposedbyadress{#3}
+}
+
+% \teacher{teacher name}
+\newcommand{\teacher}[2][]{
+    \ifthenelse{\equal{#1}{}}{\def\@shortteacher{#2}}{\def\@shortteacher{#1}}%
+    \def\@teacher{#2}
+}
+
+% \teachermasc & \teacherfem
+\newif\if@teachergenderfem \@teachergenderfemfalse
+\newcommand{\teachermasc}{\@teachergenderfemfalse}
+\newcommand{\teacherfem}{\@teachergenderfemtrue}
+
+% \schoolyear{20xx--20xx}
+\newcommand{\schoolyear}[1]{\def\@schoolyear{#1}}
+
+% \location{city}
+\newcommand{\location}[1]{\def\@location{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% définition commande utiles à tous les classes
+%
+% \inputMake{filaneme} -- input le filename or require for a make to latexmk
+\newcommand\inputMake[1]{\InputIfFileExists{#1}{\expandafter}{\typeout{No file #1.}}}
+

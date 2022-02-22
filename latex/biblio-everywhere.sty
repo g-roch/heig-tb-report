@@ -1,0 +1,25 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{biblio-everywhere}[2020/11/30 Show bibliographie as footnote and end document]
+\RequirePackage{biblatex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of custom command
+%
+% define \autofootcite{list of bibentry} % cite in footnote with bibmark, work for multiple entry separated by comma (,)
+\let\originalcite\cite
+\let\originalfullcite\fullcite
+\newcommand{\autofootcite}[1]{{% Group to localize change to footnote
+    \originalcite{#1}%
+    \readlist*\mylist{#1}%
+    \foreachitem\x\in\mylist[]{%
+        \renewcommand{\thefootnote}{\originalcite{\x}}% Update footnote counter representation
+        \footnotetext[0]{\originalfullcite{\x}}% Print footnote text
+    }%
+}}% Print footnote text
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Use custom command as default
+%
+\let\autocite\autofootcite
+\let\cite\autofootcite

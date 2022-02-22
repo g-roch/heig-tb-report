@@ -1,0 +1,17 @@
+# action.yml
+name: 'Latexmk and texlive-full'
+description: 'Execute some commande with latexmk'
+inputs:
+  target:  # id of input
+    description: 'Who to build'
+    required: true
+    default: 'all'
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - make
+    - ${{ inputs.target }}
