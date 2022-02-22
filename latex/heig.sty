@@ -1,6 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{heig}[2021/11/29 Meta-inforation for HEIG TB documents]
 
+\newcommand{\todo}[2][0]{
+  \begin{nota}{TODO} #2 \index{TODO}\end{nota}
+  \lipsum[1]
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % définition des setters
 %
@@ -85,7 +90,7 @@
 \newif\if@confidential \@confidentialfalse
 \newcommand{\confidential}{\@confidentialtrue}
 \newcommand{\@confidential}{\if@confidential \confidentialname \else \nonconfidentialname \fi}
-\newcommand{\@ifconfidential}{\if@confidential \confidentialname \fi}
+\newcommand{\@ifconfidential}{\if@confidential \confidentialname \else ~ \fi}
 
 % \proposedby{Person name}{institution}{adress}
 \newif\if@proposedby \@proposedbyfalse

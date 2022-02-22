@@ -1,39 +1,72 @@
 \documentclass[../report]{subfiles}
 \begin{document}
-\section{Résumé du problème}
-\lipsum[2]
-\subsection{Problématique}
-\lipsum[1]
-\subsection{Solutions existantes}
-\lipsum[1]
-\subsection{Solutions possibles}
-\lipsum[1]
-\section{Cahier des charges}
-\lipsum[2]
-\subsection{Objectifs}\label{subsec:cdc-objectif}
-\lipsum[1]
-\subsection{Déroulement}
-\lipsum[1]
-\subsection{Livrables}
-\lipsum[1]
+\section{Descriptif}
+Création d'un logiciel mettant en place un système de vote électronique alternatif (p.ex.~basé sur la méthode Borda), en prenant en compte la cryptographie pour gérer la sécurité, la confidentialité et la non-répudiabilité du résultat.
+
+\section{Contexte}
+Actuellement la plupart des votes se font avec un système à la majorité (relative ou absolue) cependant d'autres systèmes existent pour essayer, soit de minimiser les mécontents (méthode Borda, vote par approbation, ...), soit de maximiser les contents (Jugement majoritaire, méthode de Condorcet, ...).
+
+De par l'utilisation quasi exclusive du vote majoritaire, les quelques applications ou sites web permettant de faire un choix de manière anonyme utilisent ce système.
+
+\section{Objectif principal}
 \begin{enumerate}
-  \item Une documentation contenant :
+  \item Études des méthodes de vote alternatif, quel sont leurs avantages et leurs inconvénients.
+  \item Identifier les propriétés cryptographiques nécessaires aux différentes méthodes de vote pour permettre la sécurité et la confidentialité du vote~:
     \begin{itemize}
-      \item Une analyse de marché
-
-      \item La décision qui découle de l’analyse
-
-      \item Spécifications
-
-      \item Les informations du module telles que le fonctionnement et les limitations 
-
-      \item Une planification initiale et finale
-
-      \item Un mode d’emploi
+      \item Seules les personnes autorisées peuvent participer au vote (et qu'une seule fois)
+      \item Seul le votant connait son vote (même le serveur ne peut pas faire le lien votant $\longleftrightarrow$ vote)
+      \item Le votant n'a pas moyen de prouver ce qu'il a voté (évite la corruption)
+      \item Chacun peut vérifier que son vote a bien été pris en compte
     \end{itemize}
-  \item Un module remplissant les objectifs définis au point \ref{subsec:cdc-objectif}.
-
-  \item Un software implémentant les améliorations s’il a été possible de les effectuer.
+  \item Implémenter une démo de une ou plusieurs des méthodes de votations alternatif, don au moins une cherchant à minimiser les mécontents. Cette démo a pour objectif de montrer que le système de vote implémenté, puisse de manière électronique satisfaire les propriétés ci-dessus.
 \end{enumerate}
+
+\section{Livrables}
+    \begin{itemize}
+      \item Un système de vote (la partie cliente et la partie serveur) dont la partie crypto est implémenter en Rust
+      \item Un rapport contenant: 
+      \begin{itemize}
+        \item L'analyse des différentes méthodes votes
+        \item Les choix effectués durant le projet
+        \item Les spécifications du logiciel de vote
+      \end{itemize}
+    \end{itemize}
+
+
+%\section{Résumé du problème}
+%\lipsum[2]
+%\subsection{Problématique}
+%\lipsum[1]
+%\subsection{Solutions existantes}
+%\lipsum[1]
+%\subsection{Solutions possibles}
+%\lipsum[1]
+%\section{Cahier des charges}
+%\lipsum[2]
+%\subsection{Objectifs}\label{subsec:cdc-objectif}
+%\lipsum[1]
+%\subsection{Déroulement}
+%\lipsum[1]
+%\subsection{Livrables}
+%\lipsum[1]
+%\begin{enumerate}
+%  \item Une documentation contenant :
+%    \begin{itemize}
+%      \item Une analyse de marché
+%
+%      \item La décision qui découle de l’analyse
+%
+%      \item Spécifications
+%
+%      \item Les informations du module telles que le fonctionnement et les limitations 
+%
+%      \item Une planification initiale et finale
+%
+%      \item Un mode d’emploi
+%    \end{itemize}
+%  \item Un module remplissant les objectifs définis au point \ref{subsec:cdc-objectif}.
+%
+%  \item Un software implémentant les améliorations s’il a été possible de les effectuer.
+%\end{enumerate}
 \end{document}
 

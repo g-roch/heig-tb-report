@@ -25,6 +25,7 @@
 \RequirePackage{emptypage}
 \RequirePackage{shorttoc}
 \RequirePackage{color}
+\RequirePackage{imakeidx}
 \RequirePackage[colorlinks,unicode]{hyperref}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{fancyvrb}
