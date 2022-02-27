@@ -31,6 +31,9 @@
 \RequirePackage{fancyvrb}
 \RequirePackage[tikz]{bclogo}
 \RequirePackage{listingsutf8}
+\RequirePackage{titlesec}
+\RequirePackage{blindtext}
+
 \RequirePackage{heig}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -49,6 +52,12 @@
     \fancyhead[LE]{\@ifconfidential\\\textbf{\@shorttitle} {\scriptsize\@version}}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapter style
+%
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % String d'affichage
