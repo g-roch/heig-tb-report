@@ -1,14 +1,16 @@
 \documentclass[../report]{subfiles}
 \begin{document}
-\section{Descriptif}
+\section{Résumé du problème}
+\subsection{Descriptif}
 Création d'un logiciel mettant en place un système de vote électronique alternatif (p.ex.~basé sur la méthode Borda), en prenant en compte la cryptographie pour gérer la sécurité, la confidentialité et la non-répudiabilité du résultat.
 
-\section{Contexte}
+\subsection{Contexte}
 Actuellement la plupart des votes se font avec un système à la majorité (relative ou absolue) cependant d'autres systèmes existent pour essayer, soit de minimiser les mécontents (méthode Borda, vote par approbation, ...), soit de maximiser les contents (Jugement majoritaire, méthode de Condorcet, ...).
 
 De par l'utilisation quasi exclusive du vote majoritaire, les quelques applications ou sites web permettant de faire un choix de manière anonyme utilisent ce système.
 
-\section{Objectif principal}
+\section{Cahier des charges}
+\subsection{Objectif principal}
 \begin{enumerate}
   \item Études des méthodes de vote alternatif, quel sont leurs avantages et leurs inconvénients.
   \item Identifier les propriétés cryptographiques nécessaires aux différentes méthodes de vote pour permettre la sécurité et la confidentialité du vote~:
@@ -21,7 +23,7 @@ De par l'utilisation quasi exclusive du vote majoritaire, les quelques applicati
   \item Implémenter une démo de une ou plusieurs des méthodes de votations alternatif, don au moins une cherchant à minimiser les mécontents. Cette démo a pour objectif de montrer que le système de vote implémenté, puisse de manière électronique satisfaire les propriétés ci-dessus.
 \end{enumerate}
 
-\section{Livrables}
+\subsection{Livrables}
     \begin{itemize}
       \item Un système de vote (la partie cliente et la partie serveur) dont la partie crypto est implémenter en Rust
       \item Un rapport contenant: 
@@ -69,4 +71,3 @@ De par l'utilisation quasi exclusive du vote majoritaire, les quelques applicati
 %  \item Un software implémentant les améliorations s’il a été possible de les effectuer.
 %\end{enumerate}
 \end{document}
-

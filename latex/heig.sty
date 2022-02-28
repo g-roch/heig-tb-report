@@ -3,7 +3,7 @@
 
 \newcommand{\todo}[2][0]{
   \begin{nota}{TODO} #2 \index{TODO}\end{nota}
-  \lipsum[1]
+  \lipsum[#1]
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -123,4 +123,3 @@
 %
 % \inputMake{filaneme} -- input le filename or require for a make to latexmk
 \newcommand\inputMake[1]{\InputIfFileExists{#1}{\expandafter}{\typeout{No file #1.}}}
-

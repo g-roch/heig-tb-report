@@ -1,0 +1,315 @@
+<?xml version="1.0"?>
+<minder version="1.13.1">
+  <theme name="default" label="Light" index="-1"/>
+  <styles>
+    <style level="0" isset="false" branchmargin="100" branchradius="25" linktype="straight" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="10" nodepadding="10" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100"/>
+    <style level="1" isset="false" branchmargin="100" branchradius="25" linktype="straight" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100"/>
+    <style level="2" isset="false" branchmargin="100" branchradius="25" linktype="straight" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100"/>
+    <style level="3" isset="false" branchmargin="100" branchradius="25" linktype="straight" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100"/>
+    <style level="4" isset="false" branchmargin="100" branchradius="25" linktype="straight" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100"/>
+    <style level="5" isset="false" branchmargin="100" branchradius="25" linktype="straight" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100"/>
+    <style level="6" isset="false" branchmargin="100" branchradius="25" linktype="straight" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100"/>
+    <style level="7" isset="false" branchmargin="100" branchradius="25" linktype="straight" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100"/>
+    <style level="8" isset="false" branchmargin="100" branchradius="25" linktype="straight" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100"/>
+    <style level="9" isset="false" branchmargin="100" branchradius="25" linktype="straight" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100"/>
+    <style level="10" isset="false" branchmargin="100" branchradius="25" linktype="straight" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100"/>
+  </styles>
+  <drawarea x="368.57629394531114" y="-118.67828369140625" scale="1"/>
+  <images/>
+  <nodes>
+    <node id="0" posx="75.423706054687386" posy="495.67828369140625" width="153" height="46" side="left" fold="false" treesize="860" layout="Vers la droite" group="false">
+      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+      <nodename posx="89.423706054687386" posy="509.67828369140625" maxwidth="200">
+        <text data="Syst&#xE8;me de vote"/>
+      </nodename>
+      <nodenote></nodenote>
+      <nodes>
+        <node id="1" posx="328.42370605468739" posy="88.67828369140625" width="131" height="46" side="right" fold="true" treesize="46" color="#c6262e" colorroot="false" layout="Vers la droite" group="false">
+          <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename posx="342.42370605468739" posy="102.67828369140625" maxwidth="200">
+            <text data="Tirage au sort"/>
+          </nodename>
+          <nodenote></nodenote>
+          <nodes>
+            <node id="2" posx="559.42370605468739" posy="-11.32171630859375" width="215" height="82" side="right" fold="false" treesize="82" color="#c6262e" colorroot="false" layout="Vers la droite" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename posx="573.42370605468739" posy="2.67828369140625" maxwidth="200">
+                <text data="Utile uniquement pour choisir une assembl&#xE9;e de repr&#xE9;sentant"/>
+              </nodename>
+              <nodenote></nodenote>
+            </node>
+            <node id="3" posx="559.42370605468739" posy="70.67828369140625" width="253" height="82" side="right" fold="false" treesize="82" color="#c6262e" colorroot="false" layout="Vers la droite" sticker="minus" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename posx="627.42370605468739" posy="84.67828369140625" maxwidth="200">
+                <text data="Les personnes choisies n'ont pas forcement de projet politique"/>
+              </nodename>
+              <nodenote></nodenote>
+            </node>
+            <node id="4" posx="559.42370605468739" posy="152.67828369140625" width="270" height="82" side="right" fold="false" treesize="82" color="#c6262e" colorroot="false" layout="Vers la droite" sticker="plus" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename posx="627.42370605468739" posy="166.67828369140625" maxwidth="200">
+                <text data="Repr&#xE9;sente au mieux le peuple gr&#xE2;ce &#xE0; la lois des grands nombre"/>
+              </nodename>
+              <nodenote></nodenote>
+            </node>
+          </nodes>
+        </node>
+        <node id="5" posx="328.42370605468739" posy="134.67828369140625" width="209" height="46" side="right" fold="true" treesize="46" color="#f37329" colorroot="false" layout="Vers la droite" group="false">
+          <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename posx="342.42370605468739" posy="148.67828369140625" maxwidth="200">
+            <text data="Vote &#xE0; la proportionnelle"/>
+          </nodename>
+          <nodenote></nodenote>
+          <nodes>
+            <node id="6" posx="637.42370605468739" posy="75.67828369140625" width="209" height="118" side="right" fold="false" treesize="118" color="#f37329" colorroot="false" layout="Vers la droite" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename posx="651.42370605468739" posy="89.67828369140625" maxwidth="200">
+                <text data="Vote pour des listes, le nombre d'&#xE9;lu de la liste est proportionnelle au nombre de voix re&#xE7;u par cette liste"/>
+              </nodename>
+              <nodenote></nodenote>
+            </node>
+            <node id="7" posx="637.42370605468739" posy="193.67828369140625" width="210" height="46" side="right" fold="false" treesize="46" color="#f37329" colorroot="false" layout="Vers la droite" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename posx="651.42370605468739" posy="207.67828369140625" maxwidth="200">
+                <text data="Avec ou sans panachage"/>
+              </nodename>
+              <nodenote></nodenote>
+            </node>
+          </nodes>
+        </node>
+        <node id="8" posx="328.42370605468739" posy="394.67828369140625" width="176" height="64" side="right" fold="false" treesize="492" color="#3689e6" colorroot="false" layout="Vers la droite" group="false">
+          <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename posx="342.42370605468739" posy="408.67828369140625" maxwidth="200">
+            <text data="Vote alternatif et de Coombs"/>
+          </nodename>
+          <nodenote></nodenote>
+          <nodes>
+            <node id="9" posx="604.42370605468739" posy="180.67828369140625" width="225" height="64" side="right" fold="false" treesize="64" color="#3689e6" colorroot="false" layout="Vers la droite" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename posx="618.42370605468739" posy="194.67828369140625" maxwidth="200">
+                <text data="Chaque &#xE9;lecteur classe les options"/>
+              </nodename>
+              <nodenote></nodenote>
+            </node>
+            <node id="10" posx="604.42370605468739" posy="344.67828369140625" width="187" height="46" side="right" fold="false" treesize="246" color="#3689e6" colorroot="false" layout="Vers la droite" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename posx="618.42370605468739" posy="358.67828369140625" maxwidth="200">
+                <text data="Simulation de N tours"/>
+              </nodename>
+              <nodenote></nodenote>
+              <nodes>
+                <node id="11" posx="891.42370605468739" posy="244.67828369140625" width="205" height="82" side="right" fold="false" treesize="82" color="#3689e6" colorroot="false" layout="Vers la droite" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename posx="905.42370605468739" posy="258.67828369140625" maxwidth="200">
+                    <text data="On regarde s'il y a une majorit&#xE9; dans les classements en premier"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                </node>
+                <node id="12" posx="891.42370605468739" posy="326.67828369140625" width="215" height="64" side="right" fold="false" treesize="64" color="#3689e6" colorroot="false" layout="Vers la droite" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename posx="905.42370605468739" posy="340.67828369140625" maxwidth="200">
+                    <text data="On retire si besoin le pire candidat"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                </node>
+                <node id="13" posx="891.42370605468739" posy="390.67828369140625" width="275" height="100" side="right" fold="false" treesize="100" color="#3689e6" colorroot="false" layout="Vers la droite" sticker="minus" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename posx="959.42370605468739" posy="404.67828369140625" maxwidth="200">
+                    <text data="Pas de r&#xE9;flexion entre les tours contrairement au vote &#xE0; la majorit&#xE9; absolue &#xE0; N tours"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                </node>
+              </nodes>
+            </node>
+            <node id="14" posx="604.42370605468739" posy="508.67828369140625" width="179" height="46" side="right" fold="false" treesize="82" color="#3689e6" colorroot="false" layout="Vers la droite" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename posx="618.42370605468739" posy="522.67828369140625" maxwidth="200">
+                <text data="M&#xE9;thode de Coombs"/>
+              </nodename>
+              <nodenote></nodenote>
+              <nodes>
+                <node id="15" posx="883.42370605468739" posy="490.67828369140625" width="202" height="82" side="right" fold="false" treesize="82" color="#3689e6" colorroot="false" layout="Vers la droite" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename posx="897.42370605468739" posy="504.67828369140625" maxwidth="200">
+                    <text data="Le pire candidat &#xE9;tant celui le plus souvant en derni&#xE8;re position"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                </node>
+              </nodes>
+            </node>
+            <node id="16" posx="604.42370605468739" posy="572.67828369140625" width="181" height="100" side="right" fold="false" treesize="100" color="#3689e6" colorroot="false" layout="Vers la droite" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename posx="618.42370605468739" posy="586.67828369140625" maxwidth="200">
+                <text data=" - Vote alternatif&#10; - Vote pr&#xE9;f&#xE9;rencielle transf&#xE9;rable&#10; - M&#xE9;thode de R"/>
+              </nodename>
+              <nodenote></nodenote>
+              <nodes>
+                <node id="17" posx="885.42370605468739" posy="581.67828369140625" width="216" height="82" side="right" fold="false" treesize="82" color="#3689e6" colorroot="false" layout="Vers la droite" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename posx="899.42370605468739" posy="595.67828369140625" maxwidth="200">
+                    <text data="Le pire candidate &#xE9;tant celui le moins souvant en 1&#xE8;re position"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                </node>
+              </nodes>
+            </node>
+          </nodes>
+        </node>
+        <node id="18" posx="328.42370605468739" posy="672.67828369140625" width="134" height="46" side="right" fold="false" treesize="46" color="#f9c440" colorroot="false" layout="Vers la droite" group="false">
+          <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename posx="342.42370605468739" posy="686.67828369140625" maxwidth="200">
+            <text data="Vote cumulatif"/>
+          </nodename>
+          <nodenote></nodenote>
+        </node>
+        <node id="19" posx="328.42370605468739" posy="718.67828369140625" width="183" height="46" side="right" fold="false" treesize="46" color="#c6262e" colorroot="false" layout="Vers la droite" group="false">
+          <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename posx="342.42370605468739" posy="732.67828369140625" maxwidth="200">
+            <text data="Vote par abbrobation"/>
+          </nodename>
+          <nodenote></nodenote>
+        </node>
+        <node id="20" posx="328.42370605468739" posy="764.67828369140625" width="159" height="46" side="right" fold="true" treesize="46" color="#f9c440" colorroot="false" layout="Vers la droite" group="false">
+          <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename posx="342.42370605468739" posy="778.67828369140625" maxwidth="200">
+            <text data="Vote &#xE0; la majorit&#xE9;"/>
+          </nodename>
+          <nodenote></nodenote>
+          <nodes>
+            <node id="21" posx="587.42370605468739" posy="732.67828369140625" width="86" height="46" side="right" fold="false" treesize="440" color="#f9c440" colorroot="false" layout="Vers la droite" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename posx="601.42370605468739" posy="746.67828369140625" maxwidth="200">
+                <text data="Absolue"/>
+              </nodename>
+              <nodenote></nodenote>
+              <nodes>
+                <node id="22" posx="773.42370605468739" posy="585.67828369140625" width="87" height="46" side="right" fold="false" treesize="146" color="#f9c440" colorroot="false" layout="Vers la droite" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename posx="787.42370605468739" posy="599.67828369140625" maxwidth="200">
+                    <text data="&#xC0; 1 tour"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                  <nodes>
+                    <node id="23" posx="960.42370605468739" posy="535.67828369140625" width="211" height="64" side="right" fold="false" treesize="64" color="#f9c440" colorroot="false" layout="Vers la droite" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename posx="974.42370605468739" posy="549.67828369140625" maxwidth="200">
+                        <text data="Le candidat avec plus de 50% de voix est &#xE9;lu"/>
+                      </nodename>
+                      <nodenote></nodenote>
+                    </node>
+                    <node id="24" posx="960.42370605468739" posy="599.67828369140625" width="273" height="82" side="right" fold="false" treesize="82" color="#f9c440" colorroot="false" layout="Vers la droite" sticker="minus" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename posx="1028.4237060546875" posy="613.67828369140625" maxwidth="200">
+                        <text data="Que faire s'il y a plus que 2 candidat et qu'aucun ne re&#xE7;ois 51% des voix"/>
+                      </nodename>
+                      <nodenote></nodenote>
+                    </node>
+                  </nodes>
+                </node>
+                <node id="25" posx="773.42370605468739" posy="805.67828369140625" width="97" height="46" side="right" fold="false" treesize="294" color="#f9c440" colorroot="false" layout="Vers la droite" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename posx="787.42370605468739" posy="819.67828369140625" maxwidth="200">
+                    <text data="&#xC0; N tours"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                  <nodes>
+                    <node id="26" posx="970.42370605468739" posy="681.67828369140625" width="223" height="100" side="right" fold="false" treesize="100" color="#f9c440" colorroot="false" layout="Vers la droite" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename posx="984.42370605468739" posy="695.67828369140625" maxwidth="200">
+                        <text data="&#xC0; chaque tours on retire un(ou plusieurs) candidats jusqu'&#xE0; ce qu'un candidat aie 51% des voix."/>
+                      </nodename>
+                      <nodenote></nodenote>
+                    </node>
+                    <node id="27" posx="970.42370605468739" posy="781.67828369140625" width="226" height="118" side="right" fold="false" treesize="118" color="#f9c440" colorroot="false" layout="Vers la droite" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename posx="984.42370605468739" posy="795.67828369140625" maxwidth="200">
+                        <text data="Si le nombre de tours max atteint on peux pass&#xE9; &#xE0; un vote &#xE0; la majorit&#xE9; relative s'il reste plus de 2 candidat"/>
+                      </nodename>
+                      <nodenote></nodenote>
+                    </node>
+                    <node id="28" posx="970.42370605468739" posy="899.67828369140625" width="267" height="76" side="right" fold="false" treesize="76" color="#f9c440" colorroot="false" layout="Vers la droite" sticker="minus" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename posx="1038.4237060546875" posy="919.67828369140625" maxwidth="200">
+                        <text data="Comment on choisi le/les candidat &#xE0; retirer"/>
+                      </nodename>
+                      <nodenote></nodenote>
+                    </node>
+                  </nodes>
+                </node>
+              </nodes>
+            </node>
+            <node id="29" posx="587.42370605468739" posy="984.67828369140625" width="88" height="46" side="right" fold="false" treesize="64" color="#f9c440" colorroot="false" layout="Vers la droite" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename posx="601.42370605468739" posy="998.67828369140625" maxwidth="200">
+                <text data="Relative"/>
+              </nodename>
+              <nodenote></nodenote>
+              <nodes>
+                <node id="30" posx="775.42370605468739" posy="984.67828369140625" width="87" height="46" side="right" fold="false" treesize="64" color="#f9c440" colorroot="false" layout="Vers la droite" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename posx="789.42370605468739" posy="998.67828369140625" maxwidth="200">
+                    <text data="&#xC0; 1 tour"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                  <nodes>
+                    <node id="31" posx="962.42370605468739" posy="975.67828369140625" width="206" height="64" side="right" fold="false" treesize="64" color="#f9c440" colorroot="false" layout="Vers la droite" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename posx="976.42370605468739" posy="989.67828369140625" maxwidth="200">
+                        <text data="Le candidat avec le plus de voix est &#xE9;lu"/>
+                      </nodename>
+                      <nodenote></nodenote>
+                    </node>
+                  </nodes>
+                </node>
+              </nodes>
+            </node>
+          </nodes>
+        </node>
+        <node id="32" posx="328.42370605468739" posy="810.67828369140625" width="182" height="46" side="right" fold="false" treesize="46" color="#68b723" colorroot="false" layout="Vers la droite" group="false">
+          <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename posx="342.42370605468739" posy="824.67828369140625" maxwidth="200">
+            <text data="Jugement majoritaire"/>
+          </nodename>
+          <nodenote></nodenote>
+        </node>
+        <node id="33" posx="328.42370605468739" posy="856.67828369140625" width="140" height="46" side="right" fold="false" treesize="46" color="#f37329" colorroot="false" layout="Vers la droite" group="false">
+          <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename posx="342.42370605468739" posy="870.67828369140625" maxwidth="200">
+            <text data="M&#xE9;thode Borda"/>
+          </nodename>
+          <nodenote></nodenote>
+        </node>
+        <node id="34" posx="328.42370605468739" posy="902.67828369140625" width="195" height="46" side="right" fold="false" treesize="46" color="#333333" colorroot="false" layout="Vers la droite" group="false">
+          <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename posx="342.42370605468739" posy="916.67828369140625" maxwidth="200">
+            <text data="M&#xE9;thode de Condorcet"/>
+          </nodename>
+          <nodenote></nodenote>
+          <nodes>
+            <node id="35" posx="623.42370605468739" posy="902.67828369140625" width="28" height="46" side="right" fold="false" treesize="46" color="#333333" colorroot="false" layout="Vers la droite" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename posx="637.42370605468739" posy="916.67828369140625" maxwidth="200">
+                <text data=""/>
+              </nodename>
+              <nodenote></nodenote>
+            </node>
+          </nodes>
+        </node>
+      </nodes>
+    </node>
+  </nodes>
+  <groups/>
+  <connections>
+    <connection from_id="27" to_id="30" drag_x="951.1737060546875" drag_y="924.17828369140625">
+      <style connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100"/>
+      <title></title>
+      <note></note>
+    </connection>
+    <connection from_id="13" to_id="25" drag_x="1126.6343994140625" drag_y="528.1403198242183">
+      <style connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100"/>
+      <title></title>
+      <note></note>
+    </connection>
+  </connections>
+  <stickers/>
+</minder>

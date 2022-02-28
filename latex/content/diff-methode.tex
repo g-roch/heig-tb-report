@@ -1,0 +1,115 @@
+\documentclass[../report]{subfiles}
+\begin{document}
+
+
+  \part{Analyse des différents type de scrutins}
+  
+  \chapter{Les scrutins}
+
+  \section{Scrutin proportionnel plurinominal}
+  
+  \subsection{Fonctionnement}
+  
+  Les citoyens votent pour une liste (de candidats) de leur choix.
+  Chaque liste remporte un nombre de siège proportionnel au nombre de voix reçue.
+  \cite{noauthor_scrutin_2021}
+  
+  \subsection{Intégrale ou avec seuil}
+  \todo{définir: quotient électoral}
+  En proportionnelle intégrale, chaque liste atteignant le quotient électoral, obtient
+  le droit à un/des sièges.
+  Un seuil de nombre de voix peux être défini pour qu'une liste ait droit à un siège.
+  
+  \subsection{Préférentiel ou listes bloquées}
+  En listes bloquées, les sièges sont répartis au sein des listes par ordre d'apparision 
+  des candidats.
+  En préférentiel, les sièges sont répartis en fonction des préférences des électeurs.
+  En changeant l'ordre des candidats ou en biffant/rajoutant certain ou en cumulant certain 
+  candidat de multiple foix.
+  
+  \subsection{Répartition des sièges}
+  Le siège ne pouvant pas être divisé, une méthode doit être définit pour répartir 
+  correctement ces fragments de siège.
+  
+  \section{Scrutin uninominal majoritaire}
+  
+  Chaque votant vote pour son candidat/option préférée, et l'option/candidat avec le plus de
+  voix l'emporte.
+  
+  \subsection{Majorité relative ou absolue}
+  \subsubsection{Majorité absolue}
+  Dans le cas d'un scrutin à majorité absolue, l'option avec plus de 50\% de vote est choisie.
+  Si on exclues le cas d'un ex-equo et que l'on ne prends pas en compte les vote 
+  blancs/nuls/abstansions, pour 2 options possibles, il y a forcement un gagnant.
+  
+  Dans le cas où aucune options n'atteint les 50\%, une tour supplémentaire est généralement
+  organiser.
+  Ce tour supplémentaire peux être à la majorité relative dans une volonté de limité le nombre
+  de tour.
+  
+  \begin{nota}{Pourquoi 50\%~?}
+    Pour certain scrutin plus important, le seuils est plus élevé que 50\%, example 60\% ou 70\%. 
+    En quoi est-ce que 50\% est un bon choix, est-ce que ça veux dire que le choix de la moitié
+    des votants n'as pas importance~? 
+  \end{nota}
+  
+  \subsubsection{Majorité relative}
+  Dans le cas d'un scrution à majorité relative, l'option avec le plus de voix est choisie, 
+  quelque soit son pourcentage de voix.
+  
+  \subsection{Nombre de tour}
+  
+  Dans la pluspart des cas, il y a plusieurs tours d'organiser, soit jusqu'à ce qu'il y a 
+  un candidat qui remporte une majorité absolue, soit un nombre prédéfini de tour (souvant 2).
+  Habituellement, entre chaque tour 1 ou plusieurs candidats sont éliminés.
+  
+  \begin{nota}{Qui éliminer ?}
+    Habituellement, les candidats/options avec le moins de voix sont éliminé, mais
+    est-ce vraiment leurs électeurs qui sont le plus suceptible de changer d'avis ?
+    Est-ce qu'un électeur d'un des 2 candidat proche mutuellement n'aurait pas plus
+    de facilité à changer son vote ?
+  \end{nota}
+  
+  \section{Méthode Borda}
+
+  \subsection{Justification choix possible}
+
+  Dans le cas où un vote partielle est autorisé/possible (c.-à-d. certaines options sont 
+  non-classées).
+  Cela pourrait être bien de ne pas scoré les options (de la meilleures au pire)
+  avec les valeur ($n$, $n-1$, ..., $1$) et les options non-classée à $0$.
+  C'est mieux de les scorés du pire au meilleure ($1$, $2$, ..., $j$) avec $j$ le nombre
+  d'option classée et laisser à $0$ les options non-classée.
+  Ce choix évite de perdre les avantages de la méthode Borda si un grande partie des votants
+  ne classe que 1 ou 2 candidats.
+  \cite{emerson_original_2013}
+  
+  \section{Méthode de Condocet}
+  \todo{}
+  \section{Jugement majoritaire}
+  \todo{}
+  \section{Méthode de Coombs}
+  \todo{}
+  \section{Vote alternatif}
+  Aussi appelé vote préférencielle transférable ou Méthode de R
+  \todo{}
+  \section{Vote cumulatif}
+  \todo{}
+  \section{Vote par abbrobation}
+  \todo{}
+
+
+  \chapter{Problème et avantage}
+  
+  \todo{Prendre en compte ou non les votes blancs/nuls et les abstentions}
+  \todo{$50 \% + 1$ versus $ > 50\%$}
+  \todo{Avantage: il y a de la réflexion entre les tours lors de scrutin 
+  multi-tours. Tout le monde ne reste pas forcement sur ses positions}
+
+  
+  %\begin{nota}[by me]{Ma note}\lipsum[1][1-5]\end{nota}
+  %\begin{question}[by me]{Ma question}\lipsum[2][1-5]\end{question}
+  %\begin{important}[by me]{Ma not imp!}\lipsum[3][1-5]\end{important}
+  %\begin{warning}[by me]{My warn}\lipsum[4][1-5]\end{warning}
+
+\end{document}
