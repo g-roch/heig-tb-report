@@ -33,6 +33,40 @@
 \RequirePackage{listingsutf8}
 \RequirePackage{titlesec}
 \RequirePackage{blindtext}
+\RequirePackage{algorithm}
+\RequirePackage{algorithmic}
+
+\algsetup{indent=2em}
+\algsetup{linenosize=\footnotesize}
+\algsetup{linenodelimiter=.}
+%\newcommand{\algorithmicrequire}{\textbf{Require:}}
+%\newcommand{\algorithmicensure}{\textbf{Ensure:}}
+%\newcommand{\algorithmicend}{\textbf{end}}
+%\newcommand{\algorithmicif}{\textbf{if}}
+%\newcommand{\algorithmicthen}{\textbf{then}}
+%\newcommand{\algorithmicelse}{\textbf{else}}
+%\newcommand{\algorithmicelsif}{\algorithmicelse\ \algorithmicif}
+%\newcommand{\algorithmicendif}{\algorithmicend\ \algorithmicif}
+%\newcommand{\algorithmicfor}{\textbf{for}}
+%\newcommand{\algorithmicforall}{\textbf{for all}}
+%\newcommand{\algorithmicdo}{\textbf{do}}
+%\newcommand{\algorithmicendfor}{\algorithmicend\ \algorithmicfor}
+%\newcommand{\algorithmicwhile}{\textbf{while}}
+%\newcommand{\algorithmicendwhile}{\algorithmicend\ \algorithmicwhile}
+%\newcommand{\algorithmicloop}{\textbf{loop}}
+%\newcommand{\algorithmicendloop}{\algorithmicend\ \algorithmicloop}
+%\newcommand{\algorithmicrepeat}{\textbf{repeat}}
+%\newcommand{\algorithmicuntil}{\textbf{until}}
+%\newcommand{\algorithmicprint}{\textbf{print}}
+%\newcommand{\algorithmicreturn}{\textbf{return}}
+%\newcommand{\algorithmictrue}{\textbf{true}}
+%\newcommand{\algorithmicfalse}{\textbf{false}}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+%\newcommand{\algorithmiccomment}[1]{\{#1\}}
+\renewcommand{\algorithmiccomment}[1]{/* #1 */}
+\floatname{algorithm}{Algorithme}
+\renewcommand{\listalgorithmname}{Listes des algorithmes}
 
 \RequirePackage{heig}
 

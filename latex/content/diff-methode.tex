@@ -69,6 +69,50 @@
     Est-ce qu'un électeur d'un des 2 candidat proche mutuellement n'aurait pas plus
     de facilité à changer son vote ?
   \end{nota}
+
+  \begin{algorithm}
+  \caption{Scrutin majoritaire uninominal à 1 tour}
+  \label{scrutin:maj-uni-1t}
+  \begin{algorithmic}[1]
+  \REQUIRE $votes$[n° du votant] = n° du choix favori
+  \ENSURE Liste des n° des choix vainqueurs
+  \FORALL{$vote \leftarrow votes$}
+  \STATE $total[vote]$++
+  \ENDFOR
+  \RETURN Les indexes de max($total$)
+  \end{algorithmic}
+  \end{algorithm}
+  
+  \begin{algorithm}
+  \caption{Scrutin majoritaire uninominal à 2 tour}
+  \label{scrutin:maj-uni-2t}
+  \begin{algorithmic}[1]
+  \REQUIRE $votes$[n° du votant] = Liste des choix par ordre de préférence décroisante
+  \ENSURE Liste des n° des choix vainqueurs
+  \STATE $majorité \leftarrow \frac{\text{len}(votes)}{2} $
+  \FORALL{$vote \leftarrow votes$}
+    \STATE $choix \leftarrow vote[0]$ \COMMENT{Premier choix du votant}
+    \STATE $total[choix]$++
+  \ENDFOR
+  \IF{$\text{max}(total) > majorité$}
+    \RETURN Index de max($total$)
+  \ENDIF
+  \STATE
+  \STATE $restant \leftarrow $ index des 2 valeurs maximal de $total$
+  \STATE vider $total$
+  \FORALL{$vote \leftarrow votes$}
+    \STATE $choix \leftarrow $ première valeur de $vote$ se trouvant dans $restant$
+    \STATE $total[choix]++$
+  \ENDFOR
+  \IF{$\text{max}(total) > majorité$}
+    \RETURN Index de max($total$)
+  \ELSE
+    \STATE \COMMENT{Les 2 choix restants sont ex-aequo}
+    \RETURN $restant$
+  \ENDIF
+  \end{algorithmic}
+  \end{algorithm}
+    
   
   \section{Méthode Borda}
 
@@ -84,18 +128,72 @@
   ne classe que 1 ou 2 candidats.
   \cite{emerson_original_2013}
   
-  \section{Méthode de Condocet}
+  \begin{algorithm}
+  \caption{Scrutin avec la méthode Borda (si que 2/5 classées, les points attribués sont 1 et 2)}
+  \label{scrutin:borda-max-nbclassee}
+  \begin{algorithmic}[1]
+  \REQUIRE $votes$[n° du votant] = Liste des choix par ordre de préférence décroisante
+  \ENSURE Liste des n° des choix vainqueurs
+  \FORALL{$vote \leftarrow votes$}
+    \STATE $point \leftarrow \text{len}(vote)$
+    \FORALL{$option \leftarrow vote$}
+      \STATE $total[option] \leftarrow total[option] + point$
+      \STATE $point--$
+    \ENDFOR
+  \ENDFOR
+  \RETURN Les indexes de max($total$)
+  \end{algorithmic}
+  \end{algorithm}
+  
+  \begin{algorithm}
+  \caption{Scrutin avec la méthode Borda (si que 2/5 classées, les points attribués sont 5 et 4)}
+  \label{scrutin:borda-max-nboption}
+  \begin{algorithmic}[1]
+  \REQUIRE $votes$[n° du votant] = Liste des choix par ordre de préférence décroisante
+  \ENSURE Liste des n° des choix vainqueurs
+  \FORALL{$vote \leftarrow votes$}
+    \STATE $point \leftarrow $ Nombre d'option disponible
+    \FORALL{$option \leftarrow vote$}
+      \STATE $total[option] \leftarrow total[option] + point$
+      \STATE $point--$
+    \ENDFOR
+  \ENDFOR
+  \RETURN Les indexes de max($total$)
+  \end{algorithmic}
+  \end{algorithm}
+  
+  
+  \section{Méthode de Condorcet}
   \todo{}
+  \section{Vote par abbrobation}
+  \todo{}
+  
   \section{Jugement majoritaire}
   \todo{}
+  
+  \begin{algorithm}
+  \caption{Scrutin au jugement majoritaire}
+  \label{scrutin:jugement-maj}
+  \begin{algorithmic}[1]
+  \REQUIRE $votes$[n° du votant][n° de l'option] = Le jugement de l'option (5 = parfait; 0 = À rejeter)
+  \ENSURE Liste des n° des choix vainqueurs
+  \STATE $majorité \leftarrow \frac{\text{len}(votes)}{2}$
+  \FORALL{$vote \leftarrow votes$}
+    \FORALL{$option \leftarrow vote$}
+      \STATE $jugement \leftarrow vote[option]$
+      \STATE $total[option][jugement] ++$
+    \ENDFOR
+  \ENDFOR
+  % TODO
+  \end{algorithmic}
+  \end{algorithm}
+  
   \section{Méthode de Coombs}
   \todo{}
   \section{Vote alternatif}
   Aussi appelé vote préférencielle transférable ou Méthode de R
   \todo{}
   \section{Vote cumulatif}
-  \todo{}
-  \section{Vote par abbrobation}
   \todo{}
 
 

@@ -107,25 +107,25 @@ fn main() {
         );
     }
 
-    //println!(
-    //    " => scrutin majoritaire uninominal à 1 tour : {:?}",
-    //    single_member_plurality_voting(&votes)
-    //);
-    //println!(
-    //    " => scrutin majoritaire uninominal à 2 tour : {:?}",
-    //    single_member_plurality_voting_2round(&votes)
-    //);
-    //println!(
-    //    " => Borda (première = nombre_option point) : {:?}",
-    //    borda(&votes, true)
-    //);
-    //println!(
-    //    " => Borda (première = nombre d'option classée point) : {:?}",
-    //    borda(&votes, false)
-    //);
-    //println!(" => Vote alternatif : {:?}", alternative_vote(&votes));
-    //println!(" => Coombs : {:?}", coombs(&votes));
-    //println!(" => Vote par aprobation : {:?}", approval_voting(&votes));
+    println!(
+        " => scrutin majoritaire uninominal à 1 tour : {:?}",
+        single_member_plurality_voting(&votes)
+    );
+    println!(
+        " => scrutin majoritaire uninominal à 2 tour : {:?}",
+        single_member_plurality_voting_2round(&votes)
+    );
+    println!(
+        " => Borda (première = nombre_option point) : {:?}",
+        borda(&votes, true)
+    );
+    println!(
+        " => Borda (première = nombre d'option classée point) : {:?}",
+        borda(&votes, false)
+    );
+    println!(" => Vote alternatif : {:?}", alternative_vote(&votes));
+    println!(" => Coombs : {:?}", coombs(&votes));
+    println!(" => Vote par aprobation : {:?}", approval_voting(&votes));
     println!(" => Jugement majoritaire : {:?}", majority_judgment(&votes));
 
     //println!("Hello, world! {:?}", args);
@@ -159,7 +159,6 @@ fn read_votes(filename: &String) -> Votes {
 }
 
 // scrutin_majoritaire_uninominal_1tour
-#[named]
 fn single_member_plurality_voting(votes: &Votes) -> Option<Vec<usize>> {
     let mut results = vec![0; votes.number_option()];
 
