@@ -25,6 +25,7 @@
 \RequirePackage{emptypage}
 \RequirePackage{shorttoc}
 \RequirePackage{color}
+\RequirePackage[table]{xcolor}
 \RequirePackage{imakeidx}
 \RequirePackage[colorlinks,unicode]{hyperref}
 \RequirePackage[most]{tcolorbox}
@@ -35,6 +36,8 @@
 \RequirePackage{blindtext}
 \RequirePackage{algorithm}
 \RequirePackage{algorithmic}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
 
 \algsetup{indent=2em}
 \algsetup{linenosize=\footnotesize}

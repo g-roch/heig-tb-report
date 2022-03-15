@@ -30,6 +30,14 @@ _dyn/git-version.tex:
 _dyn/git-version-short.tex: _dyn/git-version.tex
 	cat $< | sed 's/-[0-9a-h]\+$$//' > $@
 
+#.PHONY: $(wildcard _dyn/scrutin/*.tex)
+_dyn/-allscrutin: $(wildcard _dyn/scrutin/*.tex)
+	echo A $^
+_dyn/scrutin/%.tex: $(wildcard ../simulation-scrutin/*) $(shell find ../simulation-scrutin/src/ -type f)
+	echo B $^
+	mkdir -p _dyn/scrutin
+	(cd ../simulation-scrutin/ && cargo run $*) > $@
+
 
 
 .PHONY: $(patsubst %,%.pvc,$(PDF))

@@ -4,6 +4,33 @@
 
   \part{Analyse des différents type de scrutins}
   
+  \chapter{Critère de comparaison}
+  
+  Le choix des critères de comparaison des différente méthode de vote, est choix 
+  éminament politique.
+  C'est équivalement à répondre à la question quel candidat souhaite-t-on élire en fonction
+  des votes des électeurs, cependant on veillera à ne pas prendre en compte les positions 
+  politiques des différents candidat.
+  On veux savoir quel candidat devrait être élus, pas comment faire pour que notre candidat 
+  favori l'emporte face aux autres candidats.
+  
+  \section{Indépendant à la présence de «petit» candidat}
+  
+  La présence ou l'absence de candidat n'ayant acune chance de gagner, ne devrait pas influancer
+  le résultat du scrutin.
+  
+  \subsection{Example}
+  \newcommand\scrutinname{« Vote 1 »}
+  \inputMake{_dyn/scrutin/vote1.votes.tex}
+  \inputMake{_dyn/scrutin/vote1.maj1.tex}
+  \inputMake{_dyn/scrutin/vote1.maj2.tex}
+  %\inputMake{_dyn/scrutin/vote1.all.tex}
+
+  \section{Paradoxe de Condorcet}
+  \section{¿ Paradoxe de Borda ?}
+  \section{¿ Paradoxe d'Arrow ?}
+  \section{quasi unanimité du vote}
+  
   \chapter{Les scrutins}
 
   \section{Scrutin proportionnel plurinominal}
@@ -70,7 +97,9 @@
     de facilité à changer son vote ?
   \end{nota}
 
-  \begin{algorithm}
+  \subsection{Algorithme}
+
+  \begin{algorithm}[H]
   \caption{Scrutin majoritaire uninominal à 1 tour}
   \label{scrutin:maj-uni-1t}
   \begin{algorithmic}[1]
@@ -83,7 +112,7 @@
   \end{algorithmic}
   \end{algorithm}
   
-  \begin{algorithm}
+  \begin{algorithm}[H]
   \caption{Scrutin majoritaire uninominal à 2 tour}
   \label{scrutin:maj-uni-2t}
   \begin{algorithmic}[1]
@@ -112,8 +141,35 @@
   \ENDIF
   \end{algorithmic}
   \end{algorithm}
-    
-  
+
+  \subsection{Cas limites}
+
+  \begin{table}[H]
+    \begin{center}
+      \caption{Cas limites d'un scrutin à la majorité en 1 tour}
+      \label{fig:diff:maj1:caslim1}
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Préférences des électeurs}
+          \inputMake{_dyn/scrutin/maj1-caslim-1.votes.tex}
+        \end{subtable}
+      }
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Résultats du scrutin}
+          \inputMake{_dyn/scrutin/maj1-caslim-1.maj1.tex}
+        \end{subtable}
+      }
+    \end{center}
+  \end{table}
+
+  On peux constater plus de 60\% des électeurs (ii et iii) préférent B ou C à A. 
+  Cependant comme A a fait plus de voix que B ou C, c'est donc cette option qui est élue.
+  Si B ou C s'était retirer avant le scrutin ou s'il y avait eu une candidature commune, A aurait été largement battue. 
+
+
   \section{Méthode Borda}
 
   \subsection{Justification choix possible}
@@ -128,7 +184,9 @@
   ne classe que 1 ou 2 candidats.
   \cite{emerson_original_2013}
   
-  \begin{algorithm}
+  \subsection{Algorithme}
+
+  \begin{algorithm}[H]
   \caption{Scrutin avec la méthode Borda (si que 2/5 classées, les points attribués sont 1 et 2)}
   \label{scrutin:borda-max-nbclassee}
   \begin{algorithmic}[1]
@@ -145,7 +203,7 @@
   \end{algorithmic}
   \end{algorithm}
   
-  \begin{algorithm}
+  \begin{algorithm}[H]
   \caption{Scrutin avec la méthode Borda (si que 2/5 classées, les points attribués sont 5 et 4)}
   \label{scrutin:borda-max-nboption}
   \begin{algorithmic}[1]
@@ -162,16 +220,90 @@
   \end{algorithmic}
   \end{algorithm}
   
-  
+  \subsection{Cas limites}
+  \begin{table}[H]
+    \begin{center}
+      \caption{Cas limites d'un scrutin utilisant la méthode Borda}
+      \label{fig:diff:borda:caslim1}
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Préférences des électeurs}
+          \inputMake{_dyn/scrutin/borda-caslim-1A.votes.tex}
+        \end{subtable}
+      }
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Résultat}
+          \inputMake{_dyn/scrutin/borda-caslim-1A.bordatot.tex}
+        \end{subtable}
+      }\\[1em]
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Préférences des électeurs}
+          \inputMake{_dyn/scrutin/borda-caslim-1B.votes.tex}
+        \end{subtable}
+      }
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Résultat}
+          \inputMake{_dyn/scrutin/borda-caslim-1B.bordatot.tex}
+        \end{subtable}
+      }
+    \end{center}
+  \end{table}
+
+  \begin{table}[H]
+    \begin{center}
+      \caption{Cas limites d'un scrutin utilisant la méthode Borda}
+      \label{fig:diff:borda:caslim2}
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Préférences des électeurs}
+          \inputMake{_dyn/scrutin/borda-caslim-2.votes.tex}
+        \end{subtable}
+      }\\[1em]
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Nombre de points disponible en fonction du nombre de candidat classé}
+          \inputMake{_dyn/scrutin/borda-caslim-2.bordaclasse.tex}
+        \end{subtable}
+      }
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Nombre de points disponible en fonction du nombre de candidat disponible}
+          \inputMake{_dyn/scrutin/borda-caslim-2.bordatot.tex}
+        \end{subtable}
+      }
+    \end{center}
+  \end{table}
+
   \section{Méthode de Condorcet}
   \todo{}
+  \subsection{Cas limites}
+  \inputMake{_dyn/scrutin/condorcet-caslim-1.votes.tex}
+  \inputMake{_dyn/scrutin/condorcet-caslim-1.condorcet.tex}
   \section{Vote par abbrobation}
   \todo{}
   
+  \subsection{Cas limites}
+  \inputMake{_dyn/scrutin/apro-caslim-1.votes.tex}
+  \inputMake{_dyn/scrutin/apro-caslim-1.apro.tex}
+
+  \inputMake{_dyn/scrutin/apro-caslim-1.jugmaj.tex}
+
+  C gagne alors que 75\% de l'électorat lui préfère largement A et 75\% lui préfère B.
+
   \section{Jugement majoritaire}
   \todo{}
   
-  \begin{algorithm}
+  \begin{algorithm}[H]
   \caption{Scrutin au jugement majoritaire}
   \label{scrutin:jugement-maj}
   \begin{algorithmic}[1]
