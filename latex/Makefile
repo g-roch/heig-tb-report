@@ -17,31 +17,29 @@ all: $(PDF)
 -include *.d
 -include */*.d
 
-$(PDF): %.pdf: %.tex
-	cd $(dir $*) && latexmk $(LATEXFLAGS) $(notdir $*)
-
-
-.PHONY: _dyn/git-version.tex
-_dyn/git-version.tex: 
+_dyn/Makefile: MakefileDyn
 	mkdir -p _dyn
-	git describe --tags --match 'v[0-9]*' > $@
+	cp $< $@
 
-.PHONY: _dyn/git-version-short.tex
-_dyn/git-version-short.tex: _dyn/git-version.tex
-	cat $< | sed 's/-[0-9a-h]\+$$//' > $@
+%/Makefile: MakefileSubdir
+	mkdir -p $*
+	cp $< $@
 
-#.PHONY: $(wildcard _dyn/scrutin/*.tex)
-_dyn/-allscrutin: $(wildcard _dyn/scrutin/*.tex)
-	echo A $^
-_dyn/scrutin/%.tex: $(wildcard ../simulation-scrutin/*) $(shell find ../simulation-scrutin/src/ -type f)
-	echo B $^
-	mkdir -p _dyn/scrutin
-	(cd ../simulation-scrutin/ && cargo run $*) > $@
+FORCE:
+_dyn/%: _dyn/Makefile FORCE
+	cd _dyn && $(MAKE) $*
 
+
+$(PDF): %.pdf: %.tex
+	$(MAKE) $(dir $*)Makefile
+	cd $(dir $*) && $(MAKE) _dyn
+	cd $(dir $*) && latexmk $(LATEXFLAGS) $(notdir $*)
 
 
 .PHONY: $(patsubst %,%.pvc,$(PDF))
 $(patsubst %,%.pvc,$(PDF)): %.pdf.pvc: %.tex
+	$(MAKE) $(dir $*)Makefile
+	cd $(dir $*) && $(MAKE) _dyn
 	cd $(dir $*) && latexmk $(LATEXFLAGS) -pvc $(notdir $*)
 
 
@@ -55,6 +53,9 @@ $(patsubst %.tex,%~dist-clean,$(TEX)): %~dist-clean:
 .PHONY: clean
 clean: $(patsubst %.tex,%~clean,$(TEX))
 	rm -fr _dyn _minted-report
+	find -type f -a -name "*~" -delete
+	cd content && $(MAKE) clean || true
+	
 
 .PHONY: $(patsubst %.tex,%~clean,$(TEX))
 $(patsubst %.tex,%~clean,$(TEX)): %~clean:

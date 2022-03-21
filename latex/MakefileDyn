@@ -1,0 +1,30 @@
+
+SIMULATION_SCRUTIN=../../simulation-scrutin
+
+
+default:
+
+.PHONY: git-version.tex
+git-version.tex: 
+	git describe --tags --match 'v[0-9]*' > $@
+
+.PHONY: git-version-short.tex
+git-version-short.tex: git-version.tex
+	cat $< | sed 's/-[0-9a-h]\+$$//' > $@
+
+#.PHONY: $(wildcard scrutin/*.tex)
+-allscrutin: $(wildcard scrutin/*.tex)
+	echo A $^
+scrutin/%.tex: $(wildcard $(SIMULATION_SCRUTIN)/*) $(shell find $(SIMULATION_SCRUTIN)/src/ -type f)
+	pwd
+	echo B $^
+	mkdir -p scrutin
+	(cd $(shell pwd)/$(SIMULATION_SCRUTIN) && cargo run $*) > $@
+
+
+test:
+	pwd
+	cd -P . && pwd
+	cd $(shell pwd)/$(SIMULATION_SCRUTIN)
+
+
