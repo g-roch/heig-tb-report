@@ -1,9 +1,43 @@
 \documentclass[../report]{subfiles}
 \begin{document}
 
+\newcommand\tabcritere[8]{
+  \begin{center}
+    \begin{tabular}{r|c|p{20em}}
+      \hline
+      Critère & Évaluation & Raison \\
+      \hline
+      \hline
+      Avis des perdants & #1 & #2 \\
+      \hline
+      Indépendance aux petits candidats & #3 & #4 \\
+      \hline
+      Quasi unanimité du vote & #5 & #6 \\
+      \hline
+      Manipulabilité & #7 & #8 \\
+      \hline
+    \end{tabular}
+  \end{center}
+}
+
+
+  \chapter{Introduction}
+
+  \todo{Type de méthode de scrutin analyser}
+  \todo{candidat vs options}
+  \todo{Vote blanc/nuls/abstentions dans les simulations}
+  \todo{Exemple fictif}
+  \todo{referendhum cas particulier d'une élection}
+
+  \section{Définition et abréviation}
+  
+  \begin{description}
+    \item[vote utile] \aref{diff:comp:util:util}
+    \item[quorum]
+  \end{description}
 
   \part{Analyse des différents type de scrutins}
-  
+
   \chapter{Critère de comparaison}
   
   Le choix des critères de comparaison des différente méthode de vote, est choix 
@@ -13,338 +47,822 @@
   politiques des différents candidat.
   On veux savoir quel candidat devrait être élus, pas comment faire pour que notre candidat 
   favori l'emporte face aux autres candidats.
-  
-  \section{Indépendant à la présence de «petit» candidat}
-  
-  La présence ou l'absence de candidat n'ayant acune chance de gagner, ne devrait pas influancer
-  le résultat du scrutin.
-  
-  \subsection{Example}
-  \newcommand\scrutinname{« Vote 1 »}
-  \inputMake{_dyn/scrutin/vote1.votes.tex}
-  \inputMake{_dyn/scrutin/vote1.maj1.tex}
-  \inputMake{_dyn/scrutin/vote1.maj2.tex}
-  %\inputMake{_dyn/scrutin/vote1.all.tex}
 
-  \section{Paradoxe de Condorcet}
-  \section{¿ Paradoxe de Borda ?}
-  \section{¿ Paradoxe d'Arrow ?}
-  \section{quasi unanimité du vote}
+  \section{Avis des perdants}
+
+  Avec certaine méthode, un candidats peux être élus alors que 49\% du corps électoral est
+  absolument contre et ce même lors qu'un autre candidat avec un score plus faible n'a aucune
+  électeur contre.
+  Un système de choix performent devrais prendre en compte le vote qui ne sont pas pour le candidat
+  élu, afin de trouvé le candidat qui serait satisfaisant pour le plus de monde possible.
+
+  \todo{example}
   
+  \section{Indépendance à la présence de candidat perdant}
+
+  On peut souhaiter que si une option non-élue est retirée du scrutin, l'option vainqueure reste
+  la même.
+  Cependant même si ce critère n'est pas totalement respecté pour des candidats avec de très bon 
+  score, le retrait d'un petit candidat (avec un score faible) ne doit pas faire changer 
+  le vainqueur.
+
+  \subsection{Théorème d'impossibilité d'Arrow}
+
+  Ce théorème nous dis que dans un scrutin où les électeurs indique leur préférences en classant les
+  options les unes par repport aux autres.
+  Dans ce cadre il n'existe pas de processus de choix indiscutable permettant un choix 
+  cohérant dans le sens où le retrait d'un candidat non-élus, ne change pas le nom de l'élu.
+
+  Dans les types de scrutin étudier dans ce document, seul la méthode Borda et le 
+  jugement majoritaire échape à ce théorème, car ils n'utilisent pas de classement des 
+  options par les électeurs.
+
+  \section{Quasi unanimité du vote}
+
+  La quasi unanimité du vote, c'est que lorsque que presque l'ensemble des électeurs préfèrent 
+  un option (A) à une autre option (B), alors cette deuxième option (B) n'est jamais élu.
+  Il y a différente méthode de vote qui ne respecte pas la quasi unanimité du vote.
+
+  \section{Manipulabilité et vote utile}
+
+  \subsection{Vote utile}%
+  \label{diff:comp:util:util}
+
+  Le vote utile est le fait de changer son ordre de préférence entre ses candidats favoris pour
+  permettre à l'un de ses candidats favoris de remporté l'élection. 
+  Je choisi de ne pas considérer comme vote utile le fait de voter pour un candidat que l'on ne
+  souhaite pas voir élu, afin que son candidat favori soit élu, j'ai classée cette pratique 
+  dans la manipulabilité du résultat (voir \aref{diff:comp:util:manip}).
+
+  Dans le cadre de cette définition le vote utile n'est en soit pas mauvais.
+  Il permet d'aider à la recherche d'un consensus en impliquant les citoyen dans la réflexion
+  et donc sans se basé exclusivement sur des maths que toutes la populations n'est pas forcement
+  en mesure de comprendre.
+
+  %\begin{nota}[élection présidentiel française 2022]{Exemple de vote utile}
+  %  Par exemple lors de l'élection présidentiel française de 2022, certaines personnes de gauche
+  %  radical ont choisi à voter pour J.-L. Mélanchon au premier tour alors même qu'ils aurait 
+  %  plutôt voulu voter pour des candidats plus à gauche (P. Poutou).
+  %  Ce n'est pas forcement une mauvais chose, car leur objectif en changeant leur vote n'est pas
+  %  de que P. Poutou gagne, mais bel et bien que J.-L. Mélanchon atteigne le second tour.
+  %  \todo{compléter example manipulation}
+  %\end{nota}
+
+  \todo{Faire exemple avec graphique}
+
+  \subsection{Manipulabilité du résultat et corruption}%
+  \label{diff:comp:util:manip}%
+  \label{diff:comp:util:corruption}
+
+  La manipulation du vote est le fait de ne pas voter pour ses candidats/options favoris, mais 
+  pour un candidat que l'on ne veux pas voir au pouvoir dans l'objectif de faire en sorte que 
+  notre candidat favori soit finalement élu.
+
+  \todo{Faire exemple avec graphique}
+
+  Le corruption du scrutin corresponds à l'achat\footnote{Par achat on prends en compte 
+  tout échange visant à limiter le choix libre du vote allant d'un petit avantage à la menace 
+  de mort sur le/la votant·e ou ses proches.} auprés des électeurs de leur vote.
+  La corruption est légerement différent de la manipulation, dans le sens où le candidat
+  que l'on cherche à élire à la fin n'est pas forcement celui qui est préférer par le votant.
+  Tout les systèmes de vote est vulnérable à ce genre de manipulation, mais un bon système de 
+  vote devrait necessité une très forte corruption pour que le résultats final soit impacté.
+  Certaine technique peuvent être mise en place pour limiter la corruption des votants (secret
+  du vote, impossibilité de prouver pour qui on a voter, liberté de la presse, …), mais 
+  ces techniques ne peuvent pas garantir l'absence de correciont.
+  
+  %\begin{nota}[élection présidentiel française 2022]{Exemple de tentative de manipulation du vote}
+  %  Lors du premier tours 
+  %  \todo{compléter example}
+  %\end{nota}
+
+  \todo{Faire exemple avec graphique}
+
+  \section{Autre critère non pris en compte}
+  \subsection{Votes blancs, nuls et abstentions}
+
+  Les votes blancs et nuls devrait toujours être compté, ne serais-ce que pour des raisons de
+  statistique.
+  Savoir qu'il y a eu 90\% de vote blanc permet au politique de voir qu'il y a un problème, même
+  s'il n'y a aucun moyen de savoir ce qui c'est passé, au simple regard de cette statistique.
+
+  Dans le cas où l'on veux prendre en compte les votes blancs, nuls ou abstentions, il est primordial
+  de faire attention que cela ne privilégie pas une option par rapport à une autre.
+
+  \begin{nota}{Décompte de vote blancs non-neutre}
+    Lors d'un référendum contre une désicion du gouvernement, il faut qu'il y ai plus de 50\% 
+    de vote contre pour que la désicion soit révoquée.
+
+    Dans le cas où les votes blancs, nuls ou bien les abstansions sont pris en compte dans 
+    le nombre de personne ayant validement voter, cela augmente le nombre de vote contre 
+    qu'il y a besoin pour refusé le choix du gouvernement.
+
+    De ce fait, ces «votes» vont donc dans le sens du gouvernement et ne sont donc pas neutre. 
+
+    Si les votes blancs/nuls font juste baissé le quorum, et que si le quorum n'est pas atteint
+    une seconde votation a lieu, alors, c'est un usage plus correct de ces voix.
+
+  \end{nota}
+
+
+  \subsection{Corps électoral}
+
+  Pour avoir une bonne représentation de ce que veux la population, avoir un faire taux de votes
+  blancs, nuls et d'abstansions n'est pas pas suffisant.
+  En effet dans la majorité des pays, une grande partie de la population n'a pas le droit de vote.
+
+  \begin{nota}{Droit de vote en Suisse}
+    En 2015, 37\%\footnote{au niveau fédéral, source: \url{https://www.swissinfo.ch/fre/democratiedirecte/élections-2019\_qui-peut-voter-en-suisse--et-qui-ne-peut-pas-/45264666}}
+    de la population Suisse n'avait simplement pas le droit de vote.
+    \begin{enumerate}
+      \item Les étrangers comme dans beaucoup de pays.
+      \item Les jeunes jusqu'à 18 ans, cette age peux varier en fonction du pays
+      \item Dans certain pays (mais pas la Suisse), les personnes incarcérée, n'ont pas 
+        le droit de vote.
+      \item Et enfin toutes personne sous curatelle de portée générale ne peuvent 
+        également pas voter.
+      \item Et enfin toutes personne sous curatelle de portée générale ne peuvent 
+      \item Jusqu'à récemment certain pays\footnote{L'Arabie Saoudite a donné le droit de vore au femme en 2011, source: \url{https://fr.wikipedia.org/wiki/Droit\_de\_vote\_des\_femmes}} ne donnait pas le droit de vote aux femmes.
+    \end{enumerate}
+  \end{nota}
+
+  Ces diverses restrictions fait qu'une partie de la population vis dans un pays, mais n'a
+  pas la possibilité de participé au décision collective.
+  Lorsqu'on essaye d'interpréter un scrutin réel, il faut donc prendre en compte cela.
+  Un candidat élu à 70\% n'est pas élus à 70\% de la population, ni même à 70\% des personnes
+  ayant le droit de vote, ni même à 70\% des personnes inscrites sur les listes électorales,
+  même pas à 70\% des votants, mais à 70\% des votants n'ayant pas voter blanc et dont leur 
+  bulletin n'a pas été considérer comme nul.
+  En fonction du pays et de la votation cela peut avoir une grande importance pour savoir ce que
+  veux la population général.
+
+  Ne pas oublier que certain pays donne le droit vote aux personnes ayant la nationalité mais 
+  résidant à l'étranger.
+  Le résultat ne corresponds donc pas à ce que veulent les résidants, mais est influancer par ce
+  que veulent des personnes vivants à l'étranger.
+
+  \begin{table}[h]
+    \caption{Suisse: Initiative populaire «~99~\%~»}%
+    \label{tab:votation:99pourcent}%
+    % voir : https://www.bfs.admin.ch/bfs/fr/home/statistiques/politique/votations/annee-2021/2021-09-26/initiative-99-pour-cent.html
+    % voir : https://www.bfs.admin.ch/bfs/fr/home/statistiques/population/effectif-evolution/population.html
+    \begin{center}
+      \begin{tabular}{lrccc}
+        \hline
+        & & Électeur & Pour [\%] & Contre [\%] \\
+        \hline
+        \hline
+        Résultat officiel        &              & 2~810~307 & 35,12          & 64,88          \\
+        Avec vote blanc          & $+58~499$    & 2~868~806 & 34,41 -- 36,45 & 63,55 -- 65,59 \\
+        Avec vote nuls           & $+14~073$    & 2~882~879 & 34,24 -- 36,76 & 63,24 -- 65,76 \\
+        Sans abstentions         & $+2~636~289$ & 5~519~198 & 17,88 -- 66,96 & 33,04 -- 82,12 \\
+        Populatation tot. (2020) & $+3~151~132$ & 8~670~300 & 11,38 -- 78,97 & 21,03 -- 88,62 \\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{table}
+
+  La Suisse a voter le 26 septembre 2021 sur l'initiative «~99~\%~».
+  Cette initiative a été largement refusée à plus de 64\%.
+  Le \aref{tab:votation:99pourcent} montre les pourcentages de la populations possible dans le 
+  cas où personne n'aurait voter blanc, auncun bulletin nul décompter, sans abstention et 
+  finalement si l'ensemble de la population avait le droit de vote et votait.
+  Par exemple on sais avec certitude que 21,03\% de la population était contre 
+  (l'initiative a été rejetée), mais la propotion de personne contre peux varier entre 
+  21,03\% et 88,62\% si l'on ne regarde que le résultat du scrutin.
+  La population prise en compte et celle de 2020 (une année avant le scrutin).
+
+  \subsection{Reflexion et débat}
+
+  Certain scrutin se déroule en plusieurs tours, il peut être interessant de demander à la 
+  population de classer tous les candidats/options et de simuler tous les tours.
+  Cette technique permet aux électeurs de ne se déplacer qu'une seul fois aux urnes.
+  Malheureusement, en simulant les tours, on supprime également la possibilité d'avoir un
+  débat et donc que les électeurs puisse changer d'avis.
+  Les compromis entre candidat sont également impossible.
+
+  Un scrutin à plusieurs tours réel permet d'améliorer le débat politique, même si un scrutin 
+  à 10 lasserait certainement plus que le bénéfisse possible.
+
   \chapter{Les scrutins}
 
+  \begin{important}[$50\% + 1$ versus $ > 50\%$]{Définition de la majorité}
+    On trouve fréquement l'expression $50\%+1$ pour désigner le nombre de vote requis pour
+    obtenir la majorité, alors qu'il faux juste plus de $50\%$ des voix pour la majorité.
+    Même si cette distinction parrait minime, pour des scrutins avec un nombre d'électeur 
+    impair c'est un point important.
+
+    Si A a 4 voix, B a 1 voix et C a 2 voix, on a un total de 7 électeurs.
+    Dans un cas pour avoir la majorité nous devons obtenir le nombre de voix suivant
+    \[ \text{plus que }50\%\text{ de }7 = \frac{7}{2} = 3.5 \]
+    alors que dans l'autre cas
+    \[ \text{au moins }(50\%\text{ de }7) + 1 = \frac{7}{2} + 1 = 4.5 \]
+
+    Nous avons donc un cas où il faut un score $ > 3.5 $ et un autre cas où il faut un score 
+    $ \geqslant 4.5 $.
+    Le candidat A se retrouve donc élu avec un définition et non-élu avec l'autre.
+
+    Dans ce document seul la définition $> 50\%$ a été utilisé
+  \end{important}
+
   \section{Scrutin proportionnel plurinominal}
-  
-  \subsection{Fonctionnement}
-  
-  Les citoyens votent pour une liste (de candidats) de leur choix.
+
+  Les électeurs votent pour une liste (de candidats) de leur choix.
   Chaque liste remporte un nombre de siège proportionnel au nombre de voix reçue.
-  \cite{noauthor_scrutin_2021}
+  Les sièges sont finalement distribué dans chaque liste soit par ordre de présence dans
+  la liste, ou bien en fonction du nombre de voix de chaque candidat dans la liste.
+
+  \paragraph{Scrutin avec seuil}
+
+  Lors de certaine élection il peut y avoir un seuil à atteindre pour qu'un liste puisse 
+  prétendre à un siège.
+  C'est-à-dire qu'il faut avoir par exemple les voix necessaire pour 3 sièges pour permettre
+  à la liste de rentré dans le groupe de liste recevant des sièges.
+  S'il n'y a pas de seuil, chaque liste avec un nombre de voix suffisant pour 1 siège participe 
+  à la répartition.
   
-  \subsection{Intégrale ou avec seuil}
-  \todo{définir: quotient électoral}
-  En proportionnelle intégrale, chaque liste atteignant le quotient électoral, obtient
-  le droit à un/des sièges.
-  Un seuil de nombre de voix peux être défini pour qu'une liste ait droit à un siège.
-  
-  \subsection{Préférentiel ou listes bloquées}
+  \paragraph{Préférentiel ou listes bloquées}
+
   En listes bloquées, les sièges sont répartis au sein des listes par ordre d'apparision 
   des candidats.
   En préférentiel, les sièges sont répartis en fonction des préférences des électeurs.
-  En changeant l'ordre des candidats ou en biffant/rajoutant certain ou en cumulant certain 
-  candidat de multiple foix.
+  Ces derniers peuvent changer l'ordre des candidats, biffant/rajoutant certain ou même
+  en cumulant certain candidat de plusieurs foix.
   
-  \subsection{Répartition des sièges}
-  Le siège ne pouvant pas être divisé, une méthode doit être définit pour répartir 
-  correctement ces fragments de siège.
+  \paragraph{Répartition des sièges}
+
+  Les candidats ne pouvant pas être élu à moitié, diverse méthode existe pour répartir
+  les sièges entre les diverses listes.
+  Chaques méthodes peuvent donner des resultats différents.
   
-  \section{Scrutin uninominal majoritaire}
+  \section{Scrutin uninominal majoritaire}\label{diff:scrutin-majoritaire}
   
-  Chaque votant vote pour son candidat/option préférée, et l'option/candidat avec le plus de
-  voix l'emporte.
+  Chaque votant vote pour son option préférée.
+  Pour chaque option on compte le nombre d'électeur l'ayant choisi, l'option avec le plus 
+  d'électeur l'emporte.
   
   \subsection{Majorité relative ou absolue}
   \subsubsection{Majorité absolue}
-  Dans le cas d'un scrutin à majorité absolue, l'option avec plus de 50\% de vote est choisie.
-  Si on exclues le cas d'un ex-equo et que l'on ne prends pas en compte les vote 
-  blancs/nuls/abstansions, pour 2 options possibles, il y a forcement un gagnant.
-  
+  Dans le cas d'un scrutin à majorité absolue, l'option avec plus de 50\% de vote est déclarée
+  vainqueure.
   Dans le cas où aucune options n'atteint les 50\%, une tour supplémentaire est généralement
   organiser.
   Ce tour supplémentaire peux être à la majorité relative dans une volonté de limité le nombre
   de tour.
   
   \begin{nota}{Pourquoi 50\%~?}
-    Pour certain scrutin plus important, le seuils est plus élevé que 50\%, example 60\% ou 70\%. 
+    Pour certain scrutin plus important, le seuils est plus élevé que 50\%, exemple 60\% ou 70\%. 
     En quoi est-ce que 50\% est un bon choix, est-ce que ça veux dire que le choix de la moitié
     des votants n'as pas importance~? 
   \end{nota}
   
   \subsubsection{Majorité relative}
   Dans le cas d'un scrution à majorité relative, l'option avec le plus de voix est choisie, 
-  quelque soit son pourcentage de voix.
-  
+  quelque soit son pourcentage de voix. Il n'y a donc pas besoin d'un second tours s'il n'y 
+  a pas d'ex-aequo. Ce scrutin est décris dans l'algorithme \aref{scrutin:maj-uni-1t}.
+
+  \begin{algorithm}
+    \caption{Scrutin majoritaire uninominal à 1 tour}%
+    \label{scrutin:maj-uni-1t}
+    \begin{algorithmic}[1]
+      \REQUIRE{$votes$[n° du votant] = n° du choix favori}
+      \ENSURE{Liste des n° des choix vainqueurs}
+      \FORALL{$vote \leftarrow votes$}
+      \STATE{$total[vote]$++}
+      \ENDFOR{}
+      \RETURN{Les indexes de max$(total)$}
+    \end{algorithmic}
+  \end{algorithm}
+
+
   \subsection{Nombre de tour}
+
+  Lors d'un scrutin à la majorité relative, un seul tour est necessaire.
+  Pour la variante à la majorité absolue, un candidat n'est pas forcement élu lors du
+  premier tour. Dans ce dernier cas un tour suplémentaire doit être organisé, les options
+  les plus connus sont~: 
+  \begin{itemize}
+    \item Garder les 2 meilleures candidats. C'est le dernier tour, il y en a forcement un 
+      qui aura plus de 50\%\footnote{S'il n'y a pas ex-aequo et que les votes blancs/nuls 
+      et abstentions n'influence pas le résultat}. C'est ce qui est utilisé pour l'élection
+      présidentiel française. Ce scrutin est décris dans l'algorithme \aref{scrutin:maj-uni-2t}.
+    \item Éliminer le pire des candidats, s'il y a encore plus que 2 candidats, il peut avoir
+      encore d'autre tour. C'est ce qui est utilisé pour l'élection de chaque membre du
+      conseil fédéral à partir du 3\up{e} tour.
+  \end{itemize}
+
+  Entre chaque tours les candidats ont habituellement la posibilité de se retirer du scrutin.
   
-  Dans la pluspart des cas, il y a plusieurs tours d'organiser, soit jusqu'à ce qu'il y a 
-  un candidat qui remporte une majorité absolue, soit un nombre prédéfini de tour (souvant 2).
-  Habituellement, entre chaque tour 1 ou plusieurs candidats sont éliminés.
-  
-  \begin{nota}{Qui éliminer ?}
+  \begin{nota}{Qui éliminer~?}
     Habituellement, les candidats/options avec le moins de voix sont éliminé, mais
-    est-ce vraiment leurs électeurs qui sont le plus suceptible de changer d'avis ?
+    est-ce vraiment leurs électeurs qui sont le plus suceptible de changer d'avis~?
     Est-ce qu'un électeur d'un des 2 candidat proche mutuellement n'aurait pas plus
-    de facilité à changer son vote ?
+    de facilité à changer son vote~?
   \end{nota}
 
-  \subsection{Algorithme}
-
-  \begin{algorithm}[H]
-  \caption{Scrutin majoritaire uninominal à 1 tour}
-  \label{scrutin:maj-uni-1t}
-  \begin{algorithmic}[1]
-  \REQUIRE $votes$[n° du votant] = n° du choix favori
-  \ENSURE Liste des n° des choix vainqueurs
-  \FORALL{$vote \leftarrow votes$}
-  \STATE $total[vote]$++
-  \ENDFOR
-  \RETURN Les indexes de max($total$)
-  \end{algorithmic}
-  \end{algorithm}
-  
-  \begin{algorithm}[H]
-  \caption{Scrutin majoritaire uninominal à 2 tour}
-  \label{scrutin:maj-uni-2t}
-  \begin{algorithmic}[1]
-  \REQUIRE $votes$[n° du votant] = Liste des choix par ordre de préférence décroisante
-  \ENSURE Liste des n° des choix vainqueurs
-  \STATE $majorité \leftarrow \frac{\text{len}(votes)}{2} $
-  \FORALL{$vote \leftarrow votes$}
-    \STATE $choix \leftarrow vote[0]$ \COMMENT{Premier choix du votant}
-    \STATE $total[choix]$++
-  \ENDFOR
-  \IF{$\text{max}(total) > majorité$}
-    \RETURN Index de max($total$)
-  \ENDIF
-  \STATE
-  \STATE $restant \leftarrow $ index des 2 valeurs maximal de $total$
-  \STATE vider $total$
-  \FORALL{$vote \leftarrow votes$}
-    \STATE $choix \leftarrow $ première valeur de $vote$ se trouvant dans $restant$
-    \STATE $total[choix]++$
-  \ENDFOR
-  \IF{$\text{max}(total) > majorité$}
-    \RETURN Index de max($total$)
-  \ELSE
-    \STATE \COMMENT{Les 2 choix restants sont ex-aequo}
-    \RETURN $restant$
-  \ENDIF
-  \end{algorithmic}
+  \begin{algorithm}
+    \caption{Scrutin majoritaire uninominal à 2 tour}%
+    \label{scrutin:maj-uni-2t}
+    \begin{algorithmic}[1]
+      \REQUIRE{$votes$[n° du votant] = Liste des choix par ordre de préférence décroisante}
+      \ENSURE{Liste des n° des choix vainqueurs}
+      \STATE{$majorité \leftarrow \frac{\text{len}(votes)}{2} $}
+      \FORALL{$vote \leftarrow votes$}
+      \STATE{$choix \leftarrow vote[0]$ \COMMENT{Premier choix du votant}}
+      \STATE{$total[choix]$++}
+      \ENDFOR{}
+      \IF{$\text{max}(total) > majorité$}
+      \RETURN{Index de max$(total)$}
+      \ENDIF{}
+      \STATE{}
+      \STATE{$restant \leftarrow $ index des 2 valeurs maximal de $total$}
+      \STATE{vider $total$}
+      \FORALL{$vote \leftarrow votes$}
+      \STATE{$choix \leftarrow $ première valeur de $vote$ se trouvant dans $restant$}
+      \STATE{$total[choix]++$}
+      \ENDFOR{}
+      \IF{$\text{max}(total) > majorité$}
+      \RETURN{Index de max$(total)$}
+      \ELSE{}
+      \STATE{\COMMENT{Les 2 choix restants sont ex-aequo}}
+      \RETURN{$restant$}
+      \ENDIF{}
+    \end{algorithmic}
   \end{algorithm}
 
-  \subsection{Cas limites}
+  \subsection{Élection étrange}
 
-  \begin{table}[H]
+  \begin{table}[h]
     \begin{center}
-      \caption{Cas limites d'un scrutin à la majorité en 1 tour}
+      \caption{Cas limites d'un scrutin à la majorité relative (à 1 tour)}%
       \label{fig:diff:maj1:caslim1}
-      \adjustbox{valign=t}{
+      \adjustbox{valign=t}{%
         \begin{subtable}[h]{0.45\textwidth}
           \centering
-          \caption{Préférences des électeurs}
+          \caption{Préférences des électeurs}%
+          \label{fig:diff:maj1:caslim1:pref}
           \inputMake{_dyn/scrutin/maj1-caslim-1.votes.tex}
         \end{subtable}
       }
-      \adjustbox{valign=t}{
+      \adjustbox{valign=t}{%
         \begin{subtable}[h]{0.45\textwidth}
           \centering
-          \caption{Résultats du scrutin}
+          \caption{Résultats du scrutin}%
+          \label{fig:diff:maj1:caslim1:result}
           \inputMake{_dyn/scrutin/maj1-caslim-1.maj1.tex}
         \end{subtable}
       }
     \end{center}
   \end{table}
 
-  On peux constater plus de 60\% des électeurs (ii et iii) préférent B ou C à A. 
+  Les tableaux \aref{fig:diff:maj1:caslim1} montre les préférences d'un corps 
+  électoral et le résultat d'une votation avec un scrutin majoritaire à 1 tour.
+
+  On peux constater plus de 60\% des électeurs (ii et iii) préférent B à A ou C à A. 
   Cependant comme A a fait plus de voix que B ou C, c'est donc cette option qui est élue.
   Si B ou C s'était retirer avant le scrutin ou s'il y avait eu une candidature commune, A aurait été largement battue. 
 
+  \subsection{Évaluation}
+  \subsubsection{À 2 tours}
+  \tabcritere%
+    {\cellcolor{red}trés mauvais}{Une grande part de la population (>50\%) peut être contre l'élu}%
+    {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres}%
+    {\cellcolor{red}mauvais}{Si les voix sont sufisament divisé dans un des camps}%
+    {\cellcolor{red}mauvais}{En empéchant un candidat d'accéder au second tour}
+
+  \subsubsection{À 1 tour}
+  \tabcritere%
+    {\cellcolor{red}trés mauvais}{Une grande part de la population (>50\%) peut être contre l'élu}%
+    {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres}%
+    {\cellcolor{red}mauvais}{Si les voix sont sufisament divisé dans un des camps}%
+    {\cellcolor{orange}moyen}{Si les candidats sont relativement prôche dans leurs scores}
 
   \section{Méthode Borda}
-
-  \subsection{Justification choix possible}
-
-  Dans le cas où un vote partielle est autorisé/possible (c.-à-d. certaines options sont 
-  non-classées).
-  Cela pourrait être bien de ne pas scoré les options (de la meilleures au pire)
-  avec les valeur ($n$, $n-1$, ..., $1$) et les options non-classée à $0$.
-  C'est mieux de les scorés du pire au meilleure ($1$, $2$, ..., $j$) avec $j$ le nombre
-  d'option classée et laisser à $0$ les options non-classée.
-  Ce choix évite de perdre les avantages de la méthode Borda si un grande partie des votants
-  ne classe que 1 ou 2 candidats.
-  \cite{emerson_original_2013}
   
-  \subsection{Algorithme}
+  Chaques votants classent tous ou parties des options dans l'ordre de leur préférence.
+  Les candidats reçoivents des points en fonction de leur position dans l'ordre de chaque bulletin.
+  Le/la vainqueur·e est celui qui as obtenu le plus de points.
 
-  \begin{algorithm}[H]
-  \caption{Scrutin avec la méthode Borda (si que 2/5 classées, les points attribués sont 1 et 2)}
-  \label{scrutin:borda-max-nbclassee}
-  \begin{algorithmic}[1]
-  \REQUIRE $votes$[n° du votant] = Liste des choix par ordre de préférence décroisante
-  \ENSURE Liste des n° des choix vainqueurs
-  \FORALL{$vote \leftarrow votes$}
-    \STATE $point \leftarrow \text{len}(vote)$
-    \FORALL{$option \leftarrow vote$}
-      \STATE $total[option] \leftarrow total[option] + point$
-      \STATE $point--$
-    \ENDFOR
-  \ENDFOR
-  \RETURN Les indexes de max($total$)
-  \end{algorithmic}
-  \end{algorithm}
-  
-  \begin{algorithm}[H]
-  \caption{Scrutin avec la méthode Borda (si que 2/5 classées, les points attribués sont 5 et 4)}
-  \label{scrutin:borda-max-nboption}
-  \begin{algorithmic}[1]
-  \REQUIRE $votes$[n° du votant] = Liste des choix par ordre de préférence décroisante
-  \ENSURE Liste des n° des choix vainqueurs
-  \FORALL{$vote \leftarrow votes$}
-    \STATE $point \leftarrow $ Nombre d'option disponible
-    \FORALL{$option \leftarrow vote$}
-      \STATE $total[option] \leftarrow total[option] + point$
-      \STATE $point--$
-    \ENDFOR
-  \ENDFOR
-  \RETURN Les indexes de max($total$)
-  \end{algorithmic}
-  \end{algorithm}
-  
-  \subsection{Cas limites}
-  \begin{table}[H]
+  \subsection{Distribution des points}
+
+  Dans la description de cette méthode de vote faite par J.-C. Borda donnait 1 point au
+  candidat classé en dernier, puis un point supplémentaire pour l'avant-dernier et ainsi
+  de suite jusqu'au premier candidat.
+  Dans la pratique actuelle~\cite{emerson_original_2013} les points sont distribué du 
+  premier au dernier $(n, n-1, …, 1)$.
+  Si tous les électeurs classe l'ensemble des candidats, alors ces 2 méthode donne le même 
+  résultat. Cependant lorsqu'on autorise le classement partiel, il y a des différence.
+
+  Pour évité toute ambigüiter, je désignerais la méthode initialement décrite par borda, 
+  la méthode Borda avec distribution des points \textbf{classiques} et la méthode distribuant
+  les points à partir du premier candidat, distribution des points \textbf{morderne}.
+
+  \begin{table}
     \begin{center}
-      \caption{Cas limites d'un scrutin utilisant la méthode Borda}
-      \label{fig:diff:borda:caslim1}
-      \adjustbox{valign=t}{
-        \begin{subtable}[h]{0.45\textwidth}
-          \centering
-          \caption{Préférences des électeurs}
-          \inputMake{_dyn/scrutin/borda-caslim-1A.votes.tex}
-        \end{subtable}
-      }
-      \adjustbox{valign=t}{
-        \begin{subtable}[h]{0.45\textwidth}
-          \centering
-          \caption{Résultat}
-          \inputMake{_dyn/scrutin/borda-caslim-1A.bordatot.tex}
-        \end{subtable}
-      }\\[1em]
-      \adjustbox{valign=t}{
-        \begin{subtable}[h]{0.45\textwidth}
-          \centering
-          \caption{Préférences des électeurs}
-          \inputMake{_dyn/scrutin/borda-caslim-1B.votes.tex}
-        \end{subtable}
-      }
-      \adjustbox{valign=t}{
-        \begin{subtable}[h]{0.45\textwidth}
-          \centering
-          \caption{Résultat}
-          \inputMake{_dyn/scrutin/borda-caslim-1B.bordatot.tex}
-        \end{subtable}
-      }
-    \end{center}
-  \end{table}
-
-  \begin{table}[H]
-    \begin{center}
-      \caption{Cas limites d'un scrutin utilisant la méthode Borda}
+      \caption{Méthode Borda différence entre les méthodes de distribution des points}%
       \label{fig:diff:borda:caslim2}
       \adjustbox{valign=t}{
-        \begin{subtable}[h]{0.45\textwidth}
+        \begin{subtable}[h]{0.35\textwidth}
           \centering
           \caption{Préférences des électeurs}
-          \inputMake{_dyn/scrutin/borda-caslim-2.votes.tex}
+          \inputMake{_dyn/scrutin/borda-caslim-2.votes-c.tex}
         \end{subtable}
-      }\\[1em]
+      }
       \adjustbox{valign=t}{
-        \begin{subtable}[h]{0.45\textwidth}
+        \begin{subtable}[h]{0.25\textwidth}
           \centering
-          \caption{Nombre de points disponible en fonction du nombre de candidat classé}
+          \caption{Points classique}
           \inputMake{_dyn/scrutin/borda-caslim-2.bordaclasse.tex}
         \end{subtable}
       }
       \adjustbox{valign=t}{
-        \begin{subtable}[h]{0.45\textwidth}
+        \begin{subtable}[h]{0.25\textwidth}
           \centering
-          \caption{Nombre de points disponible en fonction du nombre de candidat disponible}
+          \caption{Points moderne}
           \inputMake{_dyn/scrutin/borda-caslim-2.bordatot.tex}
         \end{subtable}
       }
     \end{center}
   \end{table}
 
-  \section{Méthode de Condorcet}
-  \todo{}
-  \subsection{Cas limites}
-  \inputMake{_dyn/scrutin/condorcet-caslim-1.votes.tex}
-  \inputMake{_dyn/scrutin/condorcet-caslim-1.condorcet.tex}
-  \section{Vote par abbrobation}
-  \todo{}
+  Comme le montre les tableaux \aref{fig:diff:borda:caslim2}, la méthode classique pousse 
+  les votants à classer un maximum de candidat et donc aide à la recherche d'un 
+  compromis convenant à tout le monde.
+  Alors que la méthode moderne pousse plus à ne classer que le candidat favori, si on grande
+  partie des votants choisissent de faire cela, on se retrouve dans une situation proche 
+  d'un scrutin majoritaire à majorité relative.
+
+  Les deux méthodes de distribution des points sont décrits dans les algorithmes \aref{scrutin:borda-classique} et \aref{scrutin:borda-moderne}.
+
+  \begin{algorithm}
+    \caption{Méthode Borda (avec distribution des points classique)}%
+    \label{scrutin:borda-classique}
+    \begin{algorithmic}[1]
+      \REQUIRE{$votes$[n° du votant] = Liste des choix par ordre de préférence décroisante}
+      \ENSURE{Liste des n° des choix vainqueurs}
+      \FORALL{$vote \leftarrow votes$}
+      \STATE{$point \leftarrow \text{len}(vote)$}
+      \FORALL{$option \leftarrow vote$}
+      \STATE{$total[option] \leftarrow total[option] + point$}
+      \STATE{$point--$}
+      \ENDFOR{}
+      \ENDFOR{}
+      \RETURN{Les indexes de max$(total)$}
+  \end{algorithmic}
+  \end{algorithm}
   
-  \subsection{Cas limites}
-  \inputMake{_dyn/scrutin/apro-caslim-1.votes.tex}
-  \inputMake{_dyn/scrutin/apro-caslim-1.apro.tex}
+  \begin{algorithm}
+    \caption{Méthode Borda (avec distribution des points moderne)}%
+    \label{scrutin:borda-moderne}
+    \begin{algorithmic}[1]
+      \REQUIRE{$votes$[n° du votant] = Liste des choix par ordre de préférence décroisante}
+      \ENSURE{Liste des n° des choix vainqueurs}
+      \FORALL{$vote \leftarrow votes$}
+      \STATE{$point \leftarrow $ Nombre d'option disponible}
+      \FORALL{$option \leftarrow vote$}
+      \STATE{$total[option] \leftarrow total[option] + point$}
+      \STATE{$point--$}
+      \ENDFOR{}
+      \ENDFOR{}
+      \RETURN{Les indexes de max$(total)$}
+    \end{algorithmic}
+  \end{algorithm}
+
+  \subsection{Manipulabilité de l'élection}
+  \begin{table}[h]
+    \begin{center}
+      \caption{Cas limites d'un scrutin utilisant la méthode Borda}%
+      \label{fig:diff:borda:caslim1}
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.40\textwidth}
+          \centering
+          \caption{Préférences des électeurs}%
+          \label{fig:diff:borda:caslim1:A}
+          \inputMake{_dyn/scrutin/borda-caslim-1A.votes-c.tex}
+        \end{subtable}
+      }
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.20\textwidth}
+          \centering
+          \caption{Points classique}%
+          \label{fig:diff:borda:caslim1:B}
+          \inputMake{_dyn/scrutin/borda-caslim-1A.bordaclasse.tex}
+        \end{subtable}
+      }
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.20\textwidth}
+          \centering
+          \caption{Points moderne}%
+          \label{fig:diff:borda:caslim1:C}
+          \inputMake{_dyn/scrutin/borda-caslim-1A.bordatot.tex}
+        \end{subtable}
+      }\\[1em]
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.40\textwidth}
+          \centering
+          \caption{Préférences des électeurs}%
+          \label{fig:diff:borda:caslim1:D}
+          \inputMake{_dyn/scrutin/borda-caslim-1B.votes-c.tex}
+        \end{subtable}
+      }
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.20\textwidth}
+          \centering
+          \caption{Points classique}%
+          \label{fig:diff:borda:caslim1:E}
+          \inputMake{_dyn/scrutin/borda-caslim-1B.bordaclasse.tex}
+        \end{subtable}
+      }
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.20\textwidth}
+          \centering
+          \caption{Points moderne}%
+          \label{fig:diff:borda:caslim1:F}
+          \inputMake{_dyn/scrutin/borda-caslim-1B.bordatot.tex}
+        \end{subtable}
+      }
+    \end{center}
+  \end{table}
+
+  Les tableaux~\ref{fig:diff:borda:caslim1:A} à~\aref{fig:diff:borda:caslim1:C} indique les 
+  préférences des électeurs, les tableaux~\ref{fig:diff:borda:caslim1:D} 
+  à~\ref{fig:diff:borda:caslim1:F} montrent la même élection avec une tentative de manipulation 
+  du vote.
+
+  Nous pouvons y constater que lorsqu'on utilise le décompte de points moderne, une petite 
+  proportion des électeurs (16\%) arrivent à faire basculer le resultat à leur avantage.
 
 
+  \subsection{Évaluation}
+  \subsubsection{Borda avec distribution des points classique}
+  \tabcritere%
+    {\cellcolor{green}bien}{L'avis des personnes n'ayant pas voter pour le gagnant influance le résultat.}%
+    {\cellcolor{orange}moyen}{Les petits candidats offrent un avantage aux candidat proche. Dans le cas d'un élection équilibrée, ce n'est pas un problème.}%
+    {\cellcolor{orange}moyen}{Ne respecte pas ce critère, mais essaye de minimiser les personnes très mécontante du résultats.}%
+    {\cellcolor{green}bien}{Les électeurs on tout intérêt à donner leur vrai préférences en général}
+  \subsubsection{Borda avec distribution des points moderne}
+  \tabcritere%
+    {\cellcolor{green}bien}{L'avis des personnes n'ayant pas voter pour le gagnant influance le résultat.}%
+    {\cellcolor{green}bien}{Les candidats non-classés en premier n'influance pas les points donnés au premier.}%
+    {\cellcolor{orange}moyen}{Ne respecte pas ce critère, mais essaye de minimiser les personnes très mécontante du résultats.}%
+    {\cellcolor{red}mauvais}{Les électeurs on intérêt à classé moins bien leurs second choix pour avantage leur candidat favori.}
+
+
+  \section{Méthode de Condorcet}
+
+  Les électeurs classent les candidats par ordre de préference. 
+  Puis est simuler des duels entre chaques candidats au scrutin majoritaire.
+  Le candidat ayant battu l'ensemble des autres candidats est élu.
+
+  \subsection{Paradoxe de Condorcet}
+
+  Le paradoxe de Condorcet, lors d'un vote par classement de 3 options (A, B, C).
+  C'est qu'il peut avoir une majorité de votant préfèrant C à A, une autre majorité 
+  préférant B à C, et qu'une dernière majorité préfèrent A à B.
+  Dans un tel cas, quelque soit l'option retenue, il y a toujours plus de 50\% des votants
+  qui serait pour changer d'option.
+
+  Dans le cas où il y a un paradoxe de Condorcet, d'autres méthodes doivent être utilisées pour désigner
+  le gagnant.
+  Cela peut être un autre méthode de vote ou un algorithme spécifique.
+  \todo{Retrouver l'exemple réel du paradoxe lors des élections présidentiel française}
+  \subsection{Élection étrange}
+  \begin{table}[h]
+    \begin{center}
+      \caption{Scrutin à la Condorcet ne prenant pas en compte les perdants}%
+      \label{fig:diff:condorcet:caslim1}
+      \adjustbox{valign=t}{%
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Préférences des électeurs}%
+          \label{fig:diff:condorcet:caslim1:pref}
+          \inputMake{_dyn/scrutin/condorcet-caslim-1.votes-c.tex}
+        \end{subtable}
+      }
+      \adjustbox{valign=t}{%
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Résultats du scrutin}%
+          \label{fig:diff:condorcet:caslim1:result}
+          \inputMake{_dyn/scrutin/condorcet-caslim-1.condorcet.tex}
+        \end{subtable}
+      }
+    \end{center}
+  \end{table}
+
+  Les tableaux~\aref{fig:diff:condorcet:caslim1} montrent un scrutin effectuer avec la méthode de Condorcet,
+  donnant vainqueurs A.
+  L'option C a été classée en première ou deuxième position par l'ensemble des électeurs, alors que l'option
+  vainqueure (A) à été réfusé sechement par un tiers des électeurs.
+  Dans ce scrutin l'avis d'un tiers de la population a purement été ignoré.
+
+  \subsection{Évaluation}
+  \tabcritere%
+    {\cellcolor{red}mauvais}{Seul l'avis de la majorité est prise en compte, l'avis des 49\% restants est ignoré}%
+    {\cellcolor{green}bien}{Lorsqu'il y a un unique vainqueur, la méthode est mathématiquement résistant au petit candidat}%
+    {\cellcolor{green}bien}{Lorsqu'il y a un unique vainqueur, ce critère est forcement respecté}%
+    {\cellcolor{green}bien}{Le système de vote pousse les électeurs à donner leur vrai préférence}
+
+  \todo{retrouver papier à propos de la résistance au petit candidat}
+  \todo{Évaluation méthode de Condorcet randomisé}
+
+  \section{Vote par approbation}
+
+  Chaque électeur indique le ou les candidats qu'il trouve accéptable d'être élu.
+  Le candidat ayant reçu le plus d'approbation est élu.
+  Ce système est facile à mettre en place pour les élections actuelles, car il suffirait d'autoriser
+  les électeurs à glisser plusieurs bulletin différent dans l'urne.
+
+  \subsection{Élection étrange}
+
+  \begin{table}[h]
+    \begin{center}
+      \caption{Vote par approbation: cas étrange}%
+      \label{fig:diff:appro:caslim1}
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Préférences des électeurs}
+          \inputMake{_dyn/scrutin/apro-caslim-1.votes.tex}
+        \end{subtable}
+      }
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Résultats}
+          \inputMake{_dyn/scrutin/apro-caslim-1.apro.tex}
+        \end{subtable}
+      }
+    \end{center}
+  \end{table}
+
+  Dans l'élection représentater dans les tableaux \aref{fig:diff:appro:caslim1}, l'option
   C gagne alors que 75\% de l'électorat lui préfère largement A et 75\% lui préfère B.
 
+  \subsection{Évaluation}
+  \tabcritere%
+    {\cellcolor{green!25!yellow}correct}{L'avis des perdants est pris en compte, cependant on ne peux indiquer que l'on ne veux pas de 2 candidats, mais que malgrès tous, l'un des deux nous est moins défavorable.}%
+    {\cellcolor{green}bien}{Chaque candidat as un score propre, ne dépendant pas des autres candidats.}%
+    {\cellcolor{red}mauvais}{Ne respecte pas ce critère}%
+    {\cellcolor{green}bien}{Cette méthode est faiblement manipulable.}
+
   \section{Jugement majoritaire}
-  \todo{}
+
+  Chaque électeur donne une évaluation à chaque candidat.
+  Chaque candidat reçoit un évaluation final qui corresponds à l'évaluation médianne qu'il a reçu (donc il y a au moins 
+  50\% des électeurs qui on donner cette évaluation ou plus).
+  Le candidat élus est celui avec l'évaluation la plus élevée.
+  Ce scrutin est décris dans l'algorithme \aref{scrutin:jugement-maj}.
+
+  L'évaluation peut être numérique, par exemple un note sur 20. Mais il n'est absolument pas sur qu'une note de 12/20 ai
+  la même signification pour tous les électeurs, ce qui pose problème pour intérpréter les résultats. 
+  Une autre technique consiste à donner des appréciations à chaque candidat (excellent, bien, passable, …), l'avantage
+  est que si les termes en français sont bien choisi, ils ont à peut près la même signification pour tous.
+
+  Pour les exemples de ce document, ce sont des appréciations qui on été choisie~: 
+
+  \begin{center}
+  \colorbox{green}{Excellent} $\succ$
+  \colorbox{green!50!yellow}{Bien} $\succ$
+  \colorbox{green!25!yellow}{Correct} $\succ$
+  \colorbox{yellow}{Passable} $\succ$
+  \colorbox{orange}{Insufisant} $\succ$
+  \colorbox{red}{A rejeter}
+  \end{center}
   
   \begin{algorithm}[H]
-  \caption{Scrutin au jugement majoritaire}
+  \caption{Scrutin au jugement majoritaire}%
   \label{scrutin:jugement-maj}
   \begin{algorithmic}[1]
-  \REQUIRE $votes$[n° du votant][n° de l'option] = Le jugement de l'option (5 = parfait; 0 = À rejeter)
-  \ENSURE Liste des n° des choix vainqueurs
-  \STATE $majorité \leftarrow \frac{\text{len}(votes)}{2}$
+    \REQUIRE{$votes$[n° du votant][n° de l'option] = Le jugement de l'option (5 = parfait; 0 = À rejeter)}
+    \ENSURE{Liste des n° des choix vainqueurs}
+    \STATE{$majorité \leftarrow \frac{\text{len}(votes)}{2}$}
   \FORALL{$vote \leftarrow votes$}
     \FORALL{$option \leftarrow vote$}
-      \STATE $jugement \leftarrow vote[option]$
-      \STATE $total[option][jugement] ++$
-    \ENDFOR
-  \ENDFOR
+      \STATE{$jugement \leftarrow vote[option]$}
+      \STATE{$total[option][jugement] ++$}
+    \ENDFOR{}
+    \ENDFOR{}
   % TODO
   \end{algorithmic}
   \end{algorithm}
+  \todo{Écrire la fin de l'algorithme}
 
-  \subsection{Cas limites}
-  \inputMake{_dyn/scrutin/jugmaj-caslim-1A.votes.tex}
+  \begin{table}[H]
+    \begin{center}
+      \caption{Jugement majoritaire: manipulabilité du vote}%
+      \label{fig:diff:jugmaj:caslim1}
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Préférences des électeurs}
+          \inputMake{_dyn/scrutin/jugmaj-caslim-1A.votes-n.tex}
+        \end{subtable}
+      }
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Résultats}
+          \inputMake{_dyn/scrutin/jugmaj-caslim-1A.jugmaj.tex}
+        \end{subtable}
+      }\\[1em]
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Tentative de manipulation}
+          \inputMake{_dyn/scrutin/jugmaj-caslim-1B.votes-n.tex}
+        \end{subtable}
+      }
+      \adjustbox{valign=t}{
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Résultats}
+          \inputMake{_dyn/scrutin/jugmaj-caslim-1B.jugmaj.tex}
+        \end{subtable}
+      }
+    \end{center}
+  \end{table}
+  % TODO compresser ce graphique
+  \subsection{Vote utile}
 
-  \inputMake{_dyn/scrutin/jugmaj-caslim-1A.jugmaj.tex}
+  Les tableaux \aref{fig:diff:jugmaj:caslim1} montrent un élection normal, puis la même élection avec une tentative
+  de manipulation de la part de 20\% des électeurs. 
+  Ces électeurs ont choisi de modifier leur vote en donnant une mauvaise jugement au candidat B qu'ils trouvaient 
+  initialement correct.
 
-  \inputMake{_dyn/scrutin/jugmaj-caslim-1B.votes.tex}
+  \subsection{Évaluation}
+  \tabcritere%
+    {\cellcolor{red}mauvais}{L'avis des 49\% de la population est ignorée.}%
+    {\cellcolor{green}bien}{Chaque candidat a une évaluation propre ne dépendant pas des autres candidats.}%
+    {\cellcolor{red}mauvais}{Seul l'avis médian est pris en compte}%
+    {\cellcolor{green!25!yellow}correct}{La manipulation n'est pas évidante, car il faut modifier la médian}
 
-  \inputMake{_dyn/scrutin/jugmaj-caslim-1B.jugmaj.tex}
-  
-  \section{Méthode de Coombs}
-  \todo{}
-  \section{Vote alternatif}
-  Aussi appelé vote préférencielle transférable ou Méthode de R
-  \todo{}
-  \section{Vote cumulatif}
-  \todo{}
+  \section{Méthode de Coombs et vote alternatif}
 
+  Chaques votants classent tous ou parties des options dans l'ordre de leur préférence.
+  Puis on simule un scrutin à la majorité absolue sans limite de nombre de tours, en retirant le pire candidats
+  entre chaque tour.
 
-  \chapter{Problème et avantage}
-  
-  \todo{Prendre en compte ou non les votes blancs/nuls et les abstentions}
-  \todo{$50 \% + 1$ versus $ > 50\%$}
-  \todo{Avantage: il y a de la réflexion entre les tours lors de scrutin 
-  multi-tours. Tout le monde ne reste pas forcement sur ses positions}
-  \todo{Vote utiles: Quel utilité~?}
-  \todo{Manipulabilité du résultat (sans cassé le protocole)}
+  \subsection{Vote alternatif}
+  Aussi appelé vote préférencielle transférable ou Méthode de R, le vote alternatif retire à chaque 
+  tour le candidat ayant été classé le moins souvant en première position.
+  C'est donc un simulation exacte d'un scrutin à la majorité absolue sans limite de nombre de tours, 
+  mais en retirant la posibilité de réflexion entre chaque tour. 
+  Il a donc les même désavatage que ce dernier (voir \aaref{diff:scrutin-majoritaire}).
+
+  \subsection{Méthode de Coombs}
+  La méthode de Coombs retire à chaque tour le candidat ayant été classé le plus souvant en dernière position.
+  Cette méthode à l'avantage 
+
+  \subsection{Exemple}
+
+  \begin{table}[h]
+    \begin{center}
+      \caption{Example de scrutin méthode de Coombs et vote alternatif}%
+      \label{fig:diff:coombs:caslim1}
+      \adjustbox{valign=t}{%
+        \begin{subtable}[h]{0.45\textwidth}
+          \centering
+          \caption{Préférences des électeurs}%
+          \label{fig:diff:coombs:caslim1:pref}
+          \inputMake{_dyn/scrutin/maj1-caslim-1.votes.tex}
+        \end{subtable}
+        }\\[1em]
+        \adjustbox{valign=t}{%
+          \begin{subtable}[h]{0.45\textwidth}
+            \centering
+            \caption{Coombs}%
+            \label{fig:diff:coombs:caslim1:coombs}
+            \inputMake{_dyn/scrutin/maj1-caslim-1.coombs.tex}
+          \end{subtable}
+        }
+        \adjustbox{valign=t}{%
+          \begin{subtable}[h]{0.45\textwidth}
+            \centering
+            \caption{Vote alternatif}%
+            \label{fig:diff:coombs:caslim1:alternatif}
+            \inputMake{_dyn/scrutin/maj1-caslim-1.alternatif.tex}
+          \end{subtable}
+        }
+    \end{center}
+  \end{table}
+
+  Les tableaux \aref{fig:diff:coombs:caslim1} montre qu'il y a une réel différence entre les 2 méthodes
+
+  \subsection{Évaluation}
+  \subsubsection{Méthode de Coombs}
+  \tabcritere%
+    {\cellcolor{green!25!yellow}correct}{En retirant le candidat le plus souvant en dernière position, on prends en compte l'avis des perdants. Cela ne suffit pas pour s'assurer que qu'il n'y a pas de meilleures candidats dans le cas où un candidat est élu à 51\%}%
+    {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres}%
+    {\cellcolor{red}mauvais}{Si les voix sont sufisament divisé dans un des camps}%
+    {À évaluer}{}
+  \subsubsection{Vote alternatif}
+  \tabcritere%
+    {\cellcolor{red}mauvais}{L'avis de ceux n'ayant pas choisi le vainqueur n'est pas pris en compte.}%
+    {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres}%
+    {\cellcolor{red}mauvais}{Si les voix sont sufisament divisé dans un des camps}%
+    {À évaluer}{}
+
 
   
   %\begin{nota}[by me]{Ma note}\lipsum[1][1-5]\end{nota}

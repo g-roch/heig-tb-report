@@ -125,6 +125,8 @@ fn main() {
     match target {
         "all" => (),
         "votes" => (),
+        "votes-n" => (),
+        "votes-c" => (),
         "apro" => (),
         "maj1" => (),
         "maj2" => (),
@@ -141,13 +143,15 @@ fn main() {
     eprintln!("Load vote {:?}", filename);
     let votes = read_votes(&filename);
 
-    if target == "all" || target == "votes" {
+    if target == "all" || target == "votes-c" || target == "votes-n" || target == "votes" {
         latex_votes(
             &votes,
             &format!("{}:votes", basename),
             "Choix des votants",
             figure,
             false,
+            target == "all" || target == "votes" || target == "votes-n",
+            target == "all" || target == "votes" || target == "votes-c",
         );
     }
 
@@ -265,28 +269,46 @@ fn option_to_letter(option: usize) -> String {
     ALPHABET.iter_words().skip(1).nth(option).unwrap()
 }
 
-fn latex_votes(votes: &Votes, basename: &str, title: &str, figure: bool, legend: bool) {
+fn latex_votes(
+    votes: &Votes,
+    basename: &str,
+    title: &str,
+    figure: bool,
+    legend: bool,
+    show_note: bool,
+    show_classement: bool,
+) {
     if figure {
         println!("{}", r#"\begin{table}[H]"#);
         println!(r#"\caption{{\scrutinname: {}}}"#, title);
         println!(r#"\label{{tab:scrutin:{}}}"#, basename);
         println!("{}", r#"\begin{center}"#);
     }
-    println!(
-        "{}{}{}",
-        r#"\begin{tabular}{|rrc||"#,
-        vec!["c"; votes.number_option()].join("|"),
-        r#"||l|}"#
-    );
+
+    print!("{}", r#"\begin{tabular}{|rrc|"#);
+    if show_note {
+        print!("|{}|", vec!["c"; votes.number_option()].join("|"));
+    }
+    if show_classement {
+        print!("|l|");
+    }
+    println!("}}");
     println!("{}", r#"\hline"#);
-    println!(
-        r#" & ${}\times$ && {} & Classement \\"#,
-        votes.len(),
-        (0..votes.number_option())
-            .map(|a| option_to_letter(a))
-            .collect::<Vec<String>>()
-            .join(" & "),
-    );
+
+    print!(r#" & ${}\times$ & "#, votes.len(),);
+    if show_note {
+        print!(
+            r#" & {} "#,
+            (0..votes.number_option())
+                .map(|a| option_to_letter(a))
+                .collect::<Vec<String>>()
+                .join(" & "),
+        );
+    }
+    if show_classement {
+        print!(r#" & Classement"#,);
+    }
+    println!(r"\\");
     println!("{}", r#"\hline"#);
     println!("{}", r#"\hline"#);
     let mut count = 0;
@@ -297,18 +319,26 @@ fn latex_votes(votes: &Votes, basename: &str, title: &str, figure: bool, legend:
             continue;
         }
         line += 1;
-        println!(
-            r#" ${} \%$ & ${}\times$&{} & {} & ${}$ \\"#,
+        print!(
+            r#" ${} \%$ & ${}\times$&{} "#,
             100 * count / votes.len(),
             count,
             roman::to(line).unwrap().to_lowercase(),
-            vote.judgement_latex_cellcolor().join(" & "),
-            vote.order
-                .iter()
-                .map(|a| option_to_letter(*a))
-                .collect::<Vec<_>>()
-                .join(r#" \succ "#),
         );
+        if show_note {
+            print!(r#"  & {} "#, vote.judgement_latex_cellcolor().join(" & "),);
+        }
+        if show_classement {
+            print!(
+                r#" & ${}$"#,
+                vote.order
+                    .iter()
+                    .map(|a| option_to_letter(*a))
+                    .collect::<Vec<_>>()
+                    .join(r#" \succ "#),
+            );
+        }
+        println!(r#"\\"#,);
         count = 0;
     }
     println!("{}", r#"\hline"#);

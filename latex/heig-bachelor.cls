@@ -27,6 +27,7 @@
 \RequirePackage{color}
 \RequirePackage[table]{xcolor}
 \RequirePackage{imakeidx}
+\RequirePackage{varioref}
 \RequirePackage[colorlinks,unicode]{hyperref}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{fancyvrb}
@@ -38,6 +39,12 @@
 \RequirePackage{algorithmic}
 \RequirePackage{tikz}
 \RequirePackage{pgfplots}
+\RequirePackage{amssymb}
+\RequirePackage{newunicodechar}
+\newunicodechar{·}{\ensuremath{{\cdot}}}
+
+\newcommand*{\aref}[1]{\ref{#1} \vpageref{#1}}
+\newcommand*{\aaref}[1]{\autoref{#1} \vpageref{#1}}
 
 \algsetup{indent=2em}
 \algsetup{linenosize=\footnotesize}
