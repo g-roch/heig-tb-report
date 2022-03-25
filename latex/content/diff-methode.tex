@@ -36,52 +36,53 @@
     \item[quorum]
   \end{description}
 
-  \part{Analyse des différents type de scrutins}
+  \part{Analyse des différents types de scrutins}
 
   \chapter{Critère de comparaison}
   
-  Le choix des critères de comparaison des différente méthode de vote, est choix 
-  éminament politique.
-  C'est équivalement à répondre à la question quel candidat souhaite-t-on élire en fonction
+
+  Le choix des critères de comparaison des différentes méthodes de vote est choix 
+  éminemment politique.
+  C'est équivalent à répondre à la question quel candidat on souhaite élire en fonction
   des votes des électeurs, cependant on veillera à ne pas prendre en compte les positions 
-  politiques des différents candidat.
-  On veux savoir quel candidat devrait être élus, pas comment faire pour que notre candidat 
+  politiques des différents candidats.
+  On veut savoir quel candidat devrait être élu, pas comment faire pour que notre candidat 
   favori l'emporte face aux autres candidats.
 
   \section{Avis des perdants}
 
-  Avec certaine méthode, un candidats peux être élus alors que 49\% du corps électoral est
-  absolument contre et ce même lors qu'un autre candidat avec un score plus faible n'a aucune
+  Avec certaines méthodes, un candidat peut être élu alors que 49\% du corps électoral est
+  absolument contre, et ce même lorsqu'un autre candidat avec un score plus faible n'a aucun
   électeur contre.
-  Un système de choix performent devrais prendre en compte le vote qui ne sont pas pour le candidat
-  élu, afin de trouvé le candidat qui serait satisfaisant pour le plus de monde possible.
+  Un système de choix performant devrait prendre en compte les votes qui ne sont pas pour le candidat
+  élu, afin de trouver le candidat qui serait satisfaisant pour le plus de monde possible.
 
   \todo{example}
   
   \section{Indépendance à la présence de candidat perdant}
 
-  On peut souhaiter que si une option non-élue est retirée du scrutin, l'option vainqueure reste
+  On peut souhaiter que si une option non élue est retirée du scrutin, l'option vainqueure reste
   la même.
-  Cependant même si ce critère n'est pas totalement respecté pour des candidats avec de très bon 
-  score, le retrait d'un petit candidat (avec un score faible) ne doit pas faire changer 
+  Cependant même si ce critère n'est pas totalement respecté pour des candidats avec de très bons 
+  scores, le retrait d'un petit candidat (avec un score faible) ne doit pas faire changer 
   le vainqueur.
 
   \subsection{Théorème d'impossibilité d'Arrow}
 
-  Ce théorème nous dis que dans un scrutin où les électeurs indique leur préférences en classant les
-  options les unes par repport aux autres.
-  Dans ce cadre il n'existe pas de processus de choix indiscutable permettant un choix 
-  cohérant dans le sens où le retrait d'un candidat non-élus, ne change pas le nom de l'élu.
+  Ce théorème nous dit que dans un scrutin où les électeurs indiquent leurs préférences en classant les
+  options les unes par rapport aux autres.
+  Dans ce cadre, il n'existe pas de processus de choix indiscutable permettant un choix 
+  cohérant dans le sens où le retrait d'un candidat non élu ne change pas le nom de l'élu.
 
-  Dans les types de scrutin étudier dans ce document, seul la méthode Borda et le 
-  jugement majoritaire échape à ce théorème, car ils n'utilisent pas de classement des 
+  Dans les types de scrutins étudiés dans ce document, seuls la méthode Borda et le 
+  jugement majoritaire échappent à ce théorème, car ils n'utilisent pas de classement des 
   options par les électeurs.
 
-  \section{Quasi unanimité du vote}
+  \section{Quasi-unanimité du vote}
 
-  La quasi unanimité du vote, c'est que lorsque que presque l'ensemble des électeurs préfèrent 
-  un option (A) à une autre option (B), alors cette deuxième option (B) n'est jamais élu.
-  Il y a différente méthode de vote qui ne respecte pas la quasi unanimité du vote.
+  La quasi-unanimité du vote, c'est lorsque presque l'ensemble des électeurs préfèrent 
+  une option (A) à une autre option (B), alors cette deuxième option (B) n'est jamais élue.
+  Il y a différente méthode de vote qui ne respecte pas la quasi-unanimité du vote.
 
   \section{Manipulabilité et vote utile}
 
@@ -89,14 +90,14 @@
   \label{diff:comp:util:util}
 
   Le vote utile est le fait de changer son ordre de préférence entre ses candidats favoris pour
-  permettre à l'un de ses candidats favoris de remporté l'élection. 
-  Je choisi de ne pas considérer comme vote utile le fait de voter pour un candidat que l'on ne
-  souhaite pas voir élu, afin que son candidat favori soit élu, j'ai classée cette pratique 
+  permettre à l'un de ses candidats favoris de remporter l'élection. 
+  Je choisis de ne pas considérer comme vote utile le fait de voter pour un candidat que l'on ne
+  souhaite pas voir élu, afin que son candidat favori soit élu, j'ai classé cette pratique 
   dans la manipulabilité du résultat (voir \aref{diff:comp:util:manip}).
 
-  Dans le cadre de cette définition le vote utile n'est en soit pas mauvais.
-  Il permet d'aider à la recherche d'un consensus en impliquant les citoyen dans la réflexion
-  et donc sans se basé exclusivement sur des maths que toutes la populations n'est pas forcement
+  Dans le cadre de cette définition, le vote utile n'est en soi pas mauvais.
+  Il permet d'aider à la recherche d'un consensus en impliquant les citoyens dans la réflexion
+  et donc sans se baser exclusivement sur des maths que toutes la population n'est pas forcément
   en mesure de comprendre.
 
   %\begin{nota}[élection présidentiel française 2022]{Exemple de vote utile}
@@ -115,21 +116,21 @@
   \label{diff:comp:util:corruption}
 
   La manipulation du vote est le fait de ne pas voter pour ses candidats/options favoris, mais 
-  pour un candidat que l'on ne veux pas voir au pouvoir dans l'objectif de faire en sorte que 
+  pour un candidat que l'on ne veut pas voir au pouvoir dans l'objectif de faire en sorte que 
   notre candidat favori soit finalement élu.
 
   \todo{Faire exemple avec graphique}
 
-  Le corruption du scrutin corresponds à l'achat\footnote{Par achat on prends en compte 
+  La corruption du scrutin correspond à l'achat\footnote{Par achat on prend en compte 
   tout échange visant à limiter le choix libre du vote allant d'un petit avantage à la menace 
-  de mort sur le/la votant·e ou ses proches.} auprés des électeurs de leur vote.
-  La corruption est légerement différent de la manipulation, dans le sens où le candidat
-  que l'on cherche à élire à la fin n'est pas forcement celui qui est préférer par le votant.
-  Tout les systèmes de vote est vulnérable à ce genre de manipulation, mais un bon système de 
-  vote devrait necessité une très forte corruption pour que le résultats final soit impacté.
-  Certaine technique peuvent être mise en place pour limiter la corruption des votants (secret
-  du vote, impossibilité de prouver pour qui on a voter, liberté de la presse, …), mais 
-  ces techniques ne peuvent pas garantir l'absence de correciont.
+  de mort sur le/la votant·e ou ses proches.} auprès des électeurs de leur vote.
+  La corruption est légèrement différente de la manipulation, dans le sens où le candidat
+  que l'on cherche à élire à la fin n'est pas forcément celui qui est préféré par le votant.
+  Tous les systèmes de vote sont vulnérables à ce genre de manipulation, mais un bon système de 
+  vote devrait nécessiter une très forte corruption pour que le résultat final soit impacté.
+  Certaines techniques peuvent être mises en place pour limiter la corruption des votants (secret
+  du vote, impossibilité de prouver pour qui on a voté, liberté de la presse …), mais 
+  ces techniques ne peuvent pas garantir l'absence de corruption.
   
   %\begin{nota}[élection présidentiel française 2022]{Exemple de tentative de manipulation du vote}
   %  Lors du premier tours 
@@ -141,25 +142,25 @@
   \section{Autre critère non pris en compte}
   \subsection{Votes blancs, nuls et abstentions}
 
-  Les votes blancs et nuls devrait toujours être compté, ne serais-ce que pour des raisons de
+  Les votes blancs et nuls devraient toujours être comptés, ne serait-ce que pour des raisons de
   statistique.
   Savoir qu'il y a eu 90\% de vote blanc permet au politique de voir qu'il y a un problème, même
-  s'il n'y a aucun moyen de savoir ce qui c'est passé, au simple regard de cette statistique.
+  s'il n'y a aucun moyen de savoir ce qui s'est passé, au simple regard de cette statistique.
 
-  Dans le cas où l'on veux prendre en compte les votes blancs, nuls ou abstentions, il est primordial
+  Dans le cas où l'on veut prendre en compte les votes blancs, nuls ou abstentions, il est primordial
   de faire attention que cela ne privilégie pas une option par rapport à une autre.
 
   \begin{nota}{Décompte de vote blancs non-neutre}
-    Lors d'un référendum contre une désicion du gouvernement, il faut qu'il y ai plus de 50\% 
-    de vote contre pour que la désicion soit révoquée.
+    Lors d'un référendum contre une décision du gouvernement, il faut qu'il y ait plus de 50\% 
+    de vote contre pour que la décision soit révoquée.
 
-    Dans le cas où les votes blancs, nuls ou bien les abstansions sont pris en compte dans 
-    le nombre de personne ayant validement voter, cela augmente le nombre de vote contre 
+    Dans le cas où les votes blancs, nuls ou les abstentions sont prisent en compte dans 
+    le nombre de personnes ayant validement voter, cela augmente le nombre de votes «~contre~» 
     qu'il y a besoin pour refusé le choix du gouvernement.
 
-    De ce fait, ces «votes» vont donc dans le sens du gouvernement et ne sont donc pas neutre. 
+    De ce fait, ces «votes» vont donc dans le sens du gouvernement et ne sont donc pas neutres. 
 
-    Si les votes blancs/nuls font juste baissé le quorum, et que si le quorum n'est pas atteint
+    Si les votes blancs/nuls font juste baisser le quorum, et que si le quorum n'est pas atteint
     une seconde votation a lieu, alors, c'est un usage plus correct de ces voix.
 
   \end{nota}
@@ -168,7 +169,7 @@
   \subsection{Corps électoral}
 
   Pour avoir une bonne représentation de ce que veux la population, avoir un faire taux de votes
-  blancs, nuls et d'abstansions n'est pas pas suffisant.
+  blancs, nuls et d'abstentions n'est pas pas suffisant.
   En effet dans la majorité des pays, une grande partie de la population n'a pas le droit de vote.
 
   \begin{nota}{Droit de vote en Suisse}
@@ -176,30 +177,29 @@
     de la population Suisse n'avait simplement pas le droit de vote.
     \begin{enumerate}
       \item Les étrangers comme dans beaucoup de pays.
-      \item Les jeunes jusqu'à 18 ans, cette age peux varier en fonction du pays
-      \item Dans certain pays (mais pas la Suisse), les personnes incarcérée, n'ont pas 
+      \item Les jeunes jusqu'à 18 ans, cet âge peut varier en fonction du pays
+      \item Dans certains pays (mais pas la Suisse), les personnes incarcérées, n'ont pas 
         le droit de vote.
-      \item Et enfin toutes personne sous curatelle de portée générale ne peuvent 
+      \item Et enfin toutes les personnes sous curatelle de portée générale ne peuvent 
         également pas voter.
-      \item Et enfin toutes personne sous curatelle de portée générale ne peuvent 
-      \item Jusqu'à récemment certain pays\footnote{L'Arabie Saoudite a donné le droit de vore au femme en 2011, source: \url{https://fr.wikipedia.org/wiki/Droit\_de\_vote\_des\_femmes}} ne donnait pas le droit de vote aux femmes.
+      \item Jusqu'à récemment certains pays\footnote{L'Arabie Saoudite a donné le droit de vote aux femmes en 2011, source: \url{https://fr.wikipedia.org/wiki/Droit\_de\_vote\_des\_femmes}} ne donnait pas le droit de vote aux femmes.
     \end{enumerate}
   \end{nota}
 
-  Ces diverses restrictions fait qu'une partie de la population vis dans un pays, mais n'a
-  pas la possibilité de participé au décision collective.
+  Ces diverses restrictions font qu'une partie de la population vit dans un pays, mais n'a
+  pas la possibilité de participer aux décisions collective.
   Lorsqu'on essaye d'interpréter un scrutin réel, il faut donc prendre en compte cela.
   Un candidat élu à 70\% n'est pas élus à 70\% de la population, ni même à 70\% des personnes
   ayant le droit de vote, ni même à 70\% des personnes inscrites sur les listes électorales,
   même pas à 70\% des votants, mais à 70\% des votants n'ayant pas voter blanc et dont leur 
   bulletin n'a pas été considérer comme nul.
-  En fonction du pays et de la votation cela peut avoir une grande importance pour savoir ce que
-  veux la population général.
+  En fonction du pays et de la votation, cela peut avoir une grande importance pour savoir ce que
+  veut la population générale.
 
-  Ne pas oublier que certain pays donne le droit vote aux personnes ayant la nationalité mais 
+  Ne pas oublier que certains pays donnent le droit vote aux personnes ayant la nationalité, mais 
   résidant à l'étranger.
-  Le résultat ne corresponds donc pas à ce que veulent les résidants, mais est influancer par ce
-  que veulent des personnes vivants à l'étranger.
+  Le résultat ne correspond donc pas à ce que veulent les résidants, mais est influencé par ce
+  que veulent des personnes vivantes à l'étranger.
 
   \begin{table}[h]
     \caption{Suisse: Initiative populaire «~99~\%~»}%
@@ -222,34 +222,34 @@
     \end{center}
   \end{table}
 
-  La Suisse a voter le 26 septembre 2021 sur l'initiative «~99~\%~».
+  La Suisse a voté le 26 septembre 2021 sur l'initiative «~99~\%~».
   Cette initiative a été largement refusée à plus de 64\%.
-  Le \aref{tab:votation:99pourcent} montre les pourcentages de la populations possible dans le 
-  cas où personne n'aurait voter blanc, auncun bulletin nul décompter, sans abstention et 
+  Le \aref{tab:votation:99pourcent} montre les pourcentages de la population possible dans le 
+  cas où personne n'aurait voté blanc, aucun bulletin nul décompter, sans abstention et 
   finalement si l'ensemble de la population avait le droit de vote et votait.
-  Par exemple on sais avec certitude que 21,03\% de la population était contre 
-  (l'initiative a été rejetée), mais la propotion de personne contre peux varier entre 
+  Par exemple on sait avec certitude que 21,03\% de la population était contre 
+  (l'initiative a été rejetée), mais la proportion de personnes contre peut varier entre 
   21,03\% et 88,62\% si l'on ne regarde que le résultat du scrutin.
   La population prise en compte et celle de 2020 (une année avant le scrutin).
 
-  \subsection{Reflexion et débat}
+  \subsection{Réflexion et débat}
 
-  Certain scrutin se déroule en plusieurs tours, il peut être interessant de demander à la 
+  Certains scrutins se déroulent en plusieurs tours, il peut être intéressant de demander à la 
   population de classer tous les candidats/options et de simuler tous les tours.
-  Cette technique permet aux électeurs de ne se déplacer qu'une seul fois aux urnes.
+  Cette technique permet aux électeurs de ne se déplacer qu'une seule fois aux urnes.
   Malheureusement, en simulant les tours, on supprime également la possibilité d'avoir un
-  débat et donc que les électeurs puisse changer d'avis.
-  Les compromis entre candidat sont également impossible.
+  débat et donc que les électeurs puissent changer d'avis.
+  Les compromis entre candidats sont également impossibles.
 
   Un scrutin à plusieurs tours réel permet d'améliorer le débat politique, même si un scrutin 
-  à 10 lasserait certainement plus que le bénéfisse possible.
+  à 10 tours lassait certainement plus que le bénéfice possible.
 
   \chapter{Les scrutins}
 
   \begin{important}[$50\% + 1$ versus $ > 50\%$]{Définition de la majorité}
-    On trouve fréquement l'expression $50\%+1$ pour désigner le nombre de vote requis pour
-    obtenir la majorité, alors qu'il faux juste plus de $50\%$ des voix pour la majorité.
-    Même si cette distinction parrait minime, pour des scrutins avec un nombre d'électeur 
+    On trouve fréquemment l'expression $50\%+1$ pour désigner le nombre de votes requis pour
+    obtenir la majorité, alors qu'il faut juste plus de $50\%$ des voix pour la majorité.
+    Même si cette distinction parait minime, pour des scrutins avec un nombre d'électeurs 
     impair c'est un point important.
 
     Si A a 4 voix, B a 1 voix et C a 2 voix, on a un total de 7 électeurs.
@@ -260,30 +260,30 @@
 
     Nous avons donc un cas où il faut un score $ > 3.5 $ et un autre cas où il faut un score 
     $ \geqslant 4.5 $.
-    Le candidat A se retrouve donc élu avec un définition et non-élu avec l'autre.
+    Le candidat A se retrouve donc élu avec une définition et non élu avec l'autre.
 
-    Dans ce document seul la définition $> 50\%$ a été utilisé
+    Dans ce document seule la définition $> 50\%$ a été utilisée
   \end{important}
 
   \section{Scrutin proportionnel plurinominal}
 
   Les électeurs votent pour une liste (de candidats) de leur choix.
-  Chaque liste remporte un nombre de siège proportionnel au nombre de voix reçue.
-  Les sièges sont finalement distribué dans chaque liste soit par ordre de présence dans
+  Chaque liste remporte un nombre de sièges proportionnel au nombre de voix reçue.
+  Les sièges sont finalement distribués dans chaque liste soit par ordre de présence dans
   la liste, ou bien en fonction du nombre de voix de chaque candidat dans la liste.
 
   \paragraph{Scrutin avec seuil}
 
-  Lors de certaine élection il peut y avoir un seuil à atteindre pour qu'un liste puisse 
+  Lors de certaines élections, il peut y avoir un seuil à atteindre pour qu'une liste puisse 
   prétendre à un siège.
-  C'est-à-dire qu'il faut avoir par exemple les voix necessaire pour 3 sièges pour permettre
-  à la liste de rentré dans le groupe de liste recevant des sièges.
+  C'est-à-dire qu'il faut avoir par exemple les voix nécessaires pour 3 sièges pour permettre
+  à la liste de rentrer dans le groupe de liste recevant des sièges.
   S'il n'y a pas de seuil, chaque liste avec un nombre de voix suffisant pour 1 siège participe 
   à la répartition.
   
   \paragraph{Préférentiel ou listes bloquées}
 
-  En listes bloquées, les sièges sont répartis au sein des listes par ordre d'apparision 
+  En listes bloquées, les sièges sont répartis au sein des listes par ordre d'apparition 
   des candidats.
   En préférentiel, les sièges sont répartis en fonction des préférences des électeurs.
   Ces derniers peuvent changer l'ordre des candidats, biffant/rajoutant certain ou même
@@ -291,35 +291,35 @@
   
   \paragraph{Répartition des sièges}
 
-  Les candidats ne pouvant pas être élu à moitié, diverse méthode existe pour répartir
+  Les candidats ne pouvant pas être élus à moitié, diverses méthodes existent pour répartir
   les sièges entre les diverses listes.
-  Chaques méthodes peuvent donner des resultats différents.
+  Chaque méthode peut donner des résultats différents.
   
   \section{Scrutin uninominal majoritaire}\label{diff:scrutin-majoritaire}
   
   Chaque votant vote pour son option préférée.
-  Pour chaque option on compte le nombre d'électeur l'ayant choisi, l'option avec le plus 
-  d'électeur l'emporte.
+  Pour chaque option on compte le nombre d'électeurs l'ayant choisi, l'option avec le plus 
+  d'électeurs l'emporte.
   
   \subsection{Majorité relative ou absolue}
   \subsubsection{Majorité absolue}
   Dans le cas d'un scrutin à majorité absolue, l'option avec plus de 50\% de vote est déclarée
   vainqueure.
-  Dans le cas où aucune options n'atteint les 50\%, une tour supplémentaire est généralement
-  organiser.
-  Ce tour supplémentaire peux être à la majorité relative dans une volonté de limité le nombre
+  Dans le cas où aucune option n'atteint les 50\%, une tour supplémentaire est généralement
+  organisée.
+  Ce tour supplémentaire peut être à la majorité relative dans une volonté de limiter le nombre
   de tour.
   
   \begin{nota}{Pourquoi 50\%~?}
-    Pour certain scrutin plus important, le seuils est plus élevé que 50\%, exemple 60\% ou 70\%. 
-    En quoi est-ce que 50\% est un bon choix, est-ce que ça veux dire que le choix de la moitié
-    des votants n'as pas importance~? 
+    Pour certain scrutin plus important, le seuil est plus élevé que 50\%, par exemple 60\% ou 70\%. 
+    En quoi est-ce que 50\% est un bon choix, est-ce que ça veut dire que le choix de la moitié
+    des votants n'a pas importance~? 
   \end{nota}
   
   \subsubsection{Majorité relative}
-  Dans le cas d'un scrution à majorité relative, l'option avec le plus de voix est choisie, 
-  quelque soit son pourcentage de voix. Il n'y a donc pas besoin d'un second tours s'il n'y 
-  a pas d'ex-aequo. Ce scrutin est décris dans l'algorithme \aref{scrutin:maj-uni-1t}.
+  Dans le cas d'un scrutin à majorité relative, l'option avec le plus de voix est choisie, 
+  quel que soit son pourcentage de voix. Il n'y a donc pas besoin d'un second tour s'il n'y 
+  a pas d'ex aequo. Ce scrutin est décrit dans l'algorithme \aref{scrutin:maj-uni-1t}.
 
   \begin{algorithm}
     \caption{Scrutin majoritaire uninominal à 1 tour}%
@@ -337,26 +337,26 @@
 
   \subsection{Nombre de tour}
 
-  Lors d'un scrutin à la majorité relative, un seul tour est necessaire.
-  Pour la variante à la majorité absolue, un candidat n'est pas forcement élu lors du
-  premier tour. Dans ce dernier cas un tour suplémentaire doit être organisé, les options
-  les plus connus sont~: 
+  Lors d'un scrutin à la majorité relative, un seul tour est nécessaire.
+  Pour la variante à la majorité absolue, un candidat n'est pas forcément élu lors du
+  premier tour. Dans ce dernier cas, un tour supplémentaire doit être organisé, les options
+  les plus connues sont~: 
   \begin{itemize}
-    \item Garder les 2 meilleures candidats. C'est le dernier tour, il y en a forcement un 
-      qui aura plus de 50\%\footnote{S'il n'y a pas ex-aequo et que les votes blancs/nuls 
-      et abstentions n'influence pas le résultat}. C'est ce qui est utilisé pour l'élection
-      présidentiel française. Ce scrutin est décris dans l'algorithme \aref{scrutin:maj-uni-2t}.
+    \item Garder les 2 meilleurs candidats. C'est le dernier tour, il y en a forcément un 
+      qui aura plus de 50\%\footnote{S'il n'y a pas ex aequo et que les votes blancs/nuls 
+      et abstentions n'influencent pas le résultat}. C'est ce qui est utilisé pour l'élection
+      présidentielle française. Ce scrutin est décrit dans l'algorithme \aref{scrutin:maj-uni-2t}.
     \item Éliminer le pire des candidats, s'il y a encore plus que 2 candidats, il peut avoir
       encore d'autre tour. C'est ce qui est utilisé pour l'élection de chaque membre du
-      conseil fédéral à partir du 3\up{e} tour.
+      conseil fédéral à partir du 3\up{e} tours.
   \end{itemize}
 
-  Entre chaque tours les candidats ont habituellement la posibilité de se retirer du scrutin.
+  Entre chaque tour les candidats ont habituellement la possibilité de se retirer du scrutin.
   
   \begin{nota}{Qui éliminer~?}
-    Habituellement, les candidats/options avec le moins de voix sont éliminé, mais
-    est-ce vraiment leurs électeurs qui sont le plus suceptible de changer d'avis~?
-    Est-ce qu'un électeur d'un des 2 candidat proche mutuellement n'aurait pas plus
+    Habituellement, les candidats/options avec le moins de voix sont éliminés, mais
+    est-ce vraiment ces électeurs qui sont le plus susceptibles de changer d'avis~?
+    Est-ce qu'un électeur d'un des 2 candidats proche mutuellement n'aurait pas plus
     de facilité à changer son vote~?
   \end{nota}
 
@@ -415,12 +415,12 @@
     \end{center}
   \end{table}
 
-  Les tableaux \aref{fig:diff:maj1:caslim1} montre les préférences d'un corps 
+  Les tableaux \aref{fig:diff:maj1:caslim1} montrent les préférences d'un corps 
   électoral et le résultat d'une votation avec un scrutin majoritaire à 1 tour.
 
-  On peux constater plus de 60\% des électeurs (ii et iii) préférent B à A ou C à A. 
+  On peux constater plus de 60\% des électeurs (ii et iii) préfèrent B à A ou C à A. 
   Cependant comme A a fait plus de voix que B ou C, c'est donc cette option qui est élue.
-  Si B ou C s'était retirer avant le scrutin ou s'il y avait eu une candidature commune, A aurait été largement battue. 
+  Si B ou C s'était retiré avant le scrutin ou s'il y avait eu une candidature commune, A aurait été largement battu. 
 
   \subsection{Évaluation}
   \subsubsection{À 2 tours}
@@ -432,30 +432,30 @@
 
   \subsubsection{À 1 tour}
   \tabcritere%
-    {\cellcolor{red}trés mauvais}{Une grande part de la population (>50\%) peut être contre l'élu}%
+    {\cellcolor{red}très mauvais}{Une grande part de la population (>50\%) peut être contre l'élu}%
     {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres}%
-    {\cellcolor{red}mauvais}{Si les voix sont sufisament divisé dans un des camps}%
-    {\cellcolor{orange}moyen}{Si les candidats sont relativement prôche dans leurs scores}
+    {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisées dans un des camps}%
+    {\cellcolor{orange}moyen}{Si les candidats sont relativement proche dans leurs scores}
 
   \section{Méthode Borda}
   
   Chaques votants classent tous ou parties des options dans l'ordre de leur préférence.
-  Les candidats reçoivents des points en fonction de leur position dans l'ordre de chaque bulletin.
-  Le/la vainqueur·e est celui qui as obtenu le plus de points.
+  Les candidats reçoivent des points en fonction de leur position dans l'ordre de chaque bulletin.
+  Le/la vainqueur·e est celui qui a obtenu le plus de points.
 
   \subsection{Distribution des points}
 
   Dans la description de cette méthode de vote faite par J.-C. Borda donnait 1 point au
   candidat classé en dernier, puis un point supplémentaire pour l'avant-dernier et ainsi
   de suite jusqu'au premier candidat.
-  Dans la pratique actuelle~\cite{emerson_original_2013} les points sont distribué du 
+  Dans la pratique actuelle~\cite{emerson_original_2013} les points sont distribués du 
   premier au dernier $(n, n-1, …, 1)$.
-  Si tous les électeurs classe l'ensemble des candidats, alors ces 2 méthode donne le même 
-  résultat. Cependant lorsqu'on autorise le classement partiel, il y a des différence.
+  Si tous les électeurs classent l'ensemble des candidats, alors ces deux méthodes donnent le même 
+  résultat. Cependant lorsqu'on autorise le classement partiel, il y a des différences.
 
-  Pour évité toute ambigüiter, je désignerais la méthode initialement décrite par borda, 
+  Pour évité toute ambigüité, je désignerais la méthode initialement décrite par borda, 
   la méthode Borda avec distribution des points \textbf{classiques} et la méthode distribuant
-  les points à partir du premier candidat, distribution des points \textbf{morderne}.
+  les points à partir du premier candidat, distribution des points \textbf{moderne}.
 
   \begin{table}
     \begin{center}
@@ -485,14 +485,14 @@
     \end{center}
   \end{table}
 
-  Comme le montre les tableaux \aref{fig:diff:borda:caslim2}, la méthode classique pousse 
+  Comme le montrent les tableaux \aref{fig:diff:borda:caslim2}, la méthode classique pousse 
   les votants à classer un maximum de candidat et donc aide à la recherche d'un 
   compromis convenant à tout le monde.
   Alors que la méthode moderne pousse plus à ne classer que le candidat favori, si on grande
   partie des votants choisissent de faire cela, on se retrouve dans une situation proche 
   d'un scrutin majoritaire à majorité relative.
 
-  Les deux méthodes de distribution des points sont décrits dans les algorithmes \aref{scrutin:borda-classique} et \aref{scrutin:borda-moderne}.
+  Les deux méthodes de distribution des points sont décrites dans les algorithmes \aref{scrutin:borda-classique} et \aref{scrutin:borda-moderne}.
 
   \begin{algorithm}
     \caption{Méthode Borda (avec distribution des points classique)}%
@@ -590,41 +590,41 @@
   du vote.
 
   Nous pouvons y constater que lorsqu'on utilise le décompte de points moderne, une petite 
-  proportion des électeurs (16\%) arrivent à faire basculer le resultat à leur avantage.
+  proportion des électeurs (16\%) arrivent à faire basculer le résultat à leur avantage.
 
 
   \subsection{Évaluation}
   \subsubsection{Borda avec distribution des points classique}
   \tabcritere%
-    {\cellcolor{green}bien}{L'avis des personnes n'ayant pas voter pour le gagnant influance le résultat.}%
-    {\cellcolor{orange}moyen}{Les petits candidats offrent un avantage aux candidat proche. Dans le cas d'un élection équilibrée, ce n'est pas un problème.}%
-    {\cellcolor{orange}moyen}{Ne respecte pas ce critère, mais essaye de minimiser les personnes très mécontante du résultats.}%
-    {\cellcolor{green}bien}{Les électeurs on tout intérêt à donner leur vrai préférences en général}
+    {\cellcolor{green}bien}{L'avis des personnes n'ayant pas voté pour le gagnant influance le résultat.}%
+    {\cellcolor{orange}moyen}{Les petits candidats offrent un avantage aux candidats proches. Dans le cas d'une élection équilibrée, ce n'est pas un problème.}%
+    {\cellcolor{orange}moyen}{Ne respecte pas ce critère, mais essaye de minimiser les personnes très mécontentes du résultat.}%
+    {\cellcolor{green}bien}{Les électeurs on tout intérêt à donner leurs vraies préférences en général}
   \subsubsection{Borda avec distribution des points moderne}
   \tabcritere%
-    {\cellcolor{green}bien}{L'avis des personnes n'ayant pas voter pour le gagnant influance le résultat.}%
-    {\cellcolor{green}bien}{Les candidats non-classés en premier n'influance pas les points donnés au premier.}%
-    {\cellcolor{orange}moyen}{Ne respecte pas ce critère, mais essaye de minimiser les personnes très mécontante du résultats.}%
-    {\cellcolor{red}mauvais}{Les électeurs on intérêt à classé moins bien leurs second choix pour avantage leur candidat favori.}
+    {\cellcolor{green}bien}{L'avis des personnes n'ayant pas voté pour le gagnant influance le résultat.}%
+    {\cellcolor{green}bien}{Les candidats non classés en premier n'influence pas les points donnés au premier.}%
+    {\cellcolor{orange}moyen}{Ne respecte pas ce critère, mais essaye de minimiser les personnes très mécontentes du résultat.}%
+    {\cellcolor{red}mauvais}{Les électeurs on intérêt à classé moins bien leurs seconds choix pour avantage leur candidat favori.}
 
 
   \section{Méthode de Condorcet}
 
-  Les électeurs classent les candidats par ordre de préference. 
-  Puis est simuler des duels entre chaques candidats au scrutin majoritaire.
+  Les électeurs classent les candidats par ordre de préférence. 
+  Puis, sont simulés des duels entre chaque candidat au scrutin majoritaire.
   Le candidat ayant battu l'ensemble des autres candidats est élu.
 
   \subsection{Paradoxe de Condorcet}
 
   Le paradoxe de Condorcet, lors d'un vote par classement de 3 options (A, B, C).
-  C'est qu'il peut avoir une majorité de votant préfèrant C à A, une autre majorité 
-  préférant B à C, et qu'une dernière majorité préfèrent A à B.
-  Dans un tel cas, quelque soit l'option retenue, il y a toujours plus de 50\% des votants
-  qui serait pour changer d'option.
+  C'est qu'il peut avoir une majorité de votants préférant C à A, une autre majorité 
+  préférant B à C, et qu'une dernière majorité préfère A à B.
+  Dans un tel cas, quelleque soit l'option retenue, il y a toujours plus de 50\% des votants
+  qui seraient pour changer d'option.
 
   Dans le cas où il y a un paradoxe de Condorcet, d'autres méthodes doivent être utilisées pour désigner
   le gagnant.
-  Cela peut être un autre méthode de vote ou un algorithme spécifique.
+  Cela peut être une autre méthode de vote ou un algorithme spécifique.
   \todo{Retrouver l'exemple réel du paradoxe lors des élections présidentiel française}
   \subsection{Élection étrange}
   \begin{table}[h]
@@ -650,28 +650,28 @@
     \end{center}
   \end{table}
 
-  Les tableaux~\aref{fig:diff:condorcet:caslim1} montrent un scrutin effectuer avec la méthode de Condorcet,
-  donnant vainqueurs A.
+  Les tableaux~\aref{fig:diff:condorcet:caslim1} montrent un scrutin effectué avec la méthode de Condorcet,
+  donnant vainqueur A.
   L'option C a été classée en première ou deuxième position par l'ensemble des électeurs, alors que l'option
-  vainqueure (A) à été réfusé sechement par un tiers des électeurs.
+  vainqueure (A) a été refusée sèchement par un tiers des électeurs.
   Dans ce scrutin l'avis d'un tiers de la population a purement été ignoré.
 
   \subsection{Évaluation}
   \tabcritere%
-    {\cellcolor{red}mauvais}{Seul l'avis de la majorité est prise en compte, l'avis des 49\% restants est ignoré}%
+    {\cellcolor{red}mauvais}{Seul l'avis de la majorité est prise en compte, l'avis des 49\% restant est ignoré}%
     {\cellcolor{green}bien}{Lorsqu'il y a un unique vainqueur, la méthode est mathématiquement résistant au petit candidat}%
     {\cellcolor{green}bien}{Lorsqu'il y a un unique vainqueur, ce critère est forcement respecté}%
-    {\cellcolor{green}bien}{Le système de vote pousse les électeurs à donner leur vrai préférence}
+    {\cellcolor{green}bien}{Le système de vote pousse les électeurs à donner leur vraie préférence}
 
   \todo{retrouver papier à propos de la résistance au petit candidat}
   \todo{Évaluation méthode de Condorcet randomisé}
 
   \section{Vote par approbation}
 
-  Chaque électeur indique le ou les candidats qu'il trouve accéptable d'être élu.
+  Chaque électeur indique le ou les candidats qu'il trouve acceptable d'être élu.
   Le candidat ayant reçu le plus d'approbation est élu.
   Ce système est facile à mettre en place pour les élections actuelles, car il suffirait d'autoriser
-  les électeurs à glisser plusieurs bulletin différent dans l'urne.
+  les électeurs à glisser plusieurs bulletins différents dans l'urne.
 
   \subsection{Élection étrange}
 
@@ -696,12 +696,12 @@
     \end{center}
   \end{table}
 
-  Dans l'élection représentater dans les tableaux \aref{fig:diff:appro:caslim1}, l'option
+  Dans l'élection représentée dans les tableaux \aref{fig:diff:appro:caslim1}, l'option
   C gagne alors que 75\% de l'électorat lui préfère largement A et 75\% lui préfère B.
 
   \subsection{Évaluation}
   \tabcritere%
-    {\cellcolor{green!25!yellow}correct}{L'avis des perdants est pris en compte, cependant on ne peux indiquer que l'on ne veux pas de 2 candidats, mais que malgrès tous, l'un des deux nous est moins défavorable.}%
+    {\cellcolor{green!25!yellow}correct}{L'avis des perdants est pris en compte, cependant on ne peut indiquer que l'on ne veut pas de 2 candidats, mais que malgré tous, l'un des deux nous est moins défavorable.}%
     {\cellcolor{green}bien}{Chaque candidat as un score propre, ne dépendant pas des autres candidats.}%
     {\cellcolor{red}mauvais}{Ne respecte pas ce critère}%
     {\cellcolor{green}bien}{Cette méthode est faiblement manipulable.}
@@ -709,17 +709,17 @@
   \section{Jugement majoritaire}
 
   Chaque électeur donne une évaluation à chaque candidat.
-  Chaque candidat reçoit un évaluation final qui corresponds à l'évaluation médianne qu'il a reçu (donc il y a au moins 
-  50\% des électeurs qui on donner cette évaluation ou plus).
-  Le candidat élus est celui avec l'évaluation la plus élevée.
-  Ce scrutin est décris dans l'algorithme \aref{scrutin:jugement-maj}.
+  Chaque candidat reçoit une évaluation finale qui correspond à l'évaluation médiane qu'il a reçue (donc il y a au moins 
+  50\% des électeurs qui ont donné cette évaluation ou plus).
+  Le candidat élu est celui avec l'évaluation la plus élevée.
+  Ce scrutin est décrit dans l'algorithme \aref{scrutin:jugement-maj}.
 
-  L'évaluation peut être numérique, par exemple un note sur 20. Mais il n'est absolument pas sur qu'une note de 12/20 ai
-  la même signification pour tous les électeurs, ce qui pose problème pour intérpréter les résultats. 
-  Une autre technique consiste à donner des appréciations à chaque candidat (excellent, bien, passable, …), l'avantage
-  est que si les termes en français sont bien choisi, ils ont à peut près la même signification pour tous.
+  L'évaluation peut être numérique, par exemple une note sur 20. Mais il n'est absolument pas sûr qu'une note de 12/20 ait
+  la même signification pour tous les électeurs, ce qui pose problème pour interpréter les résultats. 
+  Une autre technique consiste à donner des appréciations à chaque candidat (excellent, bien, passable …), l'avantage
+  est que si les termes en français sont bien choisis, ils ont à peu près la même signification pour tous.
 
-  Pour les exemples de ce document, ce sont des appréciations qui on été choisie~: 
+  Pour les exemples de ce document, ce sont des appréciations qui ont été choisies : 
 
   \begin{center}
   \colorbox{green}{Excellent} $\succ$
@@ -785,7 +785,7 @@
   % TODO compresser ce graphique
   \subsection{Vote utile}
 
-  Les tableaux \aref{fig:diff:jugmaj:caslim1} montrent un élection normal, puis la même élection avec une tentative
+  Les tableaux \aref{fig:diff:jugmaj:caslim1} montrent une élection normale, puis la même élection avec une tentative
   de manipulation de la part de 20\% des électeurs. 
   Ces électeurs ont choisi de modifier leur vote en donnant une mauvaise jugement au candidat B qu'ils trouvaient 
   initialement correct.
@@ -795,30 +795,30 @@
     {\cellcolor{red}mauvais}{L'avis des 49\% de la population est ignorée.}%
     {\cellcolor{green}bien}{Chaque candidat a une évaluation propre ne dépendant pas des autres candidats.}%
     {\cellcolor{red}mauvais}{Seul l'avis médian est pris en compte}%
-    {\cellcolor{green!25!yellow}correct}{La manipulation n'est pas évidante, car il faut modifier la médian}
+    {\cellcolor{green!25!yellow}correct}{La manipulation n'est pas évidente, car il faut modifier la médian}
 
   \section{Méthode de Coombs et vote alternatif}
 
-  Chaques votants classent tous ou parties des options dans l'ordre de leur préférence.
-  Puis on simule un scrutin à la majorité absolue sans limite de nombre de tours, en retirant le pire candidats
+  Chaque votant classe tous ou parties des options dans l'ordre de leur préférence.
+  Puis on simule un scrutin à la majorité absolue sans limites de nombre de tours, en retirant le pire candidat
   entre chaque tour.
 
   \subsection{Vote alternatif}
-  Aussi appelé vote préférencielle transférable ou Méthode de R, le vote alternatif retire à chaque 
-  tour le candidat ayant été classé le moins souvant en première position.
-  C'est donc un simulation exacte d'un scrutin à la majorité absolue sans limite de nombre de tours, 
-  mais en retirant la posibilité de réflexion entre chaque tour. 
-  Il a donc les même désavatage que ce dernier (voir \aaref{diff:scrutin-majoritaire}).
+  Aussi appelé vote préférentiel, transférable ou Méthode de R, le vote alternatif retire à chaque 
+  tour le candidat ayant été classé le moins souvent en première position.
+  C'est donc une simulation exacte d'un scrutin à la majorité absolue sans limites de nombre de tours, 
+  mais en retirant la possibilité de réflexion entre chaque tour. 
+  Il a donc les mêmes désavantages que ce dernier (voir \aaref{diff:scrutin-majoritaire}).
 
   \subsection{Méthode de Coombs}
-  La méthode de Coombs retire à chaque tour le candidat ayant été classé le plus souvant en dernière position.
+  La méthode de Coombs retire à chaque tour le candidat ayant été classé le plus souvent en dernière position.
   Cette méthode à l'avantage 
 
   \subsection{Exemple}
 
   \begin{table}[h]
     \begin{center}
-      \caption{Example de scrutin méthode de Coombs et vote alternatif}%
+      \caption{Exemple de scrutin méthode de Coombs et vote alternatif}%
       \label{fig:diff:coombs:caslim1}
       \adjustbox{valign=t}{%
         \begin{subtable}[h]{0.45\textwidth}
@@ -847,20 +847,20 @@
     \end{center}
   \end{table}
 
-  Les tableaux \aref{fig:diff:coombs:caslim1} montre qu'il y a une réel différence entre les 2 méthodes
+  Les tableaux \aref{fig:diff:coombs:caslim1} montrent qu'il y a une réelle différence entre les 2 méthodes
 
   \subsection{Évaluation}
   \subsubsection{Méthode de Coombs}
   \tabcritere%
-    {\cellcolor{green!25!yellow}correct}{En retirant le candidat le plus souvant en dernière position, on prends en compte l'avis des perdants. Cela ne suffit pas pour s'assurer que qu'il n'y a pas de meilleures candidats dans le cas où un candidat est élu à 51\%}%
+    {\cellcolor{green!25!yellow}correct}{En retirant le candidat le plus souvent en dernière position, on prend en compte l'avis des perdants. Cela ne suffit pas pour s'assurer qu'il n'y a pas de meilleurs candidats dans le cas où un candidat est élu à 51\%}%
     {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres}%
-    {\cellcolor{red}mauvais}{Si les voix sont sufisament divisé dans un des camps}%
+    {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisées dans un des camps}%
     {À évaluer}{}
   \subsubsection{Vote alternatif}
   \tabcritere%
     {\cellcolor{red}mauvais}{L'avis de ceux n'ayant pas choisi le vainqueur n'est pas pris en compte.}%
     {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres}%
-    {\cellcolor{red}mauvais}{Si les voix sont sufisament divisé dans un des camps}%
+    {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisées dans un des camps}%
     {À évaluer}{}
 
 
