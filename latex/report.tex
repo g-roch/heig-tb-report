@@ -12,17 +12,18 @@
 %
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{xstring}
 \usepackage{lmodern}
 \usepackage{listofitems}
 \usepackage{minitoc}
 \mtcsetdepth{minitoc}{2} % Profondeur des minitoc
 %\mtcsettitle{minitoc}{\chaptername{}s} % Set title of minitoc
-\renewcommand\afterchapter{
-  \begin{center}
-  \begin{minipage}{0.75\linewidth}
-    \minitoc
-  \end{minipage}
-  \end{center}\vspace{2em}}
+\renewcommand\afterchapter{%
+  \begin{center}%
+  \begin{minipage}{0.75\linewidth}%
+    \minitoc%
+  \end{minipage}%
+  \end{center}\vspace{2em}}%
 %\usepackage{heig}
 \usepackage[
     %style=alphabetic,
@@ -33,6 +34,8 @@
     style=numeric,
     %style=reading,
 ]{biblatex}
+\addbibresource{biblio.bib}
+%\addbibresource{biblio-to-sort.bib}
 \usepackage{biblio-everywhere} % show bibliographie as footnote and en document
 \usepackage{lipsum}
 
@@ -89,7 +92,10 @@
 
     \chapter{Cahier des charges}
     \subfile{content/cahier-des-charges}
+    \subfile{content/introduction}
     \subfile{content/diff-methode}
+    \subfile{content/crypto-requirements}
+    \subfile{content/biblio-analyse}
     %\subfile{content/example}
 
 

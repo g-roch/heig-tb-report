@@ -1,0 +1,51 @@
+\documentclass[../report]{subfiles}
+\begin{document}
+\chapter{Propriété cryptographique requise}
+\section{Bulletin Board}
+Concept important voir necessaire~\cite{gharadaghy_verifiability_2010}
+
+Les bulletins de vote chiffré y sont publié et ne peuvent pas y être retiré.
+Tout le monde (votants, calculateur du résultat et observateur) y on accès en lecture.
+\section{Authentification du votant}
+\section{Confidentialité du vote}
+La confidentialité du vote est le fait que personne ne peut faire le lien entre une personne
+et ce qu'elle a voté.
+C'est le premier rempart contre la contrainte sur les votants.
+
+Un confidentialité inconditionnel (c.-à-d.\ quelque soit le niveau de compromission des serveurs)
+est incompatible avec la vérifiabilité universelle (même c.-à-d.) du 
+résultat~\cite{chevallier-mames_incompatible_2010,gharadaghy_verifiability_2010}.
+\todo{\originalcite{chevallier-mames_incompatible_2010} n'est pas accessible → vérifié les infos de l'abstract dans d'autre document}
+
+\subsection{Vote sans contrainte possible}
+
+Pour qu'il n'y a pas de contrainte possible sur le votant, ce dernier ne doit pas pouvoir prouver
+ce qu'il a voté. 
+Si le votant choisi ou est contraint de prouver le choix de vote qu'il a fait, cela limit
+son libre choix pour le vote.
+
+\section{Verifiabilité}
+
+\begin{important}{Important}
+  La vérifiabilité se base sur des propriétés cryptographiques (sauf s'il y a publication 
+  de l'ensemble des votes) et donc on doit partir du principe que l'ordinateur sur lequel 
+  est effectué la vérification n'est pas compromi.
+
+  Cela vaut lors de la vérification du décompte mais également 
+  lors de la vérification par le votant de son vote.
+\end{important}
+
+\subsection{pour le votant}
+Le votant reçois immédiatement une preuve que son vote a belle et bien été pris en 
+compte~\cite{adida_ballot_2006}.
+
+Dans Helios~\cite{noauthor_helios_nodate}, si Alice vérifie que son bulletin contient
+correctement sont vote, le système l'empèche d'utilise ce bulletin comme vote pour limiter
+la coercition possible des votants.
+Alice n'a ainsi pas de preuve qu'elle peut fournir à autrui de ce qu'elle a voté.
+\todo{Phase 2 de vérification? \originalcite[7]{gharadaghy_verifiability_2010}}
+
+\subsection{du résultat}
+N'importe qui (même ne participant pas à la votation) peux vérifié le résultat.
+
+\end{document}

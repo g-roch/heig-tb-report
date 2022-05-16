@@ -32,14 +32,14 @@ _dyn/%: _dyn/Makefile FORCE
 
 $(PDF): %.pdf: %.tex
 	$(MAKE) $(dir $*)Makefile
-	cd $(dir $*) && $(MAKE) _dyn
+	cd $(dir $*) && $(MAKE) _dyn/Makefile
 	cd $(dir $*) && latexmk $(LATEXFLAGS) $(notdir $*)
 
 
 .PHONY: $(patsubst %,%.pvc,$(PDF))
 $(patsubst %,%.pvc,$(PDF)): %.pdf.pvc: %.tex
 	$(MAKE) $(dir $*)Makefile
-	cd $(dir $*) && $(MAKE) _dyn
+	cd $(dir $*) && $(MAKE) _dyn/Makefile
 	cd $(dir $*) && latexmk $(LATEXFLAGS) -pvc $(notdir $*)
 
 

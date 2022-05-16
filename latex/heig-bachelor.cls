@@ -349,7 +349,7 @@ Enseignant responsable : & Date et lieu : & Signature : \\[0.5em]
 
 \let\@makechapterheadorig\@makechapterhead
 \def\afterchapter{asd}
-\def\@makechapterhead#1{\@makechapterheadorig{#1}\afterchapter}
+\def\@makechapterhead#1{\@makechapterheadorig{#1\afterchapter}}
 
 
 \endinput

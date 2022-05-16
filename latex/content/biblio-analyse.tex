@@ -1,0 +1,148 @@
+\documentclass[../report]{subfiles}
+\begin{document}
+
+  \newcommand\ana[1]{
+    \section[\citeauthor{#1}, \citeyear{#1}]{\Citeauthor{#1}, \citetitle{#1}, \citeyear{#1}~\originalcite{#1}}
+    \url{#1} --- \fullcite{#1}\newline
+
+  }
+
+  \chapter{Analyse bibliographie}
+
+  \ana{adida_ballot_2006}
+    Propose un protocole de vote
+
+    «Universal Verifiability» Le vote est publié avec l'identifiant du votant, grâce à la crypto, le résultat 
+    peut être connu, mais pas le vote unitaire.
+
+    «Ballot Casting Assurance» Assurance pour læ votant·e de reçevoir immédiatement une validation de la bonne prise en compte de son
+    vote
+
+    E2E verification: Læ votant·e veux uniquement vérifier que sont vote correspond à sont intention
+    
+    Verification Direct: Vérification ne dépendant pas de qqn d'autre
+
+    \todo{Que faire en cas d'échec de le vérification du vote par læ votant·e?, revote?}
+
+  \ana{adida_helios_2008}
+
+    Audit d'Helios~\cite{noauthor_helios_nodate}
+
+    Helios/Personnel internet voting/mail voting → Pas sûre s'il y a un risque élevé de contrainte sur les votant·es.
+
+    Intégrité ou Confidentialité lorsque tout les composants sont compromis. Choix Intégrité inconditionnel. La Confidentialité repose sur 
+    l'éspérence qu'il y ai suffisament d'admin honnête.
+
+    Helios2008 → Confidentialité car seul HELIOS est admin crypto.
+
+    BPS → Ballot Preparation System
+
+    lu jusqu'à 5
+
+  \ana{benaloh_receipt-free_1994}
+
+  Article de base sur le vote électronique
+
+
+  \ana{chevallier-mames_incompatible_2010}
+
+  Non-disponible % même sci-hub
+
+  Vérifiabilité universelle du décompte et confidentialité inconditionnel du vote est incompatible
+
+  Vérification Universal du pointage et absence de récépissé est incompatible sauf s'il y a cannaux privé entre électeurs et autorité de vote.
+
+  \ana{desmedt_threshold_1989}
+
+  Choix clé cryptographique entre 1/entreprise vs 1/employé → Ne conserne pas mon Tb.
+
+  \ana{emerson_original_2013}
+
+  Analyse de la méthode borda pour des votes partiels → donner des points de n à 0 (n nombre de choix sélectionner) vs m à $m-n$ (m nombre de choix disponible)
+
+  \ana{gharadaghy_verifiability_2010}
+
+  Présente des approche pour mettre en œuvre la vérifibilité du vote
+
+  \ana{haines_how_2020}
+
+  Scytl/SwissPost → erreur d'implémentation crypto → vuln
+
+  \ana{heiberg_improving_2016}
+
+  % offline PDF
+
+  eVote Estionan
+
+  \ana{jonker_formalising_2006}
+
+  % offline PDF
+
+  Anayse sur l'absence de reçu
+
+  \ana{langer_classifying_2009}
+
+  Important
+
+  Privacy and Verifiability requirement for eVoting
+
+  \ana{lewis_addendum_2019}
+
+  \todo{Add \url{https://cva.unifr.ch/sites/default/files/artifacts/media/pdf/hownottoproveelectionoutcomeaddendum.pdf}
+  in biblio}
+
+  Montre pb dans le système de la Poste
+
+  \ana{nurmi_voting_1983}
+
+  Important début TB
+
+  Analyse des méthodes vote
+
+  \ana{panja_smart_2020}
+
+  Borda on blockchain sans autorité de comptage et de vote.
+
+  \begin{question}{Corps électoral}
+    Est-ce que seul les personne autorisés peuvent voter?
+  \end{question}
+
+  \ana{peters_education_2017}
+
+  Intérésant (anti-racisme, ...) mais hors TB
+
+  \ana{pieters_what_nodate}
+  
+  \todo{Add \url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.532.4122&rep=rep1&type=pdf} in biblio}
+  \todo{Update date et description → Change refid → update \LaTeX}
+
+  Diff vérifiabilité classique et constructive → Importance politique
+
+  \ana{sako_receipt-free_1995}
+
+  Shéma de vote sans reçu, uniquement avec un canal sur votant avec autorité de vote
+
+  \ana{saltman_accuracy_1988}
+
+  problème faude, etc dans eVoting
+
+  \ana{schnorr_efficient_1989}
+
+  SmartCard shéma crypto (crypto de base? relation avec TB??)
+
+  \ana{springall_security_2014}
+
+  Séurité en Estonie
+
+  \ana{vassil_diffusion_2016}
+
+  Analyse de la diffusion de l'eVoting en Estonie
+
+  \todo{Ce serais bien de trouvé un article récent}
+  
+  %\begin{nota}[by me]{Ma note}\lipsum[1][1-5]\end{nota}
+  %\begin{question}[by me]{Ma question}\lipsum[2][1-5]\end{question}
+  %\begin{important}[by me]{Ma not imp!}\lipsum[3][1-5]\end{important}
+  %\begin{warning}[by me]{My warn}\lipsum[4][1-5]\end{warning}
+
+\end{document}
