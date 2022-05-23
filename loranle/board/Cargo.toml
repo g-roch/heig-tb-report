@@ -1,0 +1,12 @@
+[package]
+name = "board"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rocket = "0.4"
+rocket_contrib = "0.4"
+lib = { path = "../lib" }
+lazy_static = "1.4"
