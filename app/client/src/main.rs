@@ -1,6 +1,3 @@
-use dialoguer::theme::ColorfulTheme;
-use dialoguer::MultiSelect;
-use dialoguer::Sort;
 use reqwest;
 
 use client::voting_choose;
@@ -13,6 +10,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .await?
         .json()
         .await?;
-    voting_choose(&options);
+    voting_choose(&options)?;
     Ok(())
 }

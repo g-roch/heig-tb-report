@@ -1,7 +1,12 @@
 use std::collections::HashMap;
 use std::fmt;
 
+#[macro_use]
+extern crate zkp;
+
 use serde::{Deserialize, Serialize};
+
+pub mod crypto;
 
 pub const BOARD_PORT: u16 = 8085;
 
