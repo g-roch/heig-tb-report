@@ -3,10 +3,22 @@ use zkp::rand::prelude::*;
 
 fn main() {
     let mut rng = zkp::rand::thread_rng();
-    let options = vec!["Toto".to_string(), "Tata".to_string(), "Riri".to_string()];
+    let options = vec![0, 1, 2];
 
-    let mut cryptos: Vec<_> = (0..10)
-        .map(|i| Crypto::new(i, rng.clone(), &options, vec![0, 2, 1]))
+    let chooses = vec![
+        vec![2, 0, 1],
+        vec![0, 2, 1],
+        vec![0, 2, 1],
+        vec![0, 2, 1],
+        vec![0, 2, 1],
+    ];
+
+    let mut cryptos: Vec<_> = chooses
+        .iter()
+        .enumerate()
+        .map(|(i_voterid, choose)| {
+            Crypto::new(i_voterid as u64, rng.clone(), &options, choose.clone())
+        })
         .collect();
 
     let round_1: Vec<_> = cryptos
@@ -21,7 +33,10 @@ fn main() {
 
     let tallying = cryptos[0].tallying(&round_1, &round_2.unwrap());
 
-    dbg!(tallying);
+    dbg!(&tallying);
+
+    let r = tallying.unwrap();
+    dbg!(r == vec![2, 8, 5]);
 
     //crypto.vote();
 }
