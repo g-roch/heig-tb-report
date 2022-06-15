@@ -204,6 +204,71 @@ mod pr2 {
             Err(())
         }
     }
+    pub(super) fn simple_proof(
+        transcript: &mut Transcript,
+        ID: &RistrettoPoint,
+        G: &RistrettoPoint,
+        X_i: &Vec<RistrettoPoint>,
+        Z_i: &Vec<RistrettoPoint>,
+        Y_i: &Vec<RistrettoPoint>,
+        x_ij: &Scalar,
+        j: usize,
+        A: &RistrettoPoint,
+    ) -> (
+        Vec<Scalar>,                                     // c
+        Vec<Scalar>,                                     // r
+        Vec<(CompressedRistretto, CompressedRistretto)>, // t
+    ) {
+        // tel que X_i[j] = x_ij * G && Z_i[j] / A = x_ij * Y[i][j]
+
+        // Construct a TranscriptRng
+        // This paragraphe is inspired from crate 'zkp' file 'src/toolbox/prover.rs' fn 'prove_impl'
+        // under license CC0-1.0 (copied 2022-06-05)
+        let mut rng_builder = transcript.build_rng();
+        //rng_builder = rng_builder.rekey_with_witness_bytes(b"", assignments.x.as_bytes());
+        //rng_builder = rng_builder
+        //.rekey_with_witness_bytes(b"", Scalar::from(assignments.j as u64).as_bytes());
+        let mut transcript_rng = rng_builder.finalize(&mut thread_rng());
+
+        let k = X_i.len();
+        let w = Scalar::random(&mut transcript_rng);
+
+        // values c[j] and r[j] is override after, but is a random for simplify code:w
+        let mut c: Vec<_> = (0..k)
+            .map(|_| Scalar::random(&mut transcript_rng))
+            .collect();
+        let mut r: Vec<_> = (0..k)
+            .map(|_| Scalar::random(&mut transcript_rng))
+            .collect();
+
+        let mut t: Vec<(_, _)> = (0..k)
+            .map(|l| {
+                (
+                    (r[l] * G + c[l] * X_i[l]).compress(),
+                    (r[l] * Y_i[l] + c[l] * (Z_i[l] - A)).compress(),
+                )
+            })
+            .collect();
+
+        t[j] = ((w * G).compress(), (w * Y_i[j]).compress());
+
+        let c_hash = hash(
+            &ID.compress(),
+            &G.compress(),
+            &X_i.iter().map(|e| e.compress()).collect(),
+            &Y_i.iter().map(|e| e.compress()).collect(),
+            &Z_i,
+            &A,
+            &t,
+        );
+
+        c[j] = Scalar::zero();
+        c[j] = c_hash - c.iter().sum::<Scalar>();
+        // TODO Pas sur de la multiplication ↓
+        r[j] = w - x_ij * c[j];
+
+        (c, r, t)
+    }
 }
 
 pub struct Crypto<'a, Rng>
@@ -429,21 +494,34 @@ where
             .map(|j| {
                 let mut transcript = Transcript::new(b"prove2");
                 transcript.append_u64(b"j", j as u64);
-                let (proof, _points) = pr2::prove_compact(
+                let (c, r, t) = pr2::simple_proof(
                     &mut transcript,
-                    pr2::ProveAssignments {
-                        x: &x_i[j],
-                        j: self.score_associated_of_j_canditate(j) as usize,
-                        ID: &ID,
-                        G: &G,
-                        X: &X_i,
-                        Z: &Z_i,
-                        Y: &Y_i,
-                        //A: &(Scalar::from(self.score_associated_of_j_canditate(j)) * G),
-                        A: &A[j],
-                    },
+                    &ID,
+                    &G,
+                    &X_i,
+                    &Z_i,
+                    &Y_i,
+                    &Scalar::from(self.score_associated_of_j_canditate(j)),
+                    j,
+                    &A[j],
                 );
-                (Z_i[j], proof)
+
+                //let (proof, _points) = pr2::prove_compact(
+                //    &mut transcript,
+                //    pr2::ProveAssignments {
+                //        x: &x_i[j],
+                //        j: self.score_associated_of_j_canditate(j) as usize,
+                //        ID: &ID,
+                //        G: &G,
+                //        X: &X_i,
+                //        Z: &Z_i,
+                //        Y: &Y_i,
+                //        //A: &(Scalar::from(self.score_associated_of_j_canditate(j)) * G),
+                //        A: &A[j],
+                //    },
+                //);
+                //(Z_i[j], proof)
+                (Z_i[j], pr2::CompactProof { c, r, t })
             })
             .collect();
         Ok(self
