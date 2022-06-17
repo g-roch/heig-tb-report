@@ -3,6 +3,7 @@ members = [
   "lib",
   "client",
   "board",
+  "perf",
   #"authority",
   #"observer",
 ]

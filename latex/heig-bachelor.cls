@@ -33,6 +33,7 @@
 \RequirePackage{fancyvrb}
 \RequirePackage[tikz]{bclogo}
 \RequirePackage{listingsutf8}
+\RequirePackage{listings,listings-rust}
 \RequirePackage{titlesec}
 \RequirePackage{blindtext}
 \RequirePackage{algorithm}

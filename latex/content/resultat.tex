@@ -1,0 +1,243 @@
+
+\documentclass[../report]{subfiles}
+\begin{document}
+\part{Résultat}
+
+\chapter{Le protocole}
+
+\section{Protocole à 2 tours}
+
+Pour permettre la confidentialité du vote y compris envers le serveur central receptionnant
+le bultin de vote, le protocole de vote fonctionne en 2 tours.
+Lors du premier tours chaque participant publie une clé publique par candidat/option et une 
+preuve NIZK\footnote{Non-interactive zero-knoledge} que ces clés sont bien formée.
+Au début du second tours, chaque participant vérifie toutes les preuves que les clés publiques
+sont bien formée.
+Le bulletin de vote est ensuite formé à partir de l'ensemble des clés publiques des autres 
+votants et du choix de vote effectué.
+Avec le bulletin de vote, chaque participant publie une preuve NIZK que son vote est bien 
+une permutation des choix possible.
+
+\section{Calcul du résultat}\label{sec:res:proto:resultat}
+
+\todo{Est-ce log discret sur une courbe éliptique? est-ce que je dis la somme ou le produit? }
+Le calcul du résultat final est le calcul du logarithme discret sur le produit de tout les 
+bulletins de vote.
+Ce calcul est un problème difficile sur de grand nombre, cepandant pour des nombres 
+relativements petits, une recherche par brute force est possible.
+Le temps de calcul est parfaitement raisonable et fonctionnel, même pour de très grand groupe, 
+une analyse détaillée est fait dans la \aaref{sec:res:perf:resultat}.
+
+
+\chapter{Test des perf}
+
+Les analyses ci-après on été effectué sur un ordinateur de bureau (i7-6700K, 8~cœurs, 8~Gio de RAM).
+Les programmes de test on été écrit et exécuté sur un seul thread, donc seul environ $\frac{1}{8}$ de 
+la capacité du processeur a été utilisé.
+Durant les tests la fréquence effective du prcesseur s'est stabilité à 4 GHz.
+
+Dans le tableau suivant, voici le nombre de votant pris en compte pour les simulations de ce chapitre.
+
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{|c|l|r|l|}
+      \hline
+       & Groupe de personne                          & Nb de votant·es & Source \\
+      \hline
+      \hline
+      $ASSO$ & Petit association                  & 300 & \\
+      $LS_p$ & Population lausanoise [2020]       &         140~202 & \href{https://fr.wikipedia.org/wiki/Lausanne}{Wikipédia français: Lausanne}\\
+      $MIG_v$ & Migros: ayant voté [2022]         &         630~000 & \href{https://www.rts.ch/info/suisse/13176954-la-vente-dalcool-reste-interdite-a-la-migros-apres-un-non-massif-en-votation.html}{RTS Info, 16 juin 2022}\\
+      $MIG_i$ & Migros: coopérateurs [2021]       &       2~280~000 & \href{https://corporate.migros.ch/dam/jcr:d5b1ae79-a8e8-4b98-9f2d-4b4974d39486/faits-et-chiffres-2021.pdf}{Migros Faits et chiffres 2021}\\
+      $FR_v$ & Français ayant voté [2022]         &      35~923~707 & \href{https://fr.wikipedia.org/wiki/Élection_présidentielle_française_de_2022}{Wikipédia: élection présidentielle fr 2022}\\
+      $FR_i$ & Électeurs français inscrits [2022] &      48~747~876 & \href{https://fr.wikipedia.org/wiki/Élection_présidentielle_française_de_2022}{Wikipédia: élection présidentielle fr 2022}\\
+      $FR_p$ & Population française [2020]        &      68~014~000 & \href{https://fr.wikipedia.org/wiki/France}{Wikipédia français: France}\\       
+      $EU_p$ & Population continent européen      &     743~000~000 & \href{https://fr.wikipedia.org/wiki/Europe}{Wikipédia français: Europe}\\       
+      $TER_p$ & Population mondiale [2021]        &   7~874~966~000 & \href{https://fr.wikipedia.org/wiki/Population_mondiale}{Wikipédia français: Population mondiale}\\       
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Nombre de votant·es possible par groupe de population}\label{tab:}
+\end{table}
+
+\section{Taille de données}
+
+Les données publiques générées lors du premier tours corresponds à 88 B par électeur et par option.
+Lors du second tours 104 B suplémentaire sont publié par électeur et par option.
+Les données totals sont donc de 192 B par électeur et par option.
+
+Nous pouvons constater dans le \aaref{tab:res:perf:size} que la quantité de données générée lors du premier tour et
+que chaque votant a besoin de télécharger pour le second tour est resonable pour de groupe de quelques centaines de personnes.
+Dès que la taille atteint une taille proche d'une ville (Lausanne dans le tableau) la taille deviens importante et peut poser
+problème pour certains votants s'ils n'ont pas une bonne connexion Internet.
+
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{|c|r|r|r|r|}
+      \hline
+       & Nb de votant·es      & 1\up{er} tour                & 2\up{nd} tour & total\\
+       & $n$                  & $n \cdot o \cdot 88\text{B}$ & $n \cdot o \cdot 104\text{B}$  &  \\
+      \hline
+       &                      & $o = 30$ & $o = 30$ &                    \\
+      \hline
+      \hline
+      $ASSO$  &           300 & 257,8 kiB & 307,7 kiB & 562,5 kiB \\
+      $LS_p$  &       140~202 & 117,7 MiB & 139,1 MiB & 256,7 MiB \\
+      $MIG_v$ &       630~000 & 528,7 MiB & 624,8 MiB &   1,1 GiB \\
+      $MIG_i$ &     2~280~000 &   1,9 GiB &   2,2 GiB &   4,1 GiB \\
+      $FR_v$  &    35~923~707 &  29,4 GiB &  34,8 GiB &  64,2 GiB \\
+      $FR_i$  &    48~747~876 &  40,0 GiB &  47,2 GiB &  87,2 GiB \\
+      $FR_p$  &    68~014~000 &  55,7 GiB &  65,9 GiB & 121,6 GiB \\
+      $EU_p$  &   743~000~000 & 608,9 GiB & 719,7 GiB &   1,3 TiB \\
+      $TER_p$ & 7~874~966~000 &   6,3 TiB &   7,4 TiB &  13,8 TiB \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Temps de calcul des résultat sans optimisation}\label{tab:res:perf:size}
+\end{table}
+
+
+\section{Vérification des NIZK du premier tour}
+\section{Vérification des NIZK du second tour}
+
+\section{Calcul du résulat final}\label{sec:res:perf:resultat}
+
+Comme décrit dans la \aaref{sec:res:proto:resultat}, le calcul du résultat final est la résolution d'un logarithme discret (sur une courbe éliptique).
+Ce problème étant connu pour être difficile, voici quelques analyse de brute force pour utilisant la bibliothèque utilisé
+pour l'implémentation de ce projet.
+La valeur recherchée dépands de 3 paramètres: le nombre de votant·e, le nombre d'option disponible et la répartition des votes.
+Les deux premiers paramètres sont facile à estimé ou à défaut d'avoir une borne supérieur.
+
+Le valeur recherchée pour chaque candidat est la somme des votants pondérer par le classement de ce dit-candidat par le votant.
+Par exemple pour 3 options :
+
+\[
+  res = 1 \cdot \sum votants_{\text{pos = 1}}
+      + 2 \cdot \sum votants_{\text{pos = 2}}
+      + 3 \cdot \sum votants_{\text{pos = 3}}
+\]
+
+Le score maximume d'un candidat est donc (si l'ensemble de la population le classe en premier)
+
+\[
+  score = votants * options 
+\]
+
+Au dela de 30 options, le classement de toutes les options par les votants devient très compliqué.
+Nous estimons donc que 30 options est une borne supérieur pour nos calcul.
+
+Deux algorithmes ont été écrit pour tester la performence.
+Le premier (\aaref{lst:perf:resultat-1}) calcul à chaque itération la multiplication du générateur 
+par $i$, on obtient ainsi un calcul de 20~000 essaies par seconde.
+Un second algorithme (\aaref{lst:perf:resultat-2}) a été écrit pour essaier d'accélerer le 
+traitement, celui-ci garde en mémoire le résultat de l'itération précédente pour lui ajouter le générateur.
+Il obtient un calcul de 2~400~000 essaies par seconde.
+
+
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{|c|r|r|r|r|}
+      \hline
+       & Nb de votant·es      & points max  & durée algo~\ref{lst:perf:resultat-1}           & durée algo~\ref{lst:perf:resultat-2}           \\
+       & $n$                  & $n \cdot o$ & $\frac{n \cdot o}{v_1}$ & $\frac{n \cdot o}{v_2}$ \\
+      \hline
+       &                      & $o = 30$    & $v_1 = 20~000$         & $v_2 = 2~400~000$         \\
+      \hline
+      \hline
+      $ASSO$  &           300 &           9~000 &                                0''           &                            0''           \\
+      $LS_p$  &       140~202 &       4~206~060 &                             3'30''           &                            2''           \\
+      $MIG_v$ &       630~000 &      18~900~000 & \textasciitilde{}          15'45''           &                            8''           \\
+      $MIG_i$ &     2~280~000 &      68~400~000 & \textasciitilde{}          57'00''           &                           29''           \\
+      $FR_v$  &    35~923~707 &   1~077~711~210 & \textasciitilde{}      14h 58'\phantom{06''} & \textasciitilde{}       7'29''           \\
+      $FR_i$  &    48~747~876 &   1~462~436~280 & \textasciitilde{}      20h 18'\phantom{42''} & \textasciitilde{}      10'09''           \\
+      $FR_p$  &    68~014~000 &   2~040~420~000 & \textasciitilde{}   1j  4h \phantom{20'21''} & \textasciitilde{}      14'10''           \\
+      $EU_p$  &   743~000~000 &  22~290~000~000 & \textasciitilde{}  12j 21h \phantom{35'00''} & \textasciitilde{}   2h 34'\phantom{48''} \\
+      $TER_p$ & 7~874~966~000 & 236~248~980~000 & \textasciitilde{} 136j 17h \phantom{14'09''} & \textasciitilde{} 1j 3h \phantom{20'37''} \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Temps de calcul des résultat sans optimisation}\label{tab:}
+\end{table}
+
+Ces deux algorithmes sont facilement parralélisable. 
+On peut partir du principe que la majorité de la population a à disposition un processeur à 4 cœurs
+
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{|c|r|r|r|r|}
+      \hline
+       & Nb de votant·es      & points max  & durée algo~\ref{lst:perf:resultat-1}           & durée algo~\ref{lst:perf:resultat-2}           \\
+       & $n$                  & $n \cdot o$ & $\frac{n \cdot o}{\heartsuit \cdot v_1}$ & $\frac{n \cdot o}{\heartsuit \cdot v_2}$ \\
+      \hline
+       &                      & $o = 30$    & $v_1 = 20~000$         & $v_2 = 2~400~000$         \\
+       &                      &             & $\heartsuit = 4$       & $\heartsuit = 4$          \\
+      \hline
+      \hline
+      $ASSO$  &           300 &           9~000 & \textasciitilde{}              0''           & \textasciitilde{}           0''           \\
+      $LS_p$  &       140~202 &       4~206~060 & \textasciitilde{}             53''           & \textasciitilde{}           0'' \\
+      $MIG_v$ &       630~000 &      18~900~000 & \textasciitilde{}           3'56''           & \textasciitilde{}           2'' \\
+      $MIG_i$ &     2~280~000 &      68~400~000 & \textasciitilde{}          14'15''           & \textasciitilde{}           7'' \\
+      $FR_v$  &    35~923~707 &   1~077~711~210 & \textasciitilde{}       3h 44'\phantom{31''} & \textasciitilde{}        1'52'' \\
+      $FR_i$  &    48~747~876 &   1~462~436~280 & \textasciitilde{}       5h 04'\phantom{40''} & \textasciitilde{}        2'32'' \\
+      $FR_p$  &    68~014~000 &   2~040~420~000 & \textasciitilde{}       7h 05'\phantom{05''} & \textasciitilde{}        3'33'' \\
+      $EU_p$  &   743~000~000 &  22~290~000~000 & \textasciitilde{}   3j 05h \phantom{23'45''} & \textasciitilde{}       38'42'' \\
+      $TER_p$ & 7~874~966~000 & 236~248~980~000 & \textasciitilde{}  34j 04h \phantom{18'32''} & \textasciitilde{}    6h 50'09'' \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Temps de calcul des résultat sans optimisation}\label{tab:}
+\end{table}
+
+\todo{Paragraphe sur la comparaison du temps de calcul et de verification (NIZK + ici) du résulat final}
+\todo{Paragraphe sur le calcul du résultat pour tout les candidats}
+
+\begin{lstlisting}[language=Rust,caption={Vitesse de calcul résultat final (très naif)},style=numbers,label={lst:perf:resultat-1}]
+fn main() {
+    use curve25519_dalek::constants as dalek_constants;
+    use curve25519_dalek::scalar::Scalar;
+
+    let g = &dalek_constants::RISTRETTO_BASEPOINT_POINT;
+    let v = dalek_constants::RISTRETTO_BASEPOINT_POINT;
+    for i in 2u64.. {
+        if Scalar::from(i) * g == v {
+            eprintln!("Result is {i}");
+            break;
+        }
+
+        // hidden: affichage du temps de calcul à interval régulier
+    }
+}
+\end{lstlisting}%
+\begin{lstlisting}[language=Rust,caption={Vitesse de calcul résultat final (un peu moins naif)},style=numbers,label={lst:perf:resultat-2}]
+fn main() {
+    use curve25519_dalek::constants as dalek_constants;
+    use curve25519_dalek::scalar::Scalar;
+
+    let g = &dalek_constants::RISTRETTO_BASEPOINT_POINT;
+    let v = dalek_constants::RISTRETTO_BASEPOINT_POINT;
+    let mut i = 2u64;
+    let mut a = Scalar::from(i) * g;
+    loop {
+        a += g;
+        i += 1;
+        if a == v {
+            eprintln!("Result is {i}");
+            break;
+        }
+
+        // hidden: affichage du temps de calcul à interval régulier
+    }
+}
+\end{lstlisting}%
+
+\chapter{Vulnérabilité}
+
+\section{BB compromis}
+
+\subsection{le votant ne sais pas si sont bulletin est bien pris en compte}
+\subsection{Verificateur ne sais pas si l'ensemble as été remplacer}
+
+\section{Authentification du votant}
+
+\end{document}
+

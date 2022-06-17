@@ -19,7 +19,7 @@ define_proof! {pr1, "app:proof1", (x), (ID, X), (G) : X = (x * G) }
 //define_proof! {pr2, "app:proof2", (x, v), (ID, X, V), (G, Y) : X = (x * G), V  = (x * Y + v * G) }
 
 #[allow(non_snake_case)]
-mod pr2 {
+pub mod pr2 {
     use zkp::curve25519_dalek::ristretto::CompressedRistretto;
     use zkp::curve25519_dalek::ristretto::RistrettoPoint;
     use zkp::curve25519_dalek::scalar::Scalar;
@@ -349,7 +349,7 @@ where
     }
 
     #[allow(non_snake_case)]
-    fn verify_round_1(
+    pub fn verify_round_1(
         round_1: &Vec<Vec<(CompressedRistretto, pr1::CompactProof)>>,
     ) -> Result<(), pr1::ProofError> {
         let G = &dalek_constants::RISTRETTO_BASEPOINT_COMPRESSED;

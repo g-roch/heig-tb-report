@@ -4,3 +4,6 @@
 #[submodule "app/zkp"]
 #	path = app/zkp
 #	url = git@github.com:zkcrypto/zkp.git
+[submodule "latex/vendor/listings-rust"]
+	path = latex/vendor/listings-rust
+	url = git@github.com:denki/listings-rust.git
