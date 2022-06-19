@@ -3,14 +3,14 @@ use zkp::rand::prelude::*;
 
 fn main() {
     let mut rng = zkp::rand::thread_rng();
-    let options = vec![0, 1, 2];
+    let options = vec![0, 1, 2, 3];
 
     let chooses = vec![
-        vec![2, 0, 1],
-        vec![0, 2, 1],
-        vec![0, 2, 1],
-        vec![0, 2, 1],
-        vec![0, 2, 1],
+        vec![0, 3, 1, 2],
+        vec![0, 2, 1, 3],
+        vec![0, 2, 1, 3],
+        vec![0, 2, 1, 3],
+        vec![0, 2, 1, 3],
     ];
 
     let mut cryptos: Vec<_> = chooses
