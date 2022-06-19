@@ -1,8 +1,7 @@
 use lib::crypto::*;
-use zkp::rand::prelude::*;
 
 fn main() {
-    let mut rng = zkp::rand::thread_rng();
+    let rng = zkp::rand::thread_rng();
     let options = vec![0, 1, 2, 3];
 
     let chooses = vec![
@@ -36,7 +35,11 @@ fn main() {
     dbg!(&tallying);
 
     let r = tallying.unwrap();
-    dbg!(r == vec![2, 8, 5]);
+    let expected: Vec<_> = (0..options.len())
+        .map(|i| chooses.iter().map(|v| v[i]).sum())
+        .collect();
+    dbg!(&expected);
+    assert_eq!(r, expected);
 
     //crypto.vote();
 }

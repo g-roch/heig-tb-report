@@ -1,9 +1,7 @@
-use zkp::rand::seq::SliceRandom;
 use zkp::rand::CryptoRng;
 use zkp::rand::RngCore;
 
 use sha2;
-use sha2::Digest;
 use sha2::Sha512;
 
 use zkp::Transcript;
@@ -13,10 +11,7 @@ use curve25519_dalek::ristretto::CompressedRistretto;
 use curve25519_dalek::ristretto::RistrettoPoint;
 use curve25519_dalek::scalar::Scalar;
 
-use crate::VoteOption;
-
 define_proof! {pr1, "app:proof1", (x), (ID, X), (G) : X = (x * G) }
-//define_proof! {pr2, "app:proof2", (x, v), (ID, X, V), (G, Y) : X = (x * G), V  = (x * Y + v * G) }
 
 #[allow(non_snake_case)]
 pub mod pr2 {
@@ -25,7 +20,6 @@ pub mod pr2 {
     use zkp::curve25519_dalek::scalar::Scalar;
 
     use sha2::Sha512;
-    use zkp::merlin::Transcript;
 
     use zkp::rand::thread_rng;
 
@@ -41,7 +35,6 @@ pub mod pr2 {
         pub A: &'a RistrettoPoint,
     }
 
-    pub struct CompressedPoints {}
     pub struct VerifyAssignments<'a> {
         pub ID: &'a CompressedRistretto,
         pub G: &'a CompressedRistretto,
@@ -49,13 +42,15 @@ pub mod pr2 {
         pub Z: &'a Vec<CompressedRistretto>,
         pub Y: &'a Vec<CompressedRistretto>,
         pub A: &'a CompressedRistretto,
-    } // CompressedPoints but by ref
+    }
     pub struct CompactProof {
         pub c: Vec<Scalar>,
         pub r: Vec<Scalar>,
         pub t: Vec<(CompressedRistretto, CompressedRistretto)>,
     }
 
+    /// Hash data and return a Scalar associate to the hash
+    /// It's used for check the proof is the proof of the public data associate
     fn hash(
         ID: &CompressedRistretto,
         G: &CompressedRistretto,
@@ -79,220 +74,104 @@ pub mod pr2 {
         Scalar::hash_from_bytes::<Sha512>(&hash_bytes)
     }
 
-    pub fn prove_compact(
-        transcript: &mut Transcript,
-        assignments: ProveAssignments<'_>,
-    ) -> (CompactProof, CompressedPoints) {
-        // Construct a TranscriptRng
-        // This paragraphe is inspired from crate 'zkp' file 'src/toolbox/prover.rs' fn 'prove_impl'
-        // under license CC0-1.0 (copied 2022-06-05)
-        let mut rng_builder = transcript.build_rng();
-        rng_builder = rng_builder.rekey_with_witness_bytes(b"", assignments.x.as_bytes());
-        rng_builder = rng_builder
-            .rekey_with_witness_bytes(b"", Scalar::from(assignments.j as u64).as_bytes());
-        let mut transcript_rng = rng_builder.finalize(&mut thread_rng());
+    /// Create a partial proof valid ballot (k proof is required to validate ballot)
+    pub fn prove_compact(assignments: ProveAssignments<'_>) -> CompactProof {
+        let mut rng = thread_rng();
 
+        let j = assignments.j;
         let k = assignments.X.len();
+        let G = assignments.G;
+        let A = assignments.A;
+        let Y = assignments.Y;
+        let X = assignments.X;
+        let Z = assignments.Z;
+        let x = assignments.x;
+        let ID = assignments.ID.compress();
 
-        let w = Scalar::random(&mut transcript_rng);
-
+        let w = Scalar::random(&mut rng);
         // values c[j] and r[j] is override after, but is a random for simplify code:w
-        let mut c: Vec<_> = (0..k)
-            .map(|_| Scalar::random(&mut transcript_rng))
-            .collect();
-        let mut r: Vec<_> = (0..k)
-            .map(|_| Scalar::random(&mut transcript_rng))
-            .collect();
+        let mut c: Vec<_> = (0..k).map(|_| Scalar::random(&mut rng)).collect();
+        let mut r: Vec<_> = (0..k).map(|_| Scalar::random(&mut rng)).collect();
 
         let mut t: Vec<(_, _)> = (0..k)
-            .map(|l| {
-                (
-                    (r[l] * assignments.G + c[l] * assignments.X[l]).compress(),
-                    (r[l] * assignments.Y[l] + c[l] * (assignments.Z[l] - assignments.A))
-                        .compress(),
-                )
-            })
+            .map(|l| (r[l] * G + c[l] * X[l], r[l] * Y[l] + c[l] * (Z[l] - A)))
+            .map(|(a, b)| (a.compress(), b.compress()))
             .collect();
-        t[assignments.j] = (
-            (w * assignments.G).compress(),
-            (w * assignments.Y[assignments.j]).compress(),
-        );
+
+        t[j] = ((w * G).compress(), (w * Y[j]).compress());
 
         let c_hash = hash(
-            &assignments.ID.compress(),
-            &assignments.G.compress(),
-            &assignments.X.iter().map(|e| e.compress()).collect(),
-            &assignments.Y.iter().map(|e| e.compress()).collect(),
-            &assignments.Z,
-            &assignments.A,
+            &ID,
+            &G.compress(),
+            &X.iter().map(RistrettoPoint::compress).collect(),
+            &Y.iter().map(RistrettoPoint::compress).collect(),
+            &Z,
+            &A,
             &t,
         );
 
-        c[assignments.j] = Scalar::zero();
-        c[assignments.j] = c_hash - c.iter().sum::<Scalar>();
-        // TODO Pas sur de la multiplication ↓
-        r[assignments.j] = w - assignments.x * c[assignments.j];
+        c[j] = Scalar::zero();
+        c[j] = c_hash - c.iter().sum::<Scalar>();
+        r[j] = w - x * c[j];
 
-        (CompactProof { c, r, t }, CompressedPoints {})
+        CompactProof { c, r, t }
     }
 
-    pub fn verify_compact(
-        proof: &CompactProof,
-        transcript: &mut Transcript,
-        assignments: VerifyAssignments,
-    ) -> Result<(), ()> {
+    /// Verify if a proof is valid
+    ///
+    /// If some point isn't a valid point, return Err(())
+    pub fn verify_compact(proof: &CompactProof, assignments: VerifyAssignments) -> Result<(), ()> {
         let k = assignments.X.len();
-        let A = assignments.A.decompress().unwrap();
-        for id in 0u64.. {
-            if assignments.ID
-                == &RistrettoPoint::hash_from_bytes::<Sha512>(&id.to_le_bytes()).compress()
-            {
-                dbg!(id);
-                break;
-            }
-        }
+        let A = assignments.A.decompress().ok_or(())?;
 
-        //dbg!(&assignments.A);
+        let ID = assignments.ID;
+        let G = assignments.G.decompress().ok_or(())?;
+        let X: Vec<_> = assignments
+            .X
+            .iter()
+            .map(CompressedRistretto::decompress)
+            .collect::<Option<_>>()
+            .ok_or(())?;
+        let Y: Vec<_> = assignments
+            .Y
+            .iter()
+            .map(CompressedRistretto::decompress)
+            .collect::<Option<_>>()
+            .ok_or(())?;
+        let Z: Vec<_> = assignments
+            .Z
+            .iter()
+            .map(CompressedRistretto::decompress)
+            .collect::<Option<_>>()
+            .ok_or(())?;
+        let r = &proof.r;
+        let c = &proof.c;
+
         let c_prime = hash(
-            &assignments.ID,
+            ID,
             &assignments.G,
             &assignments.X,
             &assignments.Y,
-            &assignments
-                .Z
-                .iter()
-                .map(|e| e.decompress().unwrap())
-                .collect(),
+            &Z,
             &A,
             &proof.t,
         );
 
         let c_orig: Scalar = proof.c.iter().sum();
-        dbg!(c_prime == c_orig);
         if c_prime != c_orig {
-            dbg!(c_prime, c_orig);
-            dbg!(c_prime == c_orig);
             return Err(());
         }
 
-        let G = assignments.G.decompress().unwrap();
-        let X: Vec<RistrettoPoint> = assignments
-            .X
-            .iter()
-            .map(|p| p.decompress().unwrap())
-            .collect();
-        let Y: Vec<RistrettoPoint> = assignments
-            .Y
-            .iter()
-            .map(|p| p.decompress().unwrap())
-            .collect();
-        let Z: Vec<RistrettoPoint> = assignments
-            .Z
-            .iter()
-            .map(|p| p.decompress().unwrap())
-            .collect();
-
-        //dbg!(proof.c[0], proof.r[0], proof.t[0]);
         let t_prime: Vec<(CompressedRistretto, CompressedRistretto)> = (0..k)
-            .map(|l| {
-                (
-                    (proof.r[l] * G + proof.c[l] * X[l]).compress(),
-                    (proof.r[l] * Y[l] + proof.c[l] * (Z[l] - A)).compress(),
-                )
-            })
+            .map(|l| (r[l] * G + c[l] * X[l], r[l] * Y[l] + c[l] * (Z[l] - A)))
+            .map(|(a, b)| (a.compress(), b.compress()))
             .collect();
 
-        let ID = assignments.ID.decompress().unwrap();
-        //dbg!(ID.compress());
-        dbg!(t_prime == proof.t);
-        for i in 0..t_prime.len() {
-            dbg!(i);
-            if t_prime[i] != proof.t[i] {
-                dbg!(i, t_prime[i], proof.t[i]);
-                //panic!();
-                //assert_eq!(t_prime[i], proof.t[i]);
-            }
-        }
         if t_prime == proof.t {
             Ok(())
         } else {
             Err(())
         }
-    }
-    pub(super) fn simple_proof(
-        transcript: &mut Transcript,
-        ID: &RistrettoPoint,
-        G: &RistrettoPoint,
-        X_i: &Vec<RistrettoPoint>,
-        Z_i: &Vec<RistrettoPoint>,
-        Y_i: &Vec<RistrettoPoint>,
-        x_ij: &Scalar,
-        choose: usize,
-        A: &RistrettoPoint,
-    ) -> (
-        Vec<Scalar>,                                     // c
-        Vec<Scalar>,                                     // r
-        Vec<(CompressedRistretto, CompressedRistretto)>, // t
-    ) {
-        // tel que X_i[j] = x_ij * G && Z_i[j] / A = x_ij * Y[i][j]
-
-        // Construct a TranscriptRng
-        // This paragraphe is inspired from crate 'zkp' file 'src/toolbox/prover.rs' fn 'prove_impl'
-        // under license CC0-1.0 (copied 2022-06-05)
-        let mut rng_builder = transcript.build_rng();
-        //rng_builder = rng_builder.rekey_with_witness_bytes(b"", assignments.x.as_bytes());
-        //rng_builder = rng_builder
-        //.rekey_with_witness_bytes(b"", Scalar::from(assignments.j as u64).as_bytes());
-        let mut transcript_rng = rng_builder.finalize(&mut thread_rng());
-
-        let k = X_i.len();
-        let w = Scalar::random(&mut transcript_rng);
-
-        // values c[j] and r[j] is override after, but is a random for simplify code:w
-        let mut c: Vec<_> = (0..k)
-            .map(|_| Scalar::random(&mut transcript_rng))
-            .collect();
-        let mut r: Vec<_> = (0..k)
-            .map(|_| Scalar::random(&mut transcript_rng))
-            .collect();
-        c[choose] = Scalar::from(0u64);
-        r[choose] = Scalar::from(0u64);
-
-        let mut t: Vec<(_, _)> = (0..k)
-            .map(|n| {
-                (
-                    (r[n] * G + c[n] * X_i[n]).compress(),
-                    (r[n] * Y_i[n] + c[n] * (Z_i[n] - A)).compress(),
-                )
-            })
-            .collect();
-
-        t[choose].0 = (w * G).compress();
-        t[choose].1 = (w * Y_i[choose]).compress();
-
-        if ID == &RistrettoPoint::hash_from_bytes::<Sha512>(&0u64.to_le_bytes()) {
-            dbg!(ID.compress());
-            dbg!(t[0]);
-        }
-
-        let c_hash = hash(
-            &ID.compress(),
-            &G.compress(),
-            &X_i.iter().map(|e| e.compress()).collect(),
-            &Y_i.iter().map(|e| e.compress()).collect(),
-            &Z_i,
-            &A,
-            &t,
-        );
-
-        c[choose] = Scalar::zero(); // Mandatory: without the sum of c is random because c[j] is random
-        c[choose] = c_hash - c.iter().sum::<Scalar>();
-        // TODO Pas sur de la multiplication ↓
-        r[choose] = w - (x_ij * c[choose]);
-
-        dbg!(c[0], r[0], t[0]);
-
-        (c, r, t)
     }
 }
 
@@ -309,9 +188,6 @@ where
     /// Options
     options: &'a Vec<u64>,
 
-    /// Number of candidates
-    k_candidate_count: usize,
-
     /// Secret round 1
     x_i: Option<Vec<Scalar>>,
 
@@ -324,7 +200,6 @@ where
     Rng: CryptoRng + RngCore + Clone,
 {
     pub fn new(voterid: u64, rng: Rng, options: &'a Vec<u64>, v_i: Vec<u64>) -> Self {
-        let k_candidate_count = options.len();
         assert_eq!(v_i.len(), options.len());
         for v in &v_i {
             if !options.contains(&v) {
@@ -335,20 +210,22 @@ where
             voterid,
             rng,
             options,
-            k_candidate_count,
             x_i: None,
             v_i,
         }
     }
 
+    /// Make round 1 for the user
     #[allow(non_snake_case)]
-    pub fn vote_round_1(&mut self) -> Vec<(CompressedRistretto, pr1::CompactProof)> {
-        let x_i: Vec<Scalar> = (0..self.k_candidate_count)
+    pub fn vote_round_1(&mut self) -> (Vec<CompressedRistretto>, Vec<pr1::CompactProof>) {
+        let k = self.options.len();
+
+        let x_i: Vec<Scalar> = (0..k)
             .map(|_| Scalar::random(&mut self.rng.clone()))
             .collect();
         self.x_i = Some(x_i.clone());
 
-        let G: &RistrettoPoint = &dalek_constants::RISTRETTO_BASEPOINT_POINT;
+        let G = &dalek_constants::RISTRETTO_BASEPOINT_POINT;
         let ID = RistrettoPoint::hash_from_bytes::<Sha512>(&self.voterid.to_le_bytes());
 
         x_i.iter()
@@ -357,7 +234,7 @@ where
                 let X = x * G;
                 let mut transcript = Transcript::new(b"prove1");
                 transcript.append_u64(b"j", j as u64);
-                let (proof, points) = pr1::prove_compact(
+                let (proof, _points) = pr1::prove_compact(
                     &mut transcript,
                     pr1::ProveAssignments {
                         ID: &ID,
@@ -366,16 +243,15 @@ where
                         G,
                     },
                 );
-                assert_eq!(&points.G, &dalek_constants::RISTRETTO_BASEPOINT_COMPRESSED);
-                assert_eq!(&points.ID, &ID.compress());
-                (points.X, proof)
+                (X.compress(), proof)
             })
-            .collect::<Vec<_>>()
+            .unzip()
     }
 
+    /// Verify NIZK of round 1
     #[allow(non_snake_case)]
     pub fn verify_round_1(
-        round_1: &Vec<Vec<(CompressedRistretto, pr1::CompactProof)>>,
+        round_1: &Vec<(Vec<CompressedRistretto>, Vec<pr1::CompactProof>)>,
     ) -> Result<(), pr1::ProofError> {
         let G = &dalek_constants::RISTRETTO_BASEPOINT_COMPRESSED;
 
@@ -387,7 +263,9 @@ where
                 let ID =
                     RistrettoPoint::hash_from_bytes::<Sha512>(&voterid.to_le_bytes()).compress();
                 round_1_i
+                    .0
                     .iter()
+                    .zip(round_1_i.1.iter())
                     .enumerate()
                     .map(|(j, (X, proof))| {
                         let mut transcript = Transcript::new(b"prove1");
@@ -400,303 +278,182 @@ where
                     })
                     .collect::<Result<Vec<_>, _>>()
             })
-            .collect::<Result<Vec<_>, _>>()?;
-        Ok(())
+            .collect::<Result<Vec<_>, _>>()
+            .map(|_| ())
     }
 
+    /// Verify NIZK of round 2
+    ///
+    /// round_2 is deemed verified
     #[allow(non_snake_case)]
     fn verify_round_2(
         &self,
-        round_1: &Vec<Vec<(CompressedRistretto, pr1::CompactProof)>>,
+        round_1: &Vec<(Vec<CompressedRistretto>, Vec<pr1::CompactProof>)>,
         round_2: &Vec<(Vec<CompressedRistretto>, Vec<pr2::CompactProof>)>,
-    ) -> Result<(), String> {
-        let G = &dalek_constants::RISTRETTO_BASEPOINT_COMPRESSED;
-        let G_calc = &dalek_constants::RISTRETTO_BASEPOINT_POINT;
-        let X: Vec<Vec<_>> = round_1
-            .iter()
-            .map(|X_i| X_i.iter().map(|(X, _)| X.clone()).collect())
-            .collect();
+    ) -> Result<(), ()> {
+        let G = &dalek_constants::RISTRETTO_BASEPOINT_POINT;
+
         let A: Vec<CompressedRistretto> = self
             .options
             .iter()
-            .map(|opt| Scalar::from(*opt) * G_calc)
+            .map(|opt| Scalar::from(*opt) * G)
             .map(|p| p.compress())
             .collect();
-        //dbg!(&A);
 
         // Verify all proof from round 2
         round_2
             .iter()
             .enumerate()
-            .map(|(i_voterid, round_2_i)| {
+            .map(|(i_voterid, (Z, proofs))| {
                 let ID =
                     RistrettoPoint::hash_from_bytes::<Sha512>(&i_voterid.to_le_bytes()).compress();
-                let Y: Vec<CompressedRistretto> = (0..round_2_i.0.len())
-                    .map(|tmp| Self::calc_Y(&round_1, i_voterid, tmp))
-                    .map(|p| p.compress())
+                let Y: Vec<_> = Self::calc_Yi(&round_1, i_voterid)
+                    .ok_or(())?
+                    .iter()
+                    .map(RistrettoPoint::compress)
                     .collect();
-                let Z_array: Vec<CompressedRistretto> =
-                    round_2_i.0.iter().map(Clone::clone).collect();
-                round_2_i
-                    .1
+
+                proofs
                     .iter()
                     .enumerate()
                     .map(|(j, proof)| {
-                        let mut transcript = Transcript::new(b"prove1");
-                        transcript.append_u64(b"j", j as u64);
                         pr2::verify_compact(
                             &proof,
-                            &mut transcript,
                             pr2::VerifyAssignments {
                                 ID: &ID,
-                                X: &X[i_voterid],
+                                X: &round_1[i_voterid].0,
                                 Y: &Y,
-                                G,
+                                G: &G.compress(),
                                 A: &A[j],
-                                Z: &Z_array,
+                                Z,
                             },
                         )
-                        .map_err(|_| format!("Err in [{i_voterid}][{j}]"))
                     })
                     .collect::<Result<Vec<_>, _>>()
             })
-            .collect::<Result<Vec<_>, _>>()?;
-        Ok(())
+            .collect::<Result<Vec<_>, _>>()
+            .map(|_| ())
     }
 
     #[allow(non_snake_case)]
-    fn calc_Y(
-        round_1: &Vec<Vec<(CompressedRistretto, pr1::CompactProof)>>,
+    fn calc_Yij(
+        round_1: &Vec<(Vec<CompressedRistretto>, Vec<pr1::CompactProof>)>,
         calc_i: usize,
         calc_j: usize,
-    ) -> RistrettoPoint {
-        round_1
+    ) -> Option<RistrettoPoint> {
+        let X: Vec<_> = round_1
             .iter()
-            .map(|e| e[calc_j].0.decompress().unwrap())
-            .enumerate()
-            .map(|(i, Y)| {
-                if i < calc_i {
-                    Y
-                } else if i == calc_i {
-                    Default::default()
-                } else {
-                    -Y
-                }
-            })
-            .sum::<RistrettoPoint>()
+            .map(|e| &e.0[calc_j])
+            .map(CompressedRistretto::decompress)
+            .collect::<Option<_>>()?;
+
+        Some(
+            X[..calc_i].iter().sum::<RistrettoPoint>()
+                - X[(calc_i + 1)..].iter().sum::<RistrettoPoint>(),
+        )
     }
 
-    fn score_associated_of_j_canditate(&self, j: usize) -> u64 {
-        self.v_i[j]
+    #[allow(non_snake_case)]
+    fn calc_Yi(
+        round_1: &Vec<(Vec<CompressedRistretto>, Vec<pr1::CompactProof>)>,
+        calc_i: usize,
+    ) -> Option<Vec<RistrettoPoint>> {
+        let k = round_1.get(0)?.0.len();
+        (0..k)
+            .map(|j| Self::calc_Yij(&round_1, calc_i, j))
+            .collect()
     }
-    fn rank_of_candidate(&self, j: usize) -> usize {
-        for i in 0..self.v_i.len() {
-            if self.v_i[i] == j as u64 {
-                return i;
-            }
-        }
-        panic!()
-    }
-    fn candidat_of_rank(&self, j: usize) -> usize {
-        self.v_i
-            .iter()
-            .enumerate() // (candidat, point)
-            .filter(|(candidat, point)| **point as usize == j)
-            .map(|(candidat, _)| candidat)
-            .next()
-            .unwrap()
+
+    fn candidat_of_rank(&self, j: usize) -> Option<usize> {
+        self.v_i.iter().position(|p| *p as usize == j)
     }
 
     #[allow(non_snake_case)]
     pub fn vote_round_2(
         &self,
-        round_1: &Vec<Vec<(CompressedRistretto, pr1::CompactProof)>>,
-    ) -> Result<(Vec<CompressedRistretto>, Vec<pr2::CompactProof>), pr1::ProofError> {
-        Self::verify_round_1(&round_1)?;
+        round_1: &Vec<(Vec<CompressedRistretto>, Vec<pr1::CompactProof>)>,
+    ) -> Result<(Vec<CompressedRistretto>, Vec<pr2::CompactProof>), ()> {
+        Self::verify_round_1(&round_1).map_err(|_| ())?;
 
         let ID = RistrettoPoint::hash_from_bytes::<Sha512>(&self.voterid.to_le_bytes());
         let G = &dalek_constants::RISTRETTO_BASEPOINT_POINT;
-        let Y_i: Vec<RistrettoPoint> = (0..self.k_candidate_count)
-            .map(|j| Self::calc_Y(&round_1, self.voterid as usize, j))
-            .collect();
+        let k = self.options.len();
 
+        let Y_i: Vec<RistrettoPoint> = Self::calc_Yi(&round_1, self.voterid as usize).ok_or(())?;
         let X_i: Vec<_> = round_1[self.voterid as usize]
+            .0
             .iter()
-            .map(|i| i.0.decompress().unwrap())
+            .map(CompressedRistretto::decompress)
+            .collect::<Option<_>>()
+            .ok_or(())?;
+        let x_i = self.x_i.clone().ok_or(())?;
+        let Z_i: Vec<_> = (0..k)
+            .map(|j| x_i[j] * Y_i[j] + Scalar::from(self.v_i[j]) * G)
             .collect();
-        let x_i = self.x_i.clone().unwrap();
-        //let V_i: Vec<(_, _)> = self.v_i.iter().map(|v| (v, Scalar::from(*v) * G)).collect();
-        let Z_i: Vec<_> = (0..self.k_candidate_count)
-            .map(|j| {
-                dbg!((j, self.v_i[j]));
-                x_i[j] * Y_i[j] + Scalar::from(self.v_i[j]) * G
-            })
-            .collect();
-        let k_candidate_count = self.options.len();
-        let A: Vec<_> = (0..k_candidate_count)
-            .map(|j| Scalar::from(self.options[j]) * G)
-            //.map(|j| Scalar::from(self.score_associated_of_j_canditate(j)) * G)
-            .collect();
-        //dbg!(A.iter().map(|a| a.compress()).collect::<Vec<_>>());
+        let A: Vec<_> = (0..k).map(|j| Scalar::from(self.options[j]) * G).collect();
 
-        //let proofs: Vec<_> = (0..k_candidate_count)
-        //    .map(|j| {
-        //        let mut transcript = Transcript::new(b"prove2");
-        //        //let choose = self.v_i[j] as usize;
-        //        let candidat_id = self.candidat_of_rank(j);
-        //        dbg!(candidat_id);
-        //        //dbg!(choose);
-        //        transcript.append_u64(b"j", j as u64);
-        //        let (c, r, t) = pr2::simple_proof(
-        //            &mut transcript,
-        //            &ID,
-        //            &G,
-        //            &X_i,
-        //            &Z_i,
-        //            &Y_i,
-        //            &x_i[candidat_id],
-        //            candidat_id,
-        //            &A,
-        //        );
-        //        pr2::CompactProof { c, r, t }
-        //    })
-        //    .collect();
-        let proofs: Vec<_> = (0..k_candidate_count)
-            .map(|m| {
-                let mut transcript = Transcript::new(b"prove2");
-                //let choose = self.v_i[j] as usize;
-                let j = self.candidat_of_rank(m);
-                //dbg!(choose);
-                transcript.append_u64(b"j", j as u64);
-                let (c, r, t) = pr2::simple_proof(
-                    &mut transcript,
-                    &ID,
-                    &G,
-                    &X_i,
-                    &Z_i,
-                    &Y_i,
-                    &x_i[j],
+        let proofs = A
+            .iter()
+            .enumerate()
+            .map(|(m, A_m)| {
+                let j = self.candidat_of_rank(m)?;
+                let proof = pr2::prove_compact(pr2::ProveAssignments {
+                    x: &x_i[j],
                     j,
-                    &A[m],
-                );
-
-                pr2::CompactProof { c, r, t }
+                    ID: &ID,
+                    G,
+                    X: &X_i,
+                    Z: &Z_i,
+                    Y: &Y_i,
+                    A: &A_m,
+                });
+                Some(proof)
             })
-            .collect();
-        return Ok((Z_i.iter().map(RistrettoPoint::compress).collect(), proofs));
-        ///////// Ok(self
-        /////////     .options
-        /////////     .iter()
-        /////////     .enumerate()
-        /////////     .map(|(j, _)| {
-        /////////         let mut transcript = Transcript::new(b"prove2");
-        /////////         transcript.append_u64(b"j", j as u64);
-
-        /////////         let rank = self.rank_of_candidate(j);
-        /////////         dbg!(format!("{j} → {rank}"));
-
-        /////////         let (proof, _points) = pr2::prove_compact(
-        /////////             &mut transcript,
-        /////////             pr2::ProveAssignments {
-        /////////                 x: &x_i[j],
-        /////////                 j: rank,
-        /////////                 //j: self.options[j] as usize,
-        /////////                 //j: self
-        /////////                 //    .options
-        /////////                 //    .iter()
-        /////////                 //    .enumerate()
-        /////////                 //    .filter(|(_, score)| **score == self.v_i[j])
-        /////////                 //    .map(|(j, _score)| j)
-        /////////                 //    .next()
-        /////////                 //    .unwrap(),
-        /////////                 ID: &ID,
-        /////////                 G,
-        /////////                 X: &round_1[self.voterid as usize]
-        /////////                     .iter()
-        /////////                     .map(|i| i.0.decompress().unwrap())
-        /////////                     .collect(),
-        /////////                 Z: &Z_i,
-        /////////                 Y: &Y_i,
-        /////////                 //A: &(Scalar::from(self.options[j]) * G),
-        /////////                 A: &A,
-        /////////             },
-        /////////         );
-        /////////         (Z_i[j].compress(), proof)
-        /////////     })
-        /////////     .collect::<Vec<_>>())
-        //Ok(Z_i
-        //    .iter()
-        //    .enumerate()
-        //    .map(|(j, Z)| {
-        //        let mut transcript = Transcript::new(b"prove2");
-        //        transcript.append_u64(b"j", j as u64);
-
-        //        let (proof, _points) = pr2::prove_compact(
-        //            &mut transcript,
-        //            pr2::ProveAssignments {
-        //                x: &x_i[j],
-        //                //j,
-        //                j: self
-        //                    .options
-        //                    .iter()
-        //                    .enumerate()
-        //                    .filter(|(_, score)| **score == self.v_i[j])
-        //                    .map(|(j, _score)| j)
-        //                    .next()
-        //                    .unwrap(),
-        //                ID: &ID,
-        //                G,
-        //                X: &round_1[self.voterid as usize]
-        //                    .iter()
-        //                    .map(|i| i.0.decompress().unwrap())
-        //                    .collect(),
-        //                Z: &Z_i,
-        //                Y: &Y_i,
-        //                //A: &(Scalar::from(self.options[j]) * G),
-        //                A: &V_i[j],
-        //            },
-        //        );
-        //        (Z.compress(), proof)
-        //    })
-        //    .collect::<Vec<_>>())
+            .collect::<Option<_>>()
+            .ok_or(())?;
+        let Z_i_compressed = Z_i.iter().map(RistrettoPoint::compress).collect();
+        Ok((Z_i_compressed, proofs))
     }
 
     #[allow(non_snake_case)]
     pub fn tallying(
         &self,
-        round_1: &Vec<Vec<(CompressedRistretto, pr1::CompactProof)>>,
+        round_1: &Vec<(Vec<CompressedRistretto>, Vec<pr1::CompactProof>)>,
         round_2: &Vec<(Vec<CompressedRistretto>, Vec<pr2::CompactProof>)>,
     ) -> Result<Vec<u64>, ()> {
         Self::verify_round_1(&round_1).map_err(|_| ())?;
-        dbg!("AA");
-        self.verify_round_2(&round_1, &round_2)
-            .map_err(|e| println!("{e}"))?;
-        dbg!("BB");
+        self.verify_round_2(&round_1, &round_2)?;
 
-        let G = &dalek_constants::RISTRETTO_BASEPOINT_POINT;
+        let k = self.options.len();
+        let G = dalek_constants::RISTRETTO_BASEPOINT_POINT;
         let Z: Vec<Vec<RistrettoPoint>> = round_2
             .iter()
-            .map(|r_i| {
-                r_i.0
+            .map(|round_2_i| {
+                round_2_i
+                    .0
                     .iter()
-                    .map(|r_ij| r_ij.decompress().unwrap())
-                    .collect()
+                    .map(CompressedRistretto::decompress)
+                    .collect::<Option<_>>()
             })
-            .collect();
+            .collect::<Option<_>>()
+            .ok_or(())?;
 
-        let R: Vec<RistrettoPoint> = (0..self.k_candidate_count)
+        let R: Vec<RistrettoPoint> = (0..k)
             .map(|j| Z.iter().map(move |Z_i| Z_i[j]).sum())
             .collect();
 
         // TODO implement faster algorithm
-        let result: Vec<_> = (0..self.k_candidate_count)
-            .map(|j| {
-                let mut tmp = 0u64;
+        let result: Vec<_> = R
+            .iter()
+            .map(|&R_j| {
+                let mut r = 0u64;
+                let mut tmp = Scalar::from(r) * G;
                 loop {
-                    if Scalar::from(tmp) * G == R[j] {
-                        break tmp;
+                    if tmp == R_j {
+                        break r;
                     }
-                    tmp += 1;
+                    tmp += G;
+                    r += 1;
                 }
             })
             .collect();
@@ -704,127 +461,3 @@ where
         Ok(result)
     }
 }
-
-//#[test]
-//fn create_and_verify_compact() {
-//    // Prover's scope
-//    let (proof, points) = {
-//        let ID = RistrettoPoint::hash_from_bytes::<Sha512>(b"ID de mon utilisateur");
-//        let x = Scalar::from(89327492234u64).invert();
-//        let X = &x * &dalek_constants::RISTRETTO_BASEPOINT_TABLE;
-//
-//        let mut transcript = Transcript::new(b"DLEQTest");
-//        pr1::prove_compact(
-//            &mut transcript,
-//            pr1::ProveAssignments {
-//                ID: &ID,
-//                X: &x,
-//                A: &X,
-//                G: &dalek_constants::RISTRETTO_BASEPOINT_POINT,
-//            },
-//        )
-//    };
-//
-//    // Serialize and parse bincode representation
-//    let proof_bytes = bincode::serialize(&proof).unwrap();
-//    let parsed_proof: pr1::CompactProof = bincode::deserialize(&proof_bytes).unwrap();
-//
-//    // Verifier logic
-//    let mut transcript = Transcript::new(b"DLEQText");
-//    assert!(pr1::verify_compact(
-//        &parsed_proof,
-//        &mut transcript,
-//        pr1::VerifyAssignments {
-//            X: &points.X,
-//            ID: &points.ID,
-//            G: &dalek_constants::RISTRETTO_BASEPOINT_COMPRESSED,
-//            //H: &RistrettoPoint::hash_from_bytes::<Sha512>(b"A VRF input, for instance").compress(),
-//        },
-//    )
-//    .is_ok());
-//}
-
-//// type Hasher = sha2::Sha512;
-////
-//// type TheCurve = NistP256;
-//// type ThePoint = <TheCurve as ProjectiveArithmetic>::ProjectivePoint;
-////
-////
-//// impl<Rng> Crypto<Rng>
-//// where
-////     Rng: CryptoRng + RngCore,
-//// {
-////     pub fn new(rng: Rng, k_candidate_number: usize) -> Self {
-////         Self {
-////             rng,
-////             k_candidate_number,
-////         }
-////     }
-////     fn H(&self, voterid: &str, g: i8, X: i8, t1: i8) -> Vec<u8> {
-////         let mut hasher = Hasher::new();
-////         hasher.update(&voterid);
-////         //hasher.update(&[g, X, t1]);
-////         hasher.finalize().to_vec()
-////     }
-////
-////     pub fn vote(&mut self) {
-////         let G_generator = ThePoint::GENERATOR;
-////         let q_order = TheCurve::ORDER;
-////         let x_secrets: Vec<_> = (0..self.k_candidate_number)
-////             .map(|_| ThePoint::random(&mut self.rng))
-////             .collect();
-////         let mut v_vote_choose: Vec<usize> = (0usize..self.k_candidate_number).collect();
-////         v_vote_choose.shuffle(&mut self.rng);
-////
-////         // first round
-////
-////         let X_publics: Vec<_> = x_secrets.iter().map(|x| G_generator * x).collect();
-////     }
-////
-////     //// /// TODO Attention NonZeroScalar à la place de Scalar, est-ce correct de manière crypto
-////     //// fn generate_xi(&mut self) -> Vec<ProjectivePoint> {
-////     ////     let mut xi = vec![];
-////     ////     for _ in 0..self.k {
-////     ////         xi.push(ProjectivePoint::random(&mut self.rng));
-////     ////     }
-////     ////     xi
-////     //// }
-////
-////     //// // prove of X = g^x
-////     //// fn prover_1(&mut self, voterid: &str, X: ProjectivePoint, x: ProjectivePoint) -> (i8, i8) {
-////     ////     let G = AffinePoint::GENERATOR;
-////     ////     let n: usize = 0;
-////
-////     ////     let k = Scalar::random(&mut self.rng);
-////     ////     let kG = k * G;
-////
-////     ////     //let w = Scalar::random(&mut self.rng);
-////     ////     ////let w = ProjectivePoint::random(&mut self.rng);
-////     ////     //let t1 = g * w;
-////     ////     //let c: Scalar = self.H(voterid, g, X, t1);
-////     ////     //let r = -(x * c) + w;
-////     ////     ////let r = w - c * x;
-////     ////     //return (r, t1);
-////     //// }
-////
-////     //// fn verifier_1(&self, voterid: &str, xG: i8, prove: (i8, i8)) -> Result<(), ()> {
-////     ////     let (r, t1) = prove;
-////     ////     let G = ProjectivePoint::GENERATOR;
-////     ////     let c = self.H(voterid, g, X, t1);
-////     ////     let t1_prime = g ^ r; //* X ^ c;
-////     ////     t1 == t1_prime
-////     //// }
-////
-////     //fn prove_2(&self, voterid: &str, g: i8, k: i8,
-//// }
-////
-//// //fn prove_2(
-////
-//// #[cfg(test)]
-//// mod tests {
-////     #[test]
-////     fn it_works() {
-////         let result = 2 + 2;
-////         assert_eq!(result, 4);
-////     }
-//// }
