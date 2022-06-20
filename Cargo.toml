@@ -1,0 +1,10 @@
+[workspace]
+members = [
+  "app/lib",
+  "app/client",
+  "app/board",
+  "app/perf",
+  #"app/authority",
+  #"app/observer",
+  "simulation-scrutin",
+]

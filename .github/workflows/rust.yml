@@ -24,7 +24,6 @@ jobs:
           components: rustfmt, clippy
     - name: Run cargo check
       uses: actions-rs/cargo@v1
-      working-directory: ./app
       with:
           command: check
     - name: Build

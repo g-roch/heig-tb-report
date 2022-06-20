@@ -57,6 +57,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "alphabet"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "102911a58a1bd75870ae3ee63897b2a448f73d22f5f9380950e2c40aef768315"
+dependencies = [
+ "alphabet-macro",
+ "more-asserts",
+]
+
+[[package]]
+name = "alphabet-macro"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "68bbf44d93394f53a71f1fdbc123ea1eee06d982de2b5a88ddc759da5b0f1e18"
+dependencies = [
+ "quote 1.0.20",
+ "syn 1.0.98",
+]
+
+[[package]]
 name = "atty"
 version = "0.2.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -605,6 +625,26 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3dcaa9ae7725d12cdb85b3ad99a434db70b468c09ded17e012d86b5c1010f7a7"
 
 [[package]]
+name = "function_name"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bef632c665dc6e2b99ffa4d913f7160bd902c4d3e4cb732d81dc3d221f848512"
+dependencies = [
+ "function_name-proc-macro",
+]
+
+[[package]]
+name = "function_name-proc-macro"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "569d2238870f92cff64fc810013b61edaf446ebcfba36b649b96bc5b4078328a"
+dependencies = [
+ "proc-macro-crate",
+ "quote 1.0.20",
+ "syn 1.0.98",
+]
+
+[[package]]
 name = "funty"
 version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1138,6 +1178,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "more-asserts"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7843ec2de400bcbc6a6328c958dc38e5359da6e93e72e37bc5246bf1ae776389"
+
+[[package]]
 name = "native-tls"
 version = "0.2.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1376,6 +1422,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "eb9f9e6e233e5c4a35559a617bf40a4ec447db2e84c20b55a6f83167b7e57872"
 
 [[package]]
+name = "proc-macro-crate"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1d6ea3c4595b96363c13943497db34af4460fb474a95c43f4446ad341b8c9785"
+dependencies = [
+ "toml 0.5.9",
+]
+
+[[package]]
 name = "proc-macro2"
 version = "0.4.30"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1609,7 +1664,7 @@ dependencies = [
  "rocket_http",
  "state",
  "time",
- "toml",
+ "toml 0.4.10",
  "version_check 0.9.4",
  "yansi",
 ]
@@ -1658,6 +1713,12 @@ dependencies = [
  "time",
  "unicode-xid 0.1.0",
 ]
+
+[[package]]
+name = "roman"
+version = "0.1.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d2c543f0c827ae24df93159810fd4bce2d0abe3785bb4c4d68fae3c467d58d9b"
 
 [[package]]
 name = "ryu"
@@ -1823,6 +1884,15 @@ checksum = "f054c6c1a6e95179d6f23ed974060dcefb2d9388bb7256900badad682c499de4"
 dependencies = [
  "digest 0.10.3",
  "rand_core 0.6.3",
+]
+
+[[package]]
+name = "simulation-scrutin"
+version = "0.1.0"
+dependencies = [
+ "alphabet",
+ "function_name",
+ "roman",
 ]
 
 [[package]]
@@ -2045,6 +2115,15 @@ name = "toml"
 version = "0.4.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "758664fc71a3a69038656bee8b6be6477d2a6c315a6b81f7081f591bffa4111f"
+dependencies = [
+ "serde",
+]
+
+[[package]]
+name = "toml"
+version = "0.5.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8d82e1a7758622a465f8cee077614c73484dac5b836c02ff6a40d5d1010324d7"
 dependencies = [
  "serde",
 ]
