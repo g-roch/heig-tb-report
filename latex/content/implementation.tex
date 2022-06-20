@@ -3,73 +3,36 @@
 \begin{document}
 \part{Implémentation}
 
-\chapter{Cas d'utilisations}
-
-De manière générale l'utilisation du vote électronique par rapport à un vote traditionel ouvre la voie à 
-des attaques qui était jusqu'à présent impossible. 
-
-Lorsque l'action de voter ne se fait plus dans un isoloire dans un bureau de vote (ce qui est déjà le cas
-pour le vote par correspondance suisse) il y a une plus grande possibilité de coércition des votants.
-On ne pourra jamais exclure que des votants aient été contraint dans leur choix. 
-Le vote électronique ne résouds pas ce problème.
-
-\section{Cas d'utilisations}
-\subsection{Vote lors d'une assemblée}
-
-Lors d'un assemblée d'une association ou d'une entreprise/coopérative, les décisions sont souvant prise avec
-des votations sur des propositions.
-C'est votations peuvent être faites par e-voting dans la majorité des cas, cela permet de limité les erreurs 
-de comptage et d'avoir un résultat plus rapide s'il y a beaucoup de monde.
-Le vote électronique permet également d'avoir une plus grande confiance dans les résulats, car on ne fait pas 
-confience à un petit groupe chargé du décompte des voix (groupe qui ne contient pas toujours de personne de 
-chaque position possible).
-
-Le corruption des personnes chargées du décompte peux être facile, alors que si l'application utilisé pour
-l'e-voting est externe au groupe, il peut être beaucoup plus difficile de les corrompre.
-
-\begin{important}{Vote d'importance}
-  Même pour de petite structure, il peut avoir des risques importants à utilisé un système de vote électronique, 
-  notament s'il y a un ou des oppansants puissants (économiquement, politiquement ou informatiquement), et ce que
-  se soit par rapport à un vote spécifique ou de manière globale à la structure.
-\end{important}
-
-\todo{Autre cas d'utilisation?}
-%\section{Sondage rapide et anonyme au sein d'un groupe}
-%
-%Lorsqu'on fait des sondages, il peut être difficile de garantir l'anonymat des réponses. 
-%S'il y a besoin d'anonymat et de rapidité, l'utilisation d'une solution de e-voting peut permettre d'organiser 
-%de tel sondage. 
-
-.
-
-\section{Cas de NON-utilisation}
-
-Les cas suivants ne devrait pas utilisé de vote électronique pour leurs votations. 
-Dans le cas où il l'utiliserait quand même, une analyse détaillée des risques doit être fait au préalable.
-
-\subsection{Élection à l'échel d'un pays}\label{sec:impl:non-use:pays}
-Utiliser le vote électronique pour une élection ou une votation d'un pays n'est pas une bonne idée.
-Il y a toujours des risques dû à l'utilisation de logiciel informatique, et quand bien même le logiciel de 
-votation serais exempt de vulnérabilité il y aurait toujours des menaces grâve qui peserais sur la votation.
-\begin{itemize}
-  \item des attaques visants les ordinateurs des votants
-  \item la circulation de fausse application de vote
-  \item des attaques visants Internet ou le réseau utiliser pour voter
-\end{itemize}
-
-La vie politique d'un pays ne doit pas pouvoir être contrôler par un petit groupe de personne, sans accord 
-explicite de toute la population.
-
-\subsection{Votation d'importance stratégique}
-Lorsqu'une votation a une certaine importance stratégique (pour l'entreprise, la collectivité ou l'organisation qui l'organise)
-et que l'on peux suspecter qu'il y a des personnes externe qui aient un intérêt pour une options ou une 
-autre,\footnote{Que cette personne existe ou non, le simple fait que l'on ne soit pas sûre est suffisant}
-cette votation ne devrait donc pas être faite via de l'e-voting. 
-Les vulnérabilités non-mitigeable sont les même qu'à la \aaref{sec:impl:non-use:pays}
 
 
 \chapter{Lecture d'article}
     % sec difficulté interprétation des sources
 \chapter{Clarté de la documentation des modules rust}
+
+\chapter{Le protocole}
+
+\section{Protocole à 2 tours}
+
+Pour permettre la confidentialité du vote y compris envers le serveur central receptionnant
+le bultin de vote, le protocole de vote fonctionne en 2 tours.
+Lors du premier tours chaque participant publie une clé publique par candidat/option et une 
+preuve NIZK\footnote{Non-interactive zero-knoledge} que ces clés sont bien formée.
+Au début du second tours, chaque participant vérifie toutes les preuves que les clés publiques
+sont bien formée.
+Le bulletin de vote est ensuite formé à partir de l'ensemble des clés publiques des autres 
+votants et du choix de vote effectué.
+Avec le bulletin de vote, chaque participant publie une preuve NIZK que son vote est bien 
+une permutation des choix possible.
+
+\section{Calcul du résultat}\label{sec:res:proto:resultat}
+
+\todo{Est-ce log discret sur une courbe éliptique? est-ce que je dis la somme ou le produit? }
+Le calcul du résultat final est le calcul du logarithme discret sur le produit de tout les 
+bulletins de vote.
+Ce calcul est un problème difficile sur de grand nombre, cepandant pour des nombres 
+relativements petits, une recherche par brute force est possible.
+Le temps de calcul est parfaitement raisonable et fonctionnel, même pour de très grand groupe, 
+une analyse détaillée est fait dans la \aaref{sec:res:perf:resultat}.
+
 
 \end{document}

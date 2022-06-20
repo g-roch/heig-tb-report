@@ -3,32 +3,6 @@
 \begin{document}
 \part{Résultat}
 
-\chapter{Le protocole}
-
-\section{Protocole à 2 tours}
-
-Pour permettre la confidentialité du vote y compris envers le serveur central receptionnant
-le bultin de vote, le protocole de vote fonctionne en 2 tours.
-Lors du premier tours chaque participant publie une clé publique par candidat/option et une 
-preuve NIZK\footnote{Non-interactive zero-knoledge} que ces clés sont bien formée.
-Au début du second tours, chaque participant vérifie toutes les preuves que les clés publiques
-sont bien formée.
-Le bulletin de vote est ensuite formé à partir de l'ensemble des clés publiques des autres 
-votants et du choix de vote effectué.
-Avec le bulletin de vote, chaque participant publie une preuve NIZK que son vote est bien 
-une permutation des choix possible.
-
-\section{Calcul du résultat}\label{sec:res:proto:resultat}
-
-\todo{Est-ce log discret sur une courbe éliptique? est-ce que je dis la somme ou le produit? }
-Le calcul du résultat final est le calcul du logarithme discret sur le produit de tout les 
-bulletins de vote.
-Ce calcul est un problème difficile sur de grand nombre, cepandant pour des nombres 
-relativements petits, une recherche par brute force est possible.
-Le temps de calcul est parfaitement raisonable et fonctionnel, même pour de très grand groupe, 
-une analyse détaillée est fait dans la \aaref{sec:res:perf:resultat}.
-
-
 \chapter{Test des perf}
 
 Les analyses ci-après on été effectué sur un ordinateur de bureau (i7-6700K, 8~cœurs, 8~Gio de RAM).
@@ -70,6 +44,8 @@ Nous pouvons constater dans le \aaref{tab:res:perf:size} que la quantité de don
 que chaque votant a besoin de télécharger pour le second tour est resonable pour de groupe de quelques centaines de personnes.
 Dès que la taille atteint une taille proche d'une ville (Lausanne dans le tableau) la taille deviens importante et peut poser
 problème pour certains votants s'ils n'ont pas une bonne connexion Internet.
+
+\todo{update}
 
 \begin{table}[H]
   \begin{center}
@@ -195,7 +171,7 @@ On peut partir du principe que la majorité de la population a à disposition un
 fn main() {
     use curve25519_dalek::constants as dalek_constants;
     use curve25519_dalek::scalar::Scalar;
-
+        
     let g = &dalek_constants::RISTRETTO_BASEPOINT_POINT;
     let v = dalek_constants::RISTRETTO_BASEPOINT_POINT;
     for i in 2u64.. {
@@ -237,7 +213,49 @@ fn main() {
 \subsection{le votant ne sais pas si sont bulletin est bien pris en compte}
 \subsection{Verificateur ne sais pas si l'ensemble as été remplacer}
 
+\section{Ordinateur du votant compromi}
+
 \section{Authentification du votant}
+
+\chapter{Retour sur les objectifs}
+
+\section{Seules les personnes autorisées peuvent participer (et qu'une seule fois)}
+
+Pout cette objectif (objectif 2 de la section~\aref{ssec:cdc:cdc:objprinc}),
+il faut identifier le votant, ce que mon implémentation ne fait pas encore, il se base 
+uniquement sur la bonne fois de chaqu'un lorsqu'ils annoncent leur numéro de votant.
+Cependant l'authentification du votant doit ce faire avec une méthode qui permet de connaître
+le droit de vote de la personne, de multiple technique existent pour cela.
+
+Ce qui est faisable à moindre coût serais d'utiliser un service OAuth et d'utiliser l'identifiant
+d'utilisateur retourné par OAuth comme identifiant de votant
+Cette méthode permet (du moment que le serveur n'est pas compromis, lors de la phase 1) de permettre
+à tout le monde de vérifier qui a voté.
+
+Chaque bulletin de vote est lié au numéro de votant. 
+Cette information étant public, il est trivial de vérifier que chaque identifiant n'est présent
+qu'une seul fois dans les bulletin de vote final, pour s'assurer que personne n'a voter de 
+multiple fois.
+Cependant si le serveur est compromis lors du premier tour de vote, un votant pourrait très bien
+générer plusieurs clé de vote associer à des numéro de votant fantaisiste et donc voter 
+plusieurs fois.
+
+\section{Seul le votant connait son vote}
+
+Effectivement dans le programme implémenter seul le votant connait sont vote, ni le serveur, 
+ni les entités devant calculés le résultat de la votation ne le connait.
+La seul manière de connaître le vote d'une personne et de connaître le vote de l'ensemble 
+des autres votants.\footnote{Il suffit de soustraire l'ensemble des autres vote au résultat
+pour obtenir cette information, mais tout système de vote où les résultats sont publique est
+sujet à ce problème}
+
+\section{Le votant n'a pas moyen de prouver ce qu'il a voté}
+\todo{}
+\section{Chacun peut vérifier que son vote a bien été pris en compte}
+\todo{}
+
+\chapter{Retour sur les cas d'utilisation}
+\todo{}
 
 \end{document}
 
