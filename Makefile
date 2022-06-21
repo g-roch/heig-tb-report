@@ -12,6 +12,11 @@ default: report
 .PHONY: all
 all: pdf
 
+.PHONY: todo
+todo:
+	find -name '*.tex' -exec grep --color --with-filename -n todo {} \;
+	find -name '*.rs' -exec grep --color --with-filename -n todo {} \;
+
 .PHONY: pdf
 pdf: $(LATEX_BASE)
 

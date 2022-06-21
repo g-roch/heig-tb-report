@@ -18,9 +18,9 @@
   \todo{}
 
   \paragraph{Élection ou votation}
-  Une élection est le fait qu'un groupe de personne (les électeurices) choississent une (ou plusieurs) personne
+  Une élection est le fait qu'un groupe de personne (les électrices et électeurs) choisissent une (ou plusieurs) personne
   pour les représenter ou pour toutes autres tâche.
-  Une votation est le fait qu'un groupe de personne (les votant·es) choissient une (ou des) options.
+  Une votation est le fait qu'un groupe de personne (les votantes et votants) choisissent une (ou des) options.
   Une élection est donc simplement une votations ou les options possibles sont des personnes.
   Ce document ne précise pas à chaque fois que ce qui est dit pour l'un est également valable pour l'autre de 
   manière générale.
@@ -30,23 +30,165 @@
   \paragraph{Quorum}
   \todo{}
 
-
-  \section{Type de méthode de scrutin analyser}
-  \todo{parler des scrutins exclusivements pour des élections vs permettant également de prendre des décisions}
-  \section{candidat vs options}
-  \section{Vote blanc/nuls/abstentions dans les simulations}
-  \todo{Indiquer que les simulations faites dans ce document se base toutes sur une participation total, cepedant il y a la possibilité dans certain scrutin de refusé de classé certain candidat/option}
-  \section{referendhum cas particulier d'une élection}
-  \todo{un referendhum est juste une élection où les candidats sont "pour" et "contre"}
-  \todo{Indiquer que l'on peut faire mieux}
-
-  \section{Exemple}
-  \todo{Certain exemple dans ce document sont issu de cas réel, ceci uniquement affin de montrer la plausibilité d'un tel cas, bien sûr le fonctionnement est identique en cas d'inversion des bords politiques des candidats/options dans les exemples}
+  \section{Notation}
   
-  \todo{Montrer des exemples et expliquer les tableaux}
+  \subsection{Appréciations}
+  
+  À plusieurs endroit et dans divers contexte, des appréciations textuelles sont utilisé. 
+  Voici l'ordre dans lequel elles doivent être interprétée (de la meilleur à la plus mauvaise)~:
+  
+  \begin{center}
+  	\colorbox{green}{Excellent} $\succ$
+  	\colorbox{green!50!yellow}{Bien} $\succ$
+  	\colorbox{green!25!yellow}{Correct} $\succ$
+  	\colorbox{yellow}{Passable} $\succ$
+  	\colorbox{orange}{Insufisant} $\succ$
+  	\colorbox{red}{A rejeter}
+  \end{center}
 
-  \todo{Alice est la votante dans les exemples, présenté un exemple de structure utilisé dans 
-  le document}
+  Par manque de place à certain endroit, ces abréviations sont utilisé~:
 
+  \begin{center}
+	\colorbox{green}{Ex} $\succ$
+	\colorbox{green!50!yellow}{Bi} $\succ$
+	\colorbox{green!25!yellow}{Co} $\succ$
+	\colorbox{yellow}{Pa} $\succ$
+	\colorbox{orange}{In} $\succ$
+	\colorbox{red}{--}
+  \end{center}
+
+  Lorsque l'appréciation \colorbox{red}{A rejeter} est utilisée dans les intentions de vote d'une simulation, 
+  elle corresponds également au refus de vote pour ce candidat dans le cas ou le type de scrutin utilisé le permet.
+  
+  \subsection{Intention de vote}
+  
+  Des simulations de scrutin on été réalisé, pour chaque scrutin les intentions de vote des électeurs sont afficher.
+  Les tableaux \aref{fig:intro:notation:note-A} montrent les trois manières de représenter les intentions vote dans ce document.
+  \begin{itemize}
+  	\item L'en-tête de la première colonne contient le nombre total de votant.
+  	\item Chaque ligne corresponds à plusieurs votants ayant exactement les mêmes intentions de vote.
+  	\item La première colonne contient 
+  	\begin{itemize}
+  		\item le pourcentage de personne que représente cette ligne
+  		\item le nombre exacte de votant correspondant 
+  		\item l'identifiant de la ligne en chiffre romain minuscule
+  	\end{itemize}
+  	\item Les candidats/options sont représenter par des lettres latines majuscule
+  	\item Les tableaux \ref{fig:intro:notation:note-A:votesn} et \ref{fig:intro:notation:note-A:votes} indiquent 
+  	  pour chaque candidat/option, l'appréciation qui leur est donnée
+  	\item Les tableaux \ref{fig:intro:notation:note-A:votesc} et \ref{fig:intro:notation:note-A:votes} indiquent 
+  	  l'ordre des candidats pour lesquels les votants on accepter de voté.
+  	\item Les votants \ref{fig:intro:notation:note-A}.i et \ref{fig:intro:notation:note-A}.ii ont refuser de classer certain candidat 
+  	  (respectivement D et (C et D)).
+  	\item Les votants \ref{fig:intro:notation:note-A}.iii ont effectué un vote complet en classant l'ensemble des candidats
+  \end{itemize}
+  
+  
+  
+  \begin{nota}{Intention de vote et non vote réel}
+  	Pour la plupart des scrutins étudier, les intentions de vote décrit dans le tableaux corresponds à ce que est réelement pris en
+  	compte pour le calcul du ou de la vainqueure.
+  	
+  	Dans le cas de scrutin à plusieurs tours avec élimination les tableaux intermédiaire ne sont pas afficher mais corresponds au même 
+  	classement et notation mais en retirant une ou plusieurs des options.
+  \end{nota}
+  
+  \begin{table}[h]
+  	\begin{center}
+  		\caption{Exemple d'intention de vote}%
+  		\label{fig:intro:notation:note-A}
+  		\adjustbox{valign=t}{
+  			\begin{subtable}[h]{0.45\textwidth}
+  				\centering
+  				\caption{appréciation}
+  				\label{fig:intro:notation:note-A:votesn}
+  				\inputMake{_dyn/scrutin/notation-A.votes-n.tex}
+  			\end{subtable}
+  		}
+  		\adjustbox{valign=t}{
+  			\begin{subtable}[h]{0.45\textwidth}
+  				\centering
+  				\caption{classement}
+  				\label{fig:intro:notation:note-A:votesc}
+  				\inputMake{_dyn/scrutin/notation-A.votes-c.tex}
+  			\end{subtable}
+  		}\\[1em]
+  		\adjustbox{valign=t}{
+  			\begin{subtable}[h]{\textwidth}
+  				\centering
+  				\caption{détaillé}
+  				\label{fig:intro:notation:note-A:votes}
+  				\inputMake{_dyn/scrutin/notation-A.votes.tex}
+  			\end{subtable}
+  		}
+  	\end{center}
+  \end{table}
+  
+  
+  \todo{Est-ce le cas ?? Certain exemple dans ce document sont issu de cas réel, ceci uniquement affin de montrer la plausibilité d'un tel cas, bien sûr le fonctionnement est identique en cas d'inversion des bords politiques des candidats/options dans les exemples}
+  
+  \subsection{Estimation}\label{sec:intro:notation:estimation}
+  
+  Dans la section résultat certain résultat ont été estimée, d'autre calculée ou mesurée.
+  Si une valeur est issue d'une estimation ou d'un calcul approximatif il est précéder du symbole \textasciitilde.
+  Dans les cas d'un calcul exact (exemple nombre de bytes) la valeur n'est pas préfixée, même s'il n'a pas ou pas put être mesuré.
+  Dans le cas d'une mesure (d'une durée par exemple) d'un algorithme ayant effectivement été lancer pendant cette durée, la valeur est présentée tel quel.
+
+  \section{Type de scrutin}
+  Lors qu'on vit en groupe, on a régulièrement besoin de prendre des décisions.
+  Les deux techniques les plus utiliser sont laisser un petit groupe choisir pour les autres ou 
+  interroger les membres du groupe pour connaître leur position.
+  Pour connaître la position des membres d'un groupe, on organise un scrutin avec une méthode pour décompter
+  les voix.
+  Cependant lorsqu'il faut choisir un petit groupe qui aura le pouvoir, les possibilités pour le désigné son 
+  plus nombreuse.
+  \begin{description}
+  	\item[Héritage] Dans un certain nombre de lieu, le pouvoir s'hérite au sein de la famille (ou désigné par le prédécesseur).
+  	Il va de soit que ce n'est pas une procédure démocratique et qu'elle ne seras pas envisagée dans ce document.
+  	\item[Tirage au sort] On peut tirer au sort les représentants au sein de tous le groupe. 
+  	Même si cette technique a de bonne propriété, elle est à la fois simple à comprendre et à analyser, mais également 
+  	incompatible avec une prise de décision direct (dans le cadre d'une démocratie directe).\footnote{Malgré certaine idée reçue, le tirage au sort est belle et bien utilisé, même par l'état français (pour les conventions citoyenne).}
+  	\item[Élection] On peut organisé un scrutin pour connaître la position de la population sur qui serait le/la plus 
+  	à même de les représenter. 
+  	Dans ce cas c'est une votation ou les options possibles ne sont pas des propositions concrète, mais une liste de personne.
+  	À l'exception du cas trivial, où tout le monde est d'accord, il faut également se mettre d'accord sur la manière
+  	de décompter les points attribué à chaque candidat·es.
+  \end{description}
+  
+  Dans ce document, seul les scrutins permettant à la fois d'élire et de prendre une décision en direct sont étudier.
+  Dans ce cadre, certain exemple parle de candidat alors que d'autre parle d'option, ces termes sont donc quasiment 
+  interchangeable pour l'analyse de fonctionnement des scrutins.
+  
+  \subsection[Referendum, cas particulier]{Referendum, cas particulier du cas général d'une élection}
+  
+  Le referendum tel que pratiqué en Suisse et d'autre pays, simplement un cas particulier d'une votation/élection. 
+  C'est une votations ou les choix possible/candidat sont remplacer par 2 options, \emph{pour} ou \emph{contre} la décision
+  du gouvernement.
+  Si le scrutin utiliser le permet, une liste de possibilité plus complète peut être laisser à la population, notamment 
+  toutes les positions intermédiaires viables. 
+  
+  Les initiatives populaires en Suisse en sont un exemple, il y a 3 choix qui est donné à la population : 
+  \begin{enumerate}
+  	\item refusé le changement
+  	\item la modification proposée par le texte de l'initiative populaire
+  	\item la modification proposée par le contre-projet du parlement
+  \end{enumerate}
+  
+  Le scrutin qui a été choisi par la Suisse est une votation à la majorité absolue (> 50\%) à 2 candidats/options.
+  Ce choix de scrutin a fait qu'il y a donc 3 questions posées et un choix final pas forcement intuitif pour tous.
+  Des scrutins mieux adapté à ce genre de situation sont abordé plus loin dans ce document.
+  
+  \todo{Lien vers meilleures scrutin pour 3 options}
+  
+  \section[Le non-vote dans les simulations]{Le non-vote (blanc, nul et abstention) dans les simulations}
+  
+  Des simulations ont été effectuée, cependant pour permettre une analyse plus simple et pertinente, il a été choisi de ne 
+  pas prendre en compte les votes qui ne sont pas décompter normalement.
+  Les votes blancs, nuls et les abstentions ne sont donc pas simuler, cependant lorsque le protocole de vote prévoyait de 
+  classer les candidats, la possibilité a été laisser de ne pas classer certain des candidats.
+  
+  Dans le cas d'une utilisation réel d'un scrutin, la question de comment décompter les votes blancs, nuls et les abstentions 
+  doit être réfléchie et ne pas donnée d'avantage à un camp plutôt qu'à l'autre.
+  
 \end{document}
 
