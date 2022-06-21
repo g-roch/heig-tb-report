@@ -560,31 +560,34 @@ sur les possibilités et les restrictions.
   à 10 tours lasserait certainement plus que le bénéfice possible.
 
   \section{Évaluation}
+ 
 
   \todo{Décrire les critères d'évaluation, et véfifier leur application}
+  \todo{borda moderne faux pas indep au petit candidat}
   \begin{center}
-    \begin{tabular}{r|c|p{20em}}
+    \begin{tabular}{p{10em}|c|p{20em}}
       \hline
       Critère & Évaluation & Raison \\
       \hline
       \hline
-      Avis des perdants & \cellcolor{red}trés mauvais &  \\
-      Avis des perdants & \cellcolor{red}mauvais &  \\
+      Avis des perdants & \cellcolor{green}bien & si le point de vu de chaqu'un est pris en compte pour chaque candidat \\
       Avis des perdants & \cellcolor{green!25!yellow}correct &  \\
-      Avis des perdants & \cellcolor{green}bien &  \\
+      Avis des perdants & \cellcolor{red}mauvais &  \\
+      Avis des perdants & \cellcolor{red}trés mauvais & >50\% de la population peux être contre le candidat élu \\
       \hline
-      Indépendance aux petits candidats & \cellcolor{red}mauvais & \\
-      Indépendance aux petits candidats & \cellcolor{orange}moyen & \\
       Indépendance aux petits candidats & \cellcolor{green}bien & \\
+      Indépendance aux petits candidats & \cellcolor{orange}moyen & favorise les candidats proches \\
+      Indépendance aux petits candidats & \cellcolor{red}mauvais & défavorise les candidats proches \\
       \hline
-      Quasi unanimité du vote & \cellcolor{red}mauvais & \\
-      Quasi unanimité du vote & \cellcolor{orange}moyen & \\
       Quasi unanimité du vote & \cellcolor{green}bien & \\
+      Quasi unanimité du vote & \cellcolor{orange}moyen & ne respecte pas, mais limite le nombre de très mécontent du résultat final \\
+      Quasi unanimité du vote & \cellcolor{red}mauvais & si plus de $\frac{3}{4}$ peuvent préférer un autre candidat \\
       \hline
-      Manipulabilité & \cellcolor{red}mauvais &  \\
-      Manipulabilité & \cellcolor{orange}moyen &  \\
+      Manipulabilité & \cellcolor{green}bien & La meilleure techniques consiste à donner ses vrai préférence \\
       Manipulabilité & \cellcolor{green!25!yellow}correct &  \\
-      Manipulabilité & \cellcolor{green}bien &  \\
+      Manipulabilité & \cellcolor{orange}moyen & candidat proche dans les résultats \\
+      Manipulabilité & \cellcolor{red}mauvais & empêcher facilement un candidat d'atteindre le second tour \\
+      Manipulabilité & \cellcolor{red}mauvais & déclassement des second choix est une bonne technique \\
       \hline
     \end{tabular}
   \end{center}
