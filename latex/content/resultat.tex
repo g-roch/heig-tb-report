@@ -78,36 +78,41 @@ problème pour certains votants s'ils n'ont pas une bonne connexion Internet.
 \end{table}
 
 
-\section{Vérification des NIZK du premier tour}
+\section{Vérification des NIZK}
 
+Le \aaref{tab:verif:nizk} présente les durées nécessaire à la vérification des NIZK pour une élections à 30 candidats en fonction 
+de la taille de l'électorat.
+La vérification des preuves du premier tours est relativement vite fait.
+Pour les preuves du second tour, les temps de calcul sont beaucoup plus long.
+Cela est problématique car ces preuves doivent être vérifier par chaque personne désirant vérifier les résultats.
+À partir de 140~000 votants, la vérification du résultat ne pourra pas être fait par chaque votant.
+Le code source de test effectué se trouve à l'adresse \url{https://github.com/g-roch/heig-tb-report/tree/main/app/perf/src/bin}
 
 \begin{table}[H]
 	\begin{center}
 		\begin{tabular}{|c|r|r|r|r|}
 			\hline
-			& Nb de votant·es      &   durée vérification NIZK           & durée algo~\ref{lst:perf:resultat-2}           \\
-			& $n$                  & $\frac{n}{v_v}$                     & $\frac{n \cdot o}{v_2}$ \\
+			& Nb de votant·es      &   durée vérification NIZK tour 1    &   durée vérification NIZK tour 2         \\
+			& $n$                  & $\frac{n}{v_1}$                     & $\frac{n}{v_2}$ \\
 			\hline
-			&                      & $v_v = 500$                         & $v_2 = 2~400~000$         \\
+			&                      & $v_1 = 500$                         & $v_2 = 5$         \\
 			\hline
 			\hline
-			$ASSO$  &           300 &                                 1''           &                            0''           \\
-			$LS_p$  &       140~202 &                              4'40''           &                            2''           \\
-			$MIG_v$ &       630~000 &  \textasciitilde{}          21'00''           &                            8''           \\
-			$MIG_i$ &     2~280~000 &  \textasciitilde{}       1h 16'00''           &                           29''           \\
-			$FR_v$  &    35~923~707 &  \textasciitilde{}      19h 57'\phantom{27''} & \textasciitilde{}       7'29''           \\
-			$FR_i$  &    48~747~876 &  \textasciitilde{}   1j 03h 04'\phantom{56''} & \textasciitilde{}      10'09''           \\
-			$FR_p$  &    68~014~000 &  \textasciitilde{}   1j 13h \phantom{47'08''} & \textasciitilde{}      14'10''           \\
-			$EU_p$  &   743~000~000 &  \textasciitilde{}  17j 04h \phantom{46'40''} & \textasciitilde{}   2h 34'\phantom{48''} \\
-			$TER_p$ & 7~874~966~000 &  \textasciitilde{} 182j 06h \phantom{58'52''} & \textasciitilde{} 1j 3h \phantom{20'37''} \\
+			$ASSO$  &           300 &                                 1''           &                            58''           \\
+			$LS_p$  &       140~202 &                              4'40''           & \textasciitilde{}    7h 30'\phantom{27''}           \\
+			$MIG_v$ &       630~000 &  \textasciitilde{}          21'00''           & \textasciitilde{} 1j 9h \phantom{00'27''}               \\
+			$MIG_i$ &     2~280~000 &  \textasciitilde{}       1h 16'00''           & \textasciitilde{} 5j    \phantom{10h 00'27''}                \\
+			$FR_v$  &    35~923~707 &  \textasciitilde{}      19h 57'\phantom{27''} & \textasciitilde{} 80j   \phantom{10h 00'27''}                \\
+			$FR_i$  &    48~747~876 &  \textasciitilde{}   1j 03h 04'\phantom{56''} & \textasciitilde{} 108j  \phantom{10h 00'27''}                 \\
+			$FR_p$  &    68~014~000 &  \textasciitilde{}   1j 13h \phantom{47'08''} & \textasciitilde{} 151j   \phantom{10h 00'27''}               \\
+			$EU_p$  &   743~000~000 &  \textasciitilde{}  17j 04h \phantom{46'40''} & \textasciitilde{} 1656j  \phantom{10h 00'27''}                     \\
+			$TER_p$ & 7~874~966~000 &  \textasciitilde{} 182j 06h \phantom{58'52''} & \textasciitilde{} 17561j \phantom{10h 00'27''}                \\
 			\hline
 		\end{tabular}
 	\end{center}
-	\caption{Temps de calcul de vérification des NIZK}\label{tab:}
+	\caption{Temps de calcul de vérification des NIZK}\label{tab:verif:nizk}
 \end{table}
 
-
-\section{Vérification des NIZK du second tour}
 
 \section{Calcul du résulat final}\label{sec:res:perf:resultat}
 
@@ -165,11 +170,14 @@ Il obtient un calcul de 2~400~000 essaies par seconde.
       \hline
     \end{tabular}
   \end{center}
-  \caption{Temps de calcul des résultat sans optimisation}\label{tab:}
+  \caption{Temps de calcul des résultat sans optimisation}\label{tab:calc:result}
 \end{table}
 
-Ces deux algorithmes sont facilement parralélisable. 
-On peut partir du principe que la majorité de la population a à disposition un processeur à 4 cœurs et donc que ces temps peuvent être divisé par 4.
+Ces deux algorithmes sont facilement parallélisable et donc leur durée divisible par le nombre de thread. 
+Si l'on compare ces durées au temps nécessaire pour la vérification des NIZK, on constate que la vérification des 
+preuves du premier tours sont similaire.
+La vérification des preuves du second tour prends environ 17~000 fois plus de temps.
+Ce qui fait que les temps dans ce tableau sont négligeable en comparaison.
 
 %\begin{table}[H]
 %  \begin{center}
@@ -196,9 +204,6 @@ On peut partir du principe que la majorité de la population a à disposition un
 %  \end{center}
 %  \caption{Temps de calcul des résultat sans optimisation}\label{tab:}
 %\end{table}
-
-\todo{Paragraphe sur la comparaison du temps de calcul et de verification (NIZK + ici) du résulat final}
-\todo{Paragraphe sur le calcul du résultat pour tout les candidats}
 
 \begin{lstlisting}[language=Rust,caption={Vitesse de calcul résultat final (très naif)},style=numbers,label={lst:perf:resultat-1}]
 fn main() {
@@ -280,7 +285,7 @@ de participer au second tour suffit.
 
 \section{Seules les personnes autorisées peuvent participer (et qu'une seule fois)}
 
-Pout cette objectif (objectif 2 de la section~\aref{ssec:cdc:cdc:objprinc}),
+Pour cette objectif (objectif 2 de la section~\aref{ssec:cdc:cdc:objprinc}),
 il faut identifier le votant, ce que mon implémentation ne fait pas encore, il se base 
 uniquement sur la bonne fois de chaqu'un lorsqu'ils annoncent leur numéro de votant.
 Cependant l'authentification du votant doit ce faire avec une méthode qui permet de connaître
