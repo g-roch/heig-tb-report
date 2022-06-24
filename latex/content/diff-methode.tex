@@ -3,7 +3,7 @@
 
 \newcommand\tabcritere[8]{
   \begin{center}
-    \begin{tabular}{r|c|p{20em}}
+    \begin{tabular}{p{8em}|c|p{28em}}
       \hline
       Critère & Évaluation & Raison \\
       \hline
@@ -560,37 +560,50 @@ sur les possibilités et les restrictions.
   à 10 tours lasserait certainement plus que le bénéfice possible.
 
   \section{Évaluation}
- 
+  
+  Dans le \aaref{tab:criteres:scrutin} est présentée pour chaque critère d'évaluation, les conditions d'obtention pour chaque évaluation.
+  Ces conditions d'obtention sont des choix personnels dans l'objectif que le scrutin choisi permette de se rapprocher aux mieux de l'unanimité.
 
-  \todo{Décrire les critères d'évaluation, et véfifier leur application}
   \todo{borda moderne faux pas indep au petit candidat}
+  \begin{table}
+  \caption{Critères d'évaluations des scrutins}%
+  \label{tab:criteres:scrutin}%
   \begin{center}
-    \begin{tabular}{p{10em}|c|p{20em}}
+    \begin{tabular}{p{8em}|c|p{28em}}
+    %\begin{tabular}{l|c|p{20em}}
       \hline
       Critère & Évaluation & Raison \\
       \hline
       \hline
-      Avis des perdants & \cellcolor{green}bien & si le point de vu de chaqu'un est pris en compte pour chaque candidat \\
-      Avis des perdants & \cellcolor{green!25!yellow}correct &  \\
-      Avis des perdants & \cellcolor{red}mauvais &  \\
-      Avis des perdants & \cellcolor{red}trés mauvais & >50\% de la population peux être contre le candidat élu \\
+      Avis des perdants & \cellcolor{green}bien & Le vote de chacun est pris en compte pour chacun des candidats. \\
+      \cline{2-3}       & \cellcolor{green!25!yellow}correct & Si le vote de chacun est pris en compte, cependant les électeurs n'ont pas forcement la possibilité de donner toute la nuance voulue. \\
+      \cline{2-3}       & \cellcolor{orange}moyen & De manière générale le vote de chacun est pris en compte. Il existent cependant des cas particuliers plausible ou l'avis de 49\% de la population n'est pas pris en compte. \\
+      \cline{2-3}       & \cellcolor{red}mauvais & L'avis de 49\% de la population n'as pas d’influence sur le résultat. Ces 49\% peuvent changer leur votes comme ils le souhaitent, le candidat élu, le reste avec le même score. \\
+      \cline{2-3}       & \cellcolor{red}trés mauvais & Plus de 50\% de la population peuvent être contre le candidat élu. \\
       \hline
-      Indépendance aux petits candidats & \cellcolor{green}bien & \\
-      Indépendance aux petits candidats & \cellcolor{orange}moyen & favorise les candidats proches \\
-      Indépendance aux petits candidats & \cellcolor{red}mauvais & défavorise les candidats proches \\
+      Indépendance aux petits candidats & \cellcolor{green}bien & Le résultat est totalement indépendant aux candidats non-élus. \\
+      \cline{2-3}
+                       & \cellcolor{orange}moyen & La présence d'un petit candidat favorise les candidats proches politiquement. \\
+      \cline{2-3}
+                       & \cellcolor{red}mauvais &  La présence d'un petit candidat \textbf{défavorise} les candidats proches politiquement. Moins bien que s'ils les favorisaient, car cela poussent à ne pas proposer de nuance politique qui peux être essentielle pour certaine partie de la population. \\
       \hline
-      Quasi unanimité du vote & \cellcolor{green}bien & \\
-      Quasi unanimité du vote & \cellcolor{orange}moyen & ne respecte pas, mais limite le nombre de très mécontent du résultat final \\
-      Quasi unanimité du vote & \cellcolor{red}mauvais & si plus de $\frac{3}{4}$ peuvent préférer un autre candidat \\
+      Quasi unanimité du vote  & \cellcolor{green}bien & Le cas où quasiment la totalité de la population ($\frac{3}{4}$) préfère un autre candidat au candidat élu n'est pas possible. \\
+      \cline{2-3}
+                       & \cellcolor{orange}moyen & Pas de garantie, cependant le scrutin limite la proportion de la population très mécontente du résultat. \\
+      \cline{2-3}
+                       & \cellcolor{red}mauvais & Plus de $\frac{3}{4}$ de la population peuvent préférer un autre candidat dans un duel. \\
       \hline
-      Manipulabilité & \cellcolor{green}bien & La meilleure techniques consiste à donner ses vrai préférence \\
-      Manipulabilité & \cellcolor{green!25!yellow}correct &  \\
-      Manipulabilité & \cellcolor{orange}moyen & candidat proche dans les résultats \\
-      Manipulabilité & \cellcolor{red}mauvais & empêcher facilement un candidat d'atteindre le second tour \\
-      Manipulabilité & \cellcolor{red}mauvais & déclassement des second choix est une bonne technique \\
+      Manipulabilité & \cellcolor{green}bien & La meilleure technique pour voir son ou ses favori élu consiste à donner ses vrai préférence \\
+      \cline{2-3}
+                     & \cellcolor{green!25!yellow}correct & Le meilleure techniques consiste à donner ses vrai préférences, cependant dans certain cas spécifiques,  pour certain votant uniquement, une meilleures stratégie peux exister mais n'est pas évidente \\
+      \cline{2-3}
+                     & \cellcolor{orange}moyen & La meilleure techniques consiste à voté différemment de ces préférences pour donné plus de chance à son ou ses candidats favoris. \\
+      \cline{2-3}
+                     & \cellcolor{red}mauvais & La meilleure technique de vote consiste à se basé sur les \textbf{sondages} pour donné une voix à un candidat ayant une chance de l'emporté contre qui on est pas trop opposé. \\
       \hline
     \end{tabular}
   \end{center}
+  \end{table}
 
   \chapter{Les scrutins}
 
@@ -773,17 +786,18 @@ sur les possibilités et les restrictions.
   \subsection{Évaluation}
   \subsubsection{À 2 tours}
   \tabcritere%
-    {\cellcolor{red}trés mauvais}{Une grande part de la population (>50\%) peut être contre l'élu}%
-    {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres}%
-    {\cellcolor{red}mauvais}{Si les voix sont sufisament divisé dans un des camps}%
-    {\cellcolor{red}mauvais}{En empéchant un candidat d'accéder au second tour}
+    {\cellcolor{red}trés mauvais}{Une grande part de la population (>50\%) peut être contre l'élu·e.}%
+    {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres candidats proches d'eux politiquement.}%
+    {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisé dans un des camps, aucun de leurs candidats pourrait atteindre le second tour, alors que ce camp représentent peut-être plus de 75\% de la population}%
+    {\cellcolor{red}mauvais}{La meilleure technique de vote consiste à se basé sur des sondage pour avoir une estimation des résultats et voter pour le candidat qui a le plus de chance d'être élu et pour lequel on n'est pas entièrement contre. Les petits candidats qui aurait une chance de l'emporté, mais non présent dans les sondages ou mal classée ne recevront que peu de voix, alors qu'il aurait pu faire de très bon score.}
 
   \subsubsection{À 1 tour}
   \tabcritere%
-    {\cellcolor{red}très mauvais}{Une grande part de la population (>50\%) peut être contre l'élu}%
-    {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres}%
-    {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisées dans un des camps}%
-    {\cellcolor{orange}moyen}{Si les candidats sont relativement proche dans leurs scores}
+    {\cellcolor{red}très mauvais}{Une grande part de la population (>50\%) peut être contre l'élu·e.}%
+    {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres candidats proches d'eux politiquement.}%
+    {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisées dans un des camps, et que dans l'autre camp il y a un candidat unique, le résultat sera biaisé en faveur du candidat unique, alors que potentiellement plus de 75\% de le population serait pour un autre candidat, n'importe lequel.}%
+    {\cellcolor{red}mauvais}{La meilleure technique de vote consiste à se basé sur des sondage pour avoir une estimation des résultats et voter pour le candidat qui a le plus de chance d'être élu et pour lequel on n'est pas entièrement contre. Les petits candidats qui aurait une chance de l'emporté, mais non présent dans les sondages ou mal classée ne recevront que peu de voix, alors qu'il aurait pu faire de très bon score.}
+    
 
   \section{Méthode Borda}
   
@@ -944,16 +958,16 @@ sur les possibilités et les restrictions.
   \subsection{Évaluation}
   \subsubsection{Borda avec distribution des points classique}
   \tabcritere%
-    {\cellcolor{green}bien}{L'avis des personnes n'ayant pas voté pour le gagnant influance le résultat.}%
+    {\cellcolor{green}bien}{Chaque vote est pris en compte même s'il ne concerne pas le candidat élu.}%
     {\cellcolor{orange}moyen}{Les petits candidats offrent un avantage aux candidats proches. Dans le cas d'une élection équilibrée, ce n'est pas un problème.}%
     {\cellcolor{orange}moyen}{Ne respecte pas ce critère, mais essaye de minimiser les personnes très mécontentes du résultat.}%
     {\cellcolor{green}bien}{Les électeurs on tout intérêt à donner leurs vraies préférences en général}
   \subsubsection{Borda avec distribution des points moderne}
   \tabcritere%
-    {\cellcolor{green}bien}{L'avis des personnes n'ayant pas voté pour le gagnant influance le résultat.}%
-    {\cellcolor{green}bien}{Les candidats non classés en premier n'influence pas les points donnés au premier.}%
+    {\cellcolor{green}bien}{Chaque vote est pris en compte même s'il ne concerne pas le candidat élu.}%
+    {\cellcolor{green}bien}{Les candidats non classés en premier n'influence pas les points donnés au premier, pour autant que le nombre total de candidat reste le même.}%
     {\cellcolor{orange}moyen}{Ne respecte pas ce critère, mais essaye de minimiser les personnes très mécontentes du résultat.}%
-    {\cellcolor{red}mauvais}{Les électeurs on intérêt à classé moins bien leurs seconds choix pour avantage leur candidat favori.}
+    {\cellcolor{orange}moyen}{Les électeurs on intérêt à classé moins bien leurs seconds choix pour avantage leur candidat favori.}
 
 
   \section{Méthode de Condorcet}
@@ -1006,9 +1020,9 @@ sur les possibilités et les restrictions.
 
   \subsection{Évaluation}
   \tabcritere%
-    {\cellcolor{red}mauvais}{Seul l'avis de la majorité est prise en compte, l'avis des 49\% restant est ignoré}%
-    {\cellcolor{green}bien}{Lorsqu'il y a un unique vainqueur, la méthode est mathématiquement résistant au petit candidat}%
-    {\cellcolor{green}bien}{Lorsqu'il y a un unique vainqueur, ce critère est forcement respecté}%
+    {\cellcolor{red}mauvais}{Seul l'avis de la majorité est prise en compte, l'avis des 49\% restant est ignoré.}%
+    {\cellcolor{green}bien}{Lorsqu'il y a un unique vainqueur, la méthode est résistant au petit candidat.}%
+    {\cellcolor{green}bien}{Lorsqu'il y a un unique vainqueur, ce critère est forcement respecté de part la définition du scrutin.}%
     {\cellcolor{green}bien}{Le système de vote pousse les électeurs à donner leur vraie préférence}
 
   \todo{retrouver papier à propos de la résistance au petit candidat}
@@ -1051,8 +1065,8 @@ sur les possibilités et les restrictions.
   \tabcritere%
     {\cellcolor{green!25!yellow}correct}{L'avis des perdants est pris en compte, cependant on ne peut indiquer que l'on ne veut pas de 2 candidats, mais que malgré tous, l'un des deux nous est moins défavorable.}%
     {\cellcolor{green}bien}{Chaque candidat as un score propre, ne dépendant pas des autres candidats.}%
-    {\cellcolor{red}mauvais}{Ne respecte pas ce critère}%
-    {\cellcolor{green}bien}{Cette méthode est faiblement manipulable.}
+    {\cellcolor{red}mauvais}{Ne respecte pas ce critère, car pas de distinction entre une faible approbation ou une grande approbation.}%
+    {\cellcolor{green}bien}{Cette méthode est faiblement manipulable, car elle est clair et chaque score est parfaitement indépendant.}
 
   \section{Jugement majoritaire}
 
@@ -1140,10 +1154,10 @@ sur les possibilités et les restrictions.
 
   \subsection{Évaluation}
   \tabcritere%
-    {\cellcolor{red}mauvais}{L'avis des 49\% de la population est ignorée.}%
+    {\cellcolor{red}mauvais}{L'avis des 49\% de la population est ignorée, que ce soit la pire des évaluations ou l'évaluation médiane, ça ne change rien.}%
     {\cellcolor{green}bien}{Chaque candidat a une évaluation propre ne dépendant pas des autres candidats.}%
-    {\cellcolor{red}mauvais}{Seul l'avis médian est pris en compte}%
-    {\cellcolor{green!25!yellow}correct}{La manipulation n'est pas évidente, car il faut modifier la médian}
+    {\cellcolor{red}mauvais}{Seul l'avis médian est pris en compte, on peu construire des simulations ou une majorité de personne préférerait un même autre candidat au candidat élu.}%
+    {\cellcolor{green!25!yellow}correct}{Le meilleure techniques consiste à donner ses vrai préférences, cependant dans certain cas spécifiques, pour certain votant uniquement, une meilleures stratégie peux exister mais n’est pas évidente}
 
   \section{Méthode de Coombs et vote alternatif}
 
@@ -1200,16 +1214,16 @@ sur les possibilités et les restrictions.
   \subsection{Évaluation}
   \subsubsection{Méthode de Coombs}
   \tabcritere%
-    {\cellcolor{green!25!yellow}correct}{En retirant le candidat le plus souvent en dernière position, on prend en compte l'avis des perdants. Cela ne suffit pas pour s'assurer qu'il n'y a pas de meilleurs candidats dans le cas où un candidat est élu à 51\%}%
+    {\cellcolor{orange}moyen}{En retirant le candidat le plus souvent en dernière position, on prend en compte l'avis des perdants. Cela ne suffit pas pour s'assurer qu'il n'y a pas de meilleurs candidats dans le cas où un candidat est élu à 51\%}%
     {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres}%
     {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisées dans un des camps}%
-    {À évaluer}{}
+    {\cellcolor{orange}moyen}{Pose globalement les mêmes problèmes que le scrutin majoritaire (\aref{diff:scrutin-majoritaire}), mais est plus complexe à prédire, car il faut prédire tous les tours avant le vote. La meilleure technique de vote se base sur prendre en compte les sondages pour choisir le vote le plus pertinent.}
   \subsubsection{Vote alternatif}
   \tabcritere%
     {\cellcolor{red}mauvais}{L'avis de ceux n'ayant pas choisi le vainqueur n'est pas pris en compte.}%
     {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres}%
     {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisées dans un des camps}%
-    {À évaluer}{}
+    {\cellcolor{orange}moyen}{Pose globalement les mêmes problèmes que le scrutin majoritaire (\aref{diff:scrutin-majoritaire}), mais est plus complexe à prédire, car il faut prédire tous les tours avant le vote. La meilleure technique de vote se base sur prendre en compte les sondages pour choisir le vote le plus pertinent.}
 
 
   

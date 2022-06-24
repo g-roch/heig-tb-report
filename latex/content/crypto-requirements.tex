@@ -2,12 +2,36 @@
 \begin{document}
 \chapter{Propriété cryptographique requise}
 \section{Bulletin Board}
-Concept important voir necessaire~\cite{gharadaghy_verifiability_2010}
 
-Les bulletins de vote chiffré y sont publié et ne peuvent pas y être retiré.
-Tout le monde (votants, calculateur du résultat et observateur) y on accès en lecture.
-\todo{}
+Le Bulletin Board est l'emplacement ou sont afficher l'ensemble des bulletins et informations publique des votants. 
+Toutes personnes, participant ou non à l'élection doit pouvoir y avoir accès en lecture pour vérifier que la votation se passe correctement~\cite{gharadaghy_verifiability_2010}.
+Dans la plupart des cas il y a besoin que ce qui y est publiée ne puisse pas y être retirée.
+Cependant, on peut choisir de permettre à un votant de changer son vote (jusqu'au moment du décompte) et dans ce cas, les bulletins précédents 
+peuvent aux choix être supprimer ou conserver.
+
 \section{Authentification du votant}
+
+Affin que seul les personnes ayant le droit de vote puissent participer, une authentification du votant doit être mise en place.
+Cette authentification doit se faire sur tout les serveurs avec lesquels le votant interagis de manière confidentiel, elle ne doit
+cependant pas être requise dans le cas d'une simple consultation des données publiques de la votation afin de permettre à tous de vérifier
+le bon déroulement du scrutin.
+
+Il y a 2 grande manière d'effectuer cette authentification : avec des codes d'accès unique transmis avant chaque votation ou avec des codes d'accès
+conserver de votation en votation pouvant potentiellement également servir à d'autre authentification.
+
+Lors de l'utilisation de code d'accès unique par votation, les canaux de transmission doivent être le plus sûre possible.
+Dans la mesure du possible plusieurs canaux différent devrait être utilisé, et qu'un seul canal ne suffisent pas pour s'authentifié.
+Un risque majeur est l'usurpation des codes d'accès et que la fraude ne puisse être détectée à temps.
+Il est également important que toutes les électrices et tous les électeurs reçoivent à temps leur code d'accès, dans le cas contraire, elles 
+seraient impactée dans l'exercice de leur droit de vote.
+L'avantage de cette technique, c'est que les codes d'accès peuvent être généré de manière à ne permettre, dès ce moment là, aucun lien entre le vote
+et l'identité du ou de la votantes.
+
+L'utilisation de code d'accès permanent, permets de simplifié leur diffusion et les risques de retard de livraison juste avant les votations.
+Un lien peu être fait par le serveur entre le bulletin de vote déposé et le numéro d'électeur ou directement l'identité du ou de la votante.
+L'utilisation d'un passeport numérique comme cela se fait en Estonie~\cite{vassil_diffusion_2016} permet de simplifié considérablement le processus
+pour les votants.
+
 \todo{}
 \section{Confidentialité du vote}
 La confidentialité du vote est le fait que personne ne peut faire le lien entre une personne
