@@ -79,6 +79,34 @@ problème pour certains votants s'ils n'ont pas une bonne connexion Internet.
 
 
 \section{Vérification des NIZK du premier tour}
+
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|c|r|r|r|r|}
+			\hline
+			& Nb de votant·es      &   durée vérification NIZK           & durée algo~\ref{lst:perf:resultat-2}           \\
+			& $n$                  & $\frac{n}{v_v}$                     & $\frac{n \cdot o}{v_2}$ \\
+			\hline
+			&                      & $v_v = 500$                         & $v_2 = 2~400~000$         \\
+			\hline
+			\hline
+			$ASSO$  &           300 &                                 1''           &                            0''           \\
+			$LS_p$  &       140~202 &                              4'40''           &                            2''           \\
+			$MIG_v$ &       630~000 &  \textasciitilde{}          21'00''           &                            8''           \\
+			$MIG_i$ &     2~280~000 &  \textasciitilde{}       1h 16'00''           &                           29''           \\
+			$FR_v$  &    35~923~707 &  \textasciitilde{}      19h 57'\phantom{27''} & \textasciitilde{}       7'29''           \\
+			$FR_i$  &    48~747~876 &  \textasciitilde{}   1j 03h 04'\phantom{56''} & \textasciitilde{}      10'09''           \\
+			$FR_p$  &    68~014~000 &  \textasciitilde{}   1j 13h \phantom{47'08''} & \textasciitilde{}      14'10''           \\
+			$EU_p$  &   743~000~000 &  \textasciitilde{}  17j 04h \phantom{46'40''} & \textasciitilde{}   2h 34'\phantom{48''} \\
+			$TER_p$ & 7~874~966~000 &  \textasciitilde{} 182j 06h \phantom{58'52''} & \textasciitilde{} 1j 3h \phantom{20'37''} \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Temps de calcul de vérification des NIZK}\label{tab:}
+\end{table}
+
+
 \section{Vérification des NIZK du second tour}
 
 \section{Calcul du résulat final}\label{sec:res:perf:resultat}
@@ -141,33 +169,33 @@ Il obtient un calcul de 2~400~000 essaies par seconde.
 \end{table}
 
 Ces deux algorithmes sont facilement parralélisable. 
-On peut partir du principe que la majorité de la population a à disposition un processeur à 4 cœurs
+On peut partir du principe que la majorité de la population a à disposition un processeur à 4 cœurs et donc que ces temps peuvent être divisé par 4.
 
-\begin{table}[H]
-  \begin{center}
-    \begin{tabular}{|c|r|r|r|r|}
-      \hline
-       & Nb de votant·es      & points max  & durée algo~\ref{lst:perf:resultat-1}           & durée algo~\ref{lst:perf:resultat-2}           \\
-       & $n$                  & $n \cdot o$ & $\frac{n \cdot o}{\heartsuit \cdot v_1}$ & $\frac{n \cdot o}{\heartsuit \cdot v_2}$ \\
-      \hline
-       &                      & $o = 30$    & $v_1 = 20~000$         & $v_2 = 2~400~000$         \\
-       &                      &             & $\heartsuit = 4$       & $\heartsuit = 4$          \\
-      \hline
-      \hline
-      $ASSO$  &           300 &           9~000 & \textasciitilde{}              0''           & \textasciitilde{}           0''           \\
-      $LS_p$  &       140~202 &       4~206~060 & \textasciitilde{}             53''           & \textasciitilde{}           0'' \\
-      $MIG_v$ &       630~000 &      18~900~000 & \textasciitilde{}           3'56''           & \textasciitilde{}           2'' \\
-      $MIG_i$ &     2~280~000 &      68~400~000 & \textasciitilde{}          14'15''           & \textasciitilde{}           7'' \\
-      $FR_v$  &    35~923~707 &   1~077~711~210 & \textasciitilde{}       3h 44'\phantom{31''} & \textasciitilde{}        1'52'' \\
-      $FR_i$  &    48~747~876 &   1~462~436~280 & \textasciitilde{}       5h 04'\phantom{40''} & \textasciitilde{}        2'32'' \\
-      $FR_p$  &    68~014~000 &   2~040~420~000 & \textasciitilde{}       7h 05'\phantom{05''} & \textasciitilde{}        3'33'' \\
-      $EU_p$  &   743~000~000 &  22~290~000~000 & \textasciitilde{}   3j 05h \phantom{23'45''} & \textasciitilde{}       38'42'' \\
-      $TER_p$ & 7~874~966~000 & 236~248~980~000 & \textasciitilde{}  34j 04h \phantom{18'32''} & \textasciitilde{}    6h 50'09'' \\
-      \hline
-    \end{tabular}
-  \end{center}
-  \caption{Temps de calcul des résultat sans optimisation}\label{tab:}
-\end{table}
+%\begin{table}[H]
+%  \begin{center}
+%    \begin{tabular}{|c|r|r|r|r|}
+%      \hline
+%       & Nb de votant·es      & points max  & durée algo~\ref{lst:perf:resultat-1}           & durée algo~\ref{lst:perf:resultat-2}           \\
+%       & $n$                  & $n \cdot o$ & $\frac{n \cdot o}{\heartsuit \cdot v_1}$ & $\frac{n \cdot o}{\heartsuit \cdot v_2}$ \\
+%      \hline
+%       &                      & $o = 30$    & $v_1 = 20~000$         & $v_2 = 2~400~000$         \\
+%       &                      &             & $\heartsuit = 4$       & $\heartsuit = 4$          \\
+%      \hline
+%      \hline
+%      $ASSO$  &           300 &           9~000 & \textasciitilde{}              0''           & \textasciitilde{}           0''           \\
+%      $LS_p$  &       140~202 &       4~206~060 & \textasciitilde{}             53''           & \textasciitilde{}           0'' \\
+%      $MIG_v$ &       630~000 &      18~900~000 & \textasciitilde{}           3'56''           & \textasciitilde{}           2'' \\
+%      $MIG_i$ &     2~280~000 &      68~400~000 & \textasciitilde{}          14'15''           & \textasciitilde{}           7'' \\
+%      $FR_v$  &    35~923~707 &   1~077~711~210 & \textasciitilde{}       3h 44'\phantom{31''} & \textasciitilde{}        1'52'' \\
+%      $FR_i$  &    48~747~876 &   1~462~436~280 & \textasciitilde{}       5h 04'\phantom{40''} & \textasciitilde{}        2'32'' \\
+%      $FR_p$  &    68~014~000 &   2~040~420~000 & \textasciitilde{}       7h 05'\phantom{05''} & \textasciitilde{}        3'33'' \\
+%      $EU_p$  &   743~000~000 &  22~290~000~000 & \textasciitilde{}   3j 05h \phantom{23'45''} & \textasciitilde{}       38'42'' \\
+%      $TER_p$ & 7~874~966~000 & 236~248~980~000 & \textasciitilde{}  34j 04h \phantom{18'32''} & \textasciitilde{}    6h 50'09'' \\
+%      \hline
+%    \end{tabular}
+%  \end{center}
+%  \caption{Temps de calcul des résultat sans optimisation}\label{tab:}
+%\end{table}
 
 \todo{Paragraphe sur la comparaison du temps de calcul et de verification (NIZK + ici) du résulat final}
 \todo{Paragraphe sur le calcul du résultat pour tout les candidats}
@@ -213,14 +241,40 @@ fn main() {
 
 \chapter{Vulnérabilité}
 
-\section{BB compromis}
+Dans cette section, Alice et Bob sont deux votants distincts, Mallory une attaquante active et Victor est une personne externe à la votation 
+souhaitant vérifier le bon déroulement.
 
-\subsection{le votant ne sais pas si sont bulletin est bien pris en compte}
-\subsection{Verificateur ne sais pas si l'ensemble as été remplacer}
+\section{Bulletin Board compromis}
 
-\section{Ordinateur du votant compromi}
+Dans cette section, on part du principe que Mallory après avoir compromis le Bulletin Board a la capacité
+de distingué chaque votant uniquement sur son adresse IP et de lui retourné un contenu adapté.
 
-\section{Authentification du votant}
+Si le bulletin board est compromis avant le premier tours, alors il n'y a aucune garantie.
+Mallory peut retourner des listes de clés publiques dont elle connaît les clés privées à Alice et Bob et ainsi levé 
+le secret de leur vote. Mallory peut également fournir une autre liste à Victor qui pourra vérifié sans problème les donnes.
+Si Alice, Bob et Victor communique ou si Mallory n'arrive pas à discriminer correctement chaque personne, cette attaque est 
+détectable.
+
+Dans le cas où le BB est compromis après le téléchargement des données du premier tour par les votants, Mallory n'a pas accès au vote
+d'Alice et Bob.
+Cependant elle peut toujours fournir une série de donnée forgée pour l'occasion à Victor. 
+Pour détecter cette attaque il suffit à Victor de vérifier avec Alice ou Bob que leur clé privée est bien dans les donnée fournie par le «~BB~». 
+Lorsque Mallory compromet le BB après le téléchargement pour le second tour, elle n'a que 2 possibilités, fournir les bons résultats 
+ou fournir des résultats entièrement forgé.
+
+Pour une détection plus facile de ces attaques, chaque participant devrait vérifié après la votation que ses bulletin de vote son bien dans la liste
+des bulletins publié par le BB.
+
+\section{Ordinateur du votant compromis}
+
+Si Mallory compromet l'ordinateur d'un votant (Bob), elle peut connaître le vote Bob en analysant ce qu'il fait sur son PC, 
+mais Mallory peut également récupérer les clés privées éphémères associé à Bob et voter/revoter à sa place.
+
+\section{Impossibilité de participation au second tour}
+
+Si pour des raisons externes ou suite à une attaque de Mallory, un votant (Bob par exemple) ne peut pas participé au second tour, le 
+calcul du résultat devient par la même impossible. Si Mallory veux simplement nuire à la votation, simplement empêcher un seul votant 
+de participer au second tour suffit.
 
 \chapter{Retour sur les objectifs}
 
@@ -253,11 +307,20 @@ La seul manière de connaître le vote d'une personne et de connaître le vote d
 des autres votants.\footnote{Il suffit de soustraire l'ensemble des autres vote au résultat
 pour obtenir cette information, mais tout système de vote où les résultats sont publique est
 sujet à ce problème}
+Si le BB est compromis avant le premier tour, le secret du vote n'est pas garantie.
 
 \section{Le votant n'a pas moyen de prouver ce qu'il a voté}
-\todo{}
+
+S'il utilise le programme fourni, le votant ne peut pas obtenir des informations prouvant ce qu'il a voté.
+Cependant s'il utilise un programme modifié, ce dernier peux sans problème lui révéler les clés de déchiffrements
+de ses bulletins de vote, et donc un moyen de prouver ce qu'il a voté.
+
 \section{Chacun peut vérifier que son vote a bien été pris en compte}
-\todo{}
+
+Tout les votants peuvent télécharger les données de la votation, vérifier que leur vote est bien dedans et que le résultat 
+correspond au résultat officiel.
+Cependant dans le cas où le BB aurait été compromis, il faut rajouter une vérification que le jeux de donnée est bien le même que celui
+que les autorités ont utilisé pour calculer le résultat, par exemple avec un hash de l'ensemble des données.
 
 \chapter{Conclusion}
 \todo{}

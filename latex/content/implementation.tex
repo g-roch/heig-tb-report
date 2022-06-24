@@ -140,15 +140,19 @@ deux tours (voir \aaref{sec:res:data-size} pour un calcul du volume de donnée c
 On commence par calculer $R_j$ pour chaque option.
 
 \[
-	R_j = \sum_{i=1}^{n}
+	R_j = \sum_{i=1}^{n} Z_{ij} = \sum_{i=1}^{n} x_{ij}Y_{ij} + v_{ij}G = G \cdot \sum_{i=1}^{n} v_{ij}
 \]
 
-Le calcul du résultat final est le calcul du logarithme discret sur le produit de tout les 
-bulletins de vote.
-Ce calcul est un problème difficile sur de grand nombre, cepandant pour des nombres 
-relativements petits, une recherche par brute force est possible.
-Le temps de calcul est parfaitement raisonable et fonctionnel, même pour de très grand groupe, 
+Le résultat final est $r_j$ qui est donné par la relation $R_j = r_j G$.
+Le calcul du résultat final est le calcul du logarithme discret sur $R_j$.
+C'est un problème difficile sur de grand nombre, cependant pour des nombres 
+relativement petits, une recherche par brute force est possible.
+Le temps de calcul est parfaitement raisonnable et fonctionnel, même pour de très grand groupe, 
 une analyse détaillée est fait dans la \aaref{sec:res:perf:resultat}.
 
+Si le résultat est déjà connu et que seul la vérification est nécessaire, le calcul de $R_j$ est nécessaire, mais il n'y
+pas de brute force à faire, car il suffit de vérifié la relation $R_j = r_j G$.
+
+Le temps de calcul du résultat est estimé dans la \aaref{sec:res:perf:resultat}.
 
 \end{document}
