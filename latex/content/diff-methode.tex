@@ -28,144 +28,149 @@
 
 \section{Argumentaire politique}
 
-Dans cette section sont présenter un certain nombre argument pour ou contre le vote 
-électronique (utiliser lors de vote d'État). 
-Cette liste n'a pas pour vocation d'être exhaustif, mais de permettre d'avoir une idée
+Dans cette section sont présentés un certain nombre d'arguments pour ou contre le vote 
+électronique (utilisé lors de vote d'État). 
+Cette liste n'a pas pour vocation d'être exhaustive, mais de permettre d'avoir une idée
 des implications techniques des principaux arguments \cite{olivier_elections_2022,jaberg_10_nodate}.
 Les réponses qui sont faites à ces arguments sont technique et n'ont pas pour objectif de dire si 
-le vote électronique est bien ou pas bien pour la population.
+le vote électronique est ou non une bonne chose pour la population.
 
 \newpage
 \begin{multicols}{2}
 \subsection{Pour}\label{sec:diff-meth:args:pour}
 \begin{enumerate}
-	\item Facilité de vote en comparaison des contraintes du vote physique
-	\item Vote depuis l'étranger possible
-	\item Limitation les transmissions de maladie (tel que le COVID)
-	\item Augmentation de la participation
-	\item Il y a également des risques avec le vote physique
-	\item Résultat rapide après la clôture
+	\item facilité de vote en comparaison des contraintes du vote physique
+	\item vote depuis l'étranger possible
+	\item limitation les transmissions de maladie (tel que le COVID)
+	\item augmentation de la participation
+%TODO reformuler ligne  "il y a également des risques avec le vote physique" ??
+	\item il y a également des risques avec le vote physique
+	\item résultat rapide après la clôture
 \end{enumerate}
 \newcolumn
 \subsection{Contre}\label{sec:diff-meth:args:contre}
 \begin{enumerate}
-	\item Trop cher à mettre en place et maintenir
-	\item Compréhension impossible par tout les citoyens et citoyennes
-	\item Recomptage impossible
-	\item Coercition du votant
-	\item Identification difficile du votant avec respect du secret du vote
-	\item Confidentialité difficile ou impossible
-	\item Vulnérabilité permettant la manipulabilité du résultat
-	\item Panne ou vulnérabilité rendant inopérant le système
+	\item trop cher à mettre en place et à maintenir
+	\item compréhension impossible par certains citoyens et citoyennes
+	\item recomptage impossible
+	\item coercition du votant
+	\item identification du votant difficilement compatible avec le secret du vote
+	\item confidentialité difficile voire impossible
+	\item vulnérabilité permettant la manipulabilité du résultat
+%TODO reformuler ligne suivante?
+	\item une panne ou vulnérabilité peut rendre le système inopérant
 \end{enumerate}
 \end{multicols}
 
 \subsection{Réponses aux arguments}
 
 \begin{description}
+%TODO reformuler? OLD=Même si la facilité est relative au capacité et compétence de chacun. 
 	\item[pour 1] Même si la facilité est relative au capacité et compétence de chacun. 
 		Un système facile d'utilisation qui authentifie le votant uniquement avec une 
 		paire nom d'utilisateur, mot de passe et le vérifie sur un serveur central sera 
 		peut-être simple à utiliser, mais est-ce que cette simplicité permet de garantir 
-		les besoins de sécurités ?
-	\item[pour 2 et 3] Il y a sûrement des contraintes de mise en application, mais ça simplifie 
-	 	le vote pour les personnes ne pouvant ou ne voulant pas se rendre dans un bureau de vote
- 	\item[pour 4] Peut-être ou peut-être pas, je ne suis pas compétente sur ce point
- 	\item[pour 5] Des risques existe aussi avec le vote physique, mais pour de grande fraude, il 
- 		faut généralement la collaboration d'un nombre de personne proportionnel à la taille de la fraude.
+		les besoins de sécurité ?
+	\item[pour 2 et 3] Il y a sûrement des contraintes de mise en application, mais cela simplifie 
+	 	le vote pour les personnes ne pouvant ou ne voulant pas se rendre dans un bureau de vote.
+ 	\item[pour 4] Peut-être ou peut-être pas, l'auteure ne s'estime pas compétente pour se déterminer sur ce point.
+ 	\item[pour 5] Des risques existent aussi avec le vote physique, mais pour de grandes fraudes, il 
+ 		faut généralement la collaboration d'un nombre de personnes proportionnel à la taille de la fraude.
  		Avec le vote électronique il n'y a plus les contraintes physiques limitant la taille des fraudes.
  	\item[pour 6] Oui, les résultats peuvent être disponible presque immédiatement.
- 	\item[contre 1] C'est possible, mais il faut également mettre en perspective les bénéfices, et là ça 
- 		deviens purement de la politique.
+ 	\item[contre 1] C'est possible, mais il faut également mettre en perspective les bénéfices, mais c'est une question purement politique.
  	\item[contre 2] Effectivement la majorité des citoyens n'ont pas les compétences pour comprendre 
  		les protocoles de vote électronique et savoir s'ils sont acceptables.
- 	\item[contre 3] Cela dépends de la solution retenue et du protocole.
+ 	\item[contre 3] Cela dépend de la solution retenue et du protocole.
  	\item[contre 4] Il y a effectivement une difficulté technique pour que le votant ne puisse pas
- 		prouver ce qu'il a voter et donc limiter les contraintes qu'il pourrait subir.
+ 		prouver ce qu'il a voté et donc limiter les contraintes qu'il pourrait subir.
  	\item[contre 5] Cela n'est pas forcement facile à mettre en place, mais le protocole mis en place 
- 		pour ce rapport le permet (même si cela rajoute des contraintes)
- 	\item[contre 6] La confidentialité du vote est difficile, notamment si le terminal du votant est compromis.
- 	\item[contre 7 et 8] Tous système informatique doit être considérer comme potentiellement vulnérable à des attaques.
- 		Des pannes (involontaire ou suite à une attaque) vont sûrement se produire un jour ou l'autre, une solution de backup
- 		doit donc être prêt ou un report doit être possible. Ce qui serait très problématique c'est que rien ne soit fait 
- 		et que l'ensemble des citoyens n'ai pas pu voter s'ils le désiraient ou qu'il y ai un report mais qu'une partie des 
- 		résultats soit quand même publié (influence du second scrutin).
+ 		pour ce rapport le permet (même si cela rajoute des contraintes).
+ 	\item[contre 6] Le respect de la confidentialité du vote est difficile, notamment si le terminal du votant est compromis.
+ 	\item[contre 7 et 8] Tout système informatique doit être considéré comme potentiellement vulnérable à des attaques.
+ 		Des pannes (involontaires ou consécutives à une attaque) vont sûrement se produire un jour ou l'autre; une solution de backup
+ 		doit donc être prête ou un report doit être possible. Ce qui serait très problématique c'est que rien ne soit fait 
+ 		et que l'ensemble des citoyens n'ai pas pu voter s'ils le désiraient ou qu'il y ait un report mais qu'une partie des 
+ 		résultats soit quand même publiés (influence du second scrutin).
 \end{description}
 
 \section{Cas de mauvaise utilisation}
 
 Au vu des points ci-dessus, il y a des cas où l'utilisation de l'e-voting est à proscrire. 
-Dans certain cas même le vote par correspondance peut être problématique, la France ne permet que 
-le vote au sein d'un bureau de vote, y-compris pour les français de l'étranger. La Suisse cependant 
+Dans certains cas, même le vote par correspondance peut être problématique. La France ne permet que 
+le vote au sein d'un bureau de vote, y compris pour les français de l'étranger. La Suisse cependant 
 permet pour toutes les votations populaires le vote par correspondance.
 
 \subsection{Votation ou élection politique}
 
-Les élections politique détermine pour les années à venir par qui le pays sera dirigée. 
-L'importance de ces élections est grande et donc des petits groupes de personne peuvent 
-avoir un intérêt prépondérant dans l'un ou l'autre des résultats possible. 
+Les élections politiques déterminent pour les années à venir par qui le pays sera dirigé. 
+L'importance de ces élections est grande et donc des petits groupes de personnes peuvent 
+avoir un intérêt prépondérant dans l'un ou l'autre des résultats possibles. 
 Le risque d'une fraude ou tentative de fraude est présent, cependant le vote électronique 
 rajoute une couche de fragilité car tout système informatique est faillible.
 Le vote électronique fragilise le scrutin.
 
 En cas de fraude avérée ou suspectée, les perdants remettront certainement le scrutin en doute, 
 cependant contrairement au vote traditionnel, la vérification du résultat ne pourra se faire que 
-par des experts et peux prendre beaucoup de temps (s'il faut auditer les logiciels utilisés), alors que 
-pour le vote traditionnel toute personne de la population a les capacité de vérifier (au moins en partie)
-qu'il n'y a pas eu de fraude, en recomptant les bulletins et vérifiant que chaque personne étant inscrit comme ayant
+par des experts et peut prendre beaucoup de temps (s'il faut auditer les logiciels utilisés), alors que 
+pour le vote traditionnel toute personne de la population a la capacité de vérifier (au moins en partie)
+qu'il n'y a pas eu de fraude, en recomptant les bulletins et vérifiant que chaque personne inscrite comme ayant
 voté a effectivement voté.
 
-Si pour une fraude de grande envergure, avec le vote traditionnel il faut mettre en place un grande infrastructure, des
+Pour une fraude de grande envergure, avec le vote traditionnel il faut mettre en place un grande infrastructure, des
 personne dans les bureaux de vote, du matériel de vote ou du personnel dérobant les autorisations les lettres pour le vote.
-Ces infrastructures d'autant plus grande que la fraude est de grande envergure, rajoute à chaque fois des chances qu'elle 
-soit détectée et potentiellement empêchée. Lors d'un vote électronique, selon la vulnérabilité exploitée, une poignée
+Ces infrastructures, d'autant plus grandes que la fraude est de grande envergure, augmentent par leur taille les chances/risques qu'elles 
+soient détectées et potentiellement empêchées. Lors d'un vote électronique, selon la vulnérabilité exploitée, une poignée
 de personne dans leur coin peuvent effectuer une fraude sur l'ensemble du pays.
 Un autre pays, une grande entreprise ou une personne riche ont parfaitement les moyens financiers de louer les services
-d'un groupe de pirate informatique pour effectuer ou tenter de manipuler les élections.
+d'un groupe de pirates informatiques pour effectuer ou tenter de manipuler les élections.
 
-Les votations politiques (référendum ou initiative populaire) sont tout autant voir plus sujet à ces risque de fraude, 
-car leur résultat est appliquer dans la loi directement, alors que lors d'une élection, si l'élu fait des choses qui ne
-plaise pas à la population, il y a toujours la possibilité de manifester contre (ou dans certain pays, des outils politiques
+Les votations politiques (référendum ou initiative populaire) sont tout autant voir davantage sujettes à ces risques de fraude 
+car leur résultat est appliqué dans la loi directement, alors que lors d'une élection, si l'élu fait des choses qui ne
+plaisent pas à la population, il y a toujours la possibilité de manifester contre (ou dans certains pays, des outils politiques
 permettent à la population de montrer son désaccord).
 
-Pour résumé, la vote électronique augmente les risques en réduisant la résilience du système à la fraude. 
-Il n'est pas non-plus compris par la population général. Pour ces raisons, son utilisation est déconseillée.
+Pour résumer, le vote électronique augmente les risques en réduisant la résilience du système à la fraude. 
+Il n'est pas non-plus compris par la population général. Pour ces raisons, son utilisation est déconseillée dans ce cadre.
 
 \subsection{Votation d'importance stratégique}
 
-Lorsque le scrutin n'est pas pour la direction publique d'un pays ou d'une région, il y a des cas où le 
+Il y a des cas où le 
 recours à un vote électronique est risqué.
-Une organisation qui utilise régulièrement de l'e-voting peut pour certaine votations limité ou interdire
-son utilisation pour certaine décision d'importance ou où le risque de fraude est trop élevé.
-Les critères à utiliser dépende de l'organisation et de son environnement, en voici une liste de critère possible.
+Une organisation qui utilise régulièrement de l'e-voting peut limiter ou interdire
+son utilisation lors de votations qui concernent des décisions d'importance ou lors desquelles le risque de fraude est trop élevé.
+Les critères à utiliser dépendent de l'organisation et de son environnement, voici une liste de critères possibles:
 \begin{itemize}
-	\item Lorsqu'un opposant fort s'est prononcer (publiquement ou en privé) contre ou pour une décision
-	\item Lorsque la décision peux faire gagner ou perdre des sommes d'argent importante à un autre acteur
-	\item Quand il y a une défiance envers une grande société ou un état
-	\item Lorsque l'organisation est particulièrement critiquée ou remis en cause
-	\item Si le report de la votation est trop compliquer ou impossible
+	\item lorsqu'un opposant fort s'est prononcé (publiquement ou en privé) contre ou pour une décision
+	\item lorsque la décision peut faire gagner ou perdre des sommes importantes d'argent à un autre acteur
+	\item quand il y a une défiance envers une grande société ou un état
+	\item lorsque l'organisation est particulièrement critiquée ou remis en cause
+	\item si le report de la votation est trop compliqué ou impossible
 	\item \dots
 \end{itemize}
 
-Chaque organisation choisissant d'avoir recours au vote électronique, devrait mener une réflexion sur quel
-votation est trop risquée pour être effectuée en e-voting et définir des critères clairs, précis et d'avance
-sur les possibilités et les restrictions.
+Chaque organisation choisissant d'avoir recours au vote électronique devrait mener une réflexion sur quelle
+votation est trop risquée pour être effectuée en e-voting, et définir d'avance des critères clairs et précis 
+concernant les possibilités et les restrictions.
 
 \begin{nota}{Cas d'utilisation}
-	Seul des cas de non-utilisation ont été présenter dans ce chapitre, les cas d'utilisation (spécifique 
-	au choix effectuer dans ce travail de Bachelor) sont décrit dans le \aaref{chap:usecase}.
+%TODO le paragraphe suivant n'est pas hyper clair...
+	Seul des cas de non-utilisation ont été présentés dans ce chapitre. Les cas d'utilisation (spécifiques 
+	aux choix effectués dans ce travail de Bachelor) sont décrits dans le \aaref{chap:usecase}.
 \end{nota}
 
   
   \chapter{Critère de comparaison}
   
   \begin{important}{Choix des critères}
-  	Le choix des critères de comparaison des différentes méthodes de vote est choix 
+  	Le choix des critères de comparaison des différentes méthodes de vote est un choix 
   	éminemment politique.
+%TODO Vérifier que je n'ai pas changé le sens:
+%  	Cela a la même importance que de répondre à la question quel candidat on souhaite élire en fonction
   	C'est équivalent à répondre à la question quel candidat on souhaite élire en fonction
-  	des votes des électeurs, cependant on veillera à ne pas prendre en compte les positions 
+  	des votes des électeurs. Cependant on veillera à ne pas prendre en compte les positions 
   	politiques des différents candidats.
-  	On veut savoir quel candidat devrait être élu, pas comment faire pour que notre candidat 
+  	On veut savoir quel candidat devrait être élu, et non comment faire pour que notre candidat 
   	favori l'emporte face aux autres candidats.
   \end{important}
 
@@ -181,8 +186,8 @@ sur les possibilités et les restrictions.
   est très mécontente du résultat.
 
   \begin{nota}{Scrutin d'exemple}
-	Pour illustré les critères, des simulations de scrutin sont présenté, cependant cela ne 
-	veut pas dire que le type de scrutin sélectionner est le seul où ce genre de comportement 
+	Pour illustrer les critères, des simulations de scrutin sont présentées, cependant cela ne 
+	veut pas dire que le type de scrutin sélectionné est le seul où ce genre de comportement 
 	est présent.
   \end{nota}
   \todo{Est-ce que seul le scrutin maj à 1 ou 2 tour est présenté ?}
@@ -212,21 +217,22 @@ sur les possibilités et les restrictions.
   
   \section{Indépendance à la présence de candidat perdant}
 
-  On peut souhaiter que si une option non élue est retirée du scrutin, l'option vainqueure reste
+  On peut souhaiter que si une option non choisie est retirée du scrutin, l'option vainqueure reste
   la même.
   Cependant même si ce critère n'est pas totalement respecté pour des candidats avec de très bons 
   scores, le retrait d'un petit candidat (avec un score faible) ne doit pas faire changer 
   le vainqueur.
-  
-  Les tableaux \aref{fig:critere:indep:example} présentent un scrutin à 3 candidats et le même 
+%TODO La candidate élue est(?) passe donc(?) de A à B. ==> REFORMULER.  
+  Les tableaux \aref{fig:critere:indep:example} présentent un scrutin à 3 candidats, et le même 
   scrutin, mais avec le candidat C s'étant retiré. La candidate élue est passe donc de A à B.
 
   \subsection{Théorème d'impossibilité d'Arrow}
 
   Ce théorème nous dit que dans un scrutin où les électeurs indiquent leurs préférences en classant les
   options les unes par rapport aux autres.
-  Dans ce cadre, il n'existe pas de processus de choix indiscutable permettant un choix 
-  cohérant dans le sens où le retrait d'un candidat non élu ne change pas le nom de l'élu.
+%TODO relire phrase suivante...
+  Il n'existe pas de processus de choix indiscutable permettant un choix 
+  cohérent dans le sens où le retrait d'un candidat non élu ne change pas le nom de l'élu.
 
   Dans les types de scrutins étudiés dans ce document, seuls la méthode Borda et le 
   jugement majoritaire échappent à ce théorème, car ils n'utilisent pas de classement des 
@@ -274,8 +280,8 @@ sur les possibilités et les restrictions.
   \section{Quasi-unanimité du vote}
 
   La quasi-unanimité du vote, c'est lorsque presque l'ensemble des électeurs préfèrent 
-  une option (A) à une autre option (B), alors cette deuxième option (B) n'est jamais élue.
-  Il y a différente méthode de vote qui ne respecte pas la quasi-unanimité du vote.
+  une option (A) à une autre option (B), alors cette deuxième option (B) n'est jamais élue/choisie.
+  Il y a différentes méthodes de vote qui ne respectent pas la quasi-unanimité du vote.
 
   \todo{Théorème: Borda ?}
   
@@ -287,18 +293,19 @@ sur les possibilités et les restrictions.
   Le vote utile est le fait de changer son ordre de préférence entre ses candidats favoris pour
   permettre à l'un de ses candidats favoris de remporter l'élection. 
   Je choisis de ne pas considérer comme vote utile le fait de voter pour un candidat que l'on ne
-  souhaite pas voir élu, afin que son candidat favori soit élu, j'ai classé cette pratique 
+  souhaite pas voir élu, dans le but que son candidat favori soit élu. J'ai classé cette pratique 
   dans la manipulabilité du résultat (voir \aref{diff:comp:util:manip}).
 
   Dans le cadre de cette définition, le vote utile n'est en soi pas mauvais.
   Il permet d'aider à la recherche d'un consensus en impliquant les citoyens dans la réflexion
-  et donc sans se baser exclusivement sur des maths que toutes la population n'est pas forcément
+  et donc sans se baser exclusivement sur des mathématiques que l'ensemble de la population n'est pas forcément
   en mesure de comprendre.
-  
+
+  % TODO Reformuler ↓
   Les tableaux \aref{fig:critere:utile:example} montrent qu'un petit groupe de personne (3\% ou $\frac{1}{3}$ des 
-  électeurs de C) en choisissant de voter utile et classé B en premier, leur permet de voir élu un candidat qu'ils
+  électeurs de C) en choisissant de voter utile et de classer B en premier, sont parvenus à ce que soit élu un candidat qu'ils
   avaient envie de voir au pouvoir.
-  Sans ce vote utile, ces même électeur aurait vu élu, un candidat qu'ils détestent.
+  Sans ce vote utile, ces mêmes électeurs aurait vu élu un candidat qu'ils détestent.
 
   \begin{table}[h]
 	\begin{center}
@@ -353,10 +360,10 @@ sur les possibilités et les restrictions.
   \label{diff:comp:util:corruption}
 
   La manipulation du vote est le fait de ne pas voter pour ses candidats/options favoris, mais 
-  pour un candidat que l'on ne veut pas voir au pouvoir dans l'objectif de faire en sorte que 
+  pour un candidat que l'on ne veut pas voir au pouvoir, ceci dans l'objectif de faire en sorte que 
   notre candidat favori soit finalement élu.
   
-  Les tableaux \aref{fig:critere:manip:example} montrent comment un petit nombre d'électeur 
+  Les tableaux \aref{fig:critere:manip:example} montrent comment un petit nombre d'électeurs 
   (10\%) donnent leur voix à un candidat qu'ils ne veulent pas voir élu, pour réussir à faire 
   élire leur candidat favori.
 
@@ -399,9 +406,9 @@ sur les possibilités et les restrictions.
 	\end{center}
   \end{table}
 
-  La corruption du scrutin correspond à l'achat\footnote{Par achat on prend en compte 
+  La corruption du scrutin correspond à l'achat\footnote{Par achat on entend
   tout échange visant à limiter le choix libre du vote allant d'un petit avantage à la menace 
-  de mort sur le/la votant·e ou ses proches.} auprès des électeurs de leur vote.
+  de mort sur le/la votant·e ou ses proches.} de leur vote auprès des électeurs.
   La corruption est légèrement différente de la manipulation, dans le sens où le candidat
   que l'on cherche à élire à la fin n'est pas forcément celui qui est préféré par le votant.
   Tous les systèmes de vote sont vulnérables à ce genre de manipulation, mais un bon système de 
@@ -410,8 +417,8 @@ sur les possibilités et les restrictions.
   du vote, impossibilité de prouver pour qui on a voté, liberté de la presse …), mais 
   ces techniques ne peuvent pas garantir l'absence de corruption.
   
-  Les tableaux \aref{fig:critere:corruption:example} montrent comment corrompre un petit nombre d'électeur 
-  (3\%) permet de faire élire alors que les électeurs corrompu ne voulait pas voir le candidat A élu.
+  Les tableaux \aref{fig:critere:corruption:example} montrent comment le fait de corrompre un petit nombre d'électeur 
+  (3\%) permet de faire élire le candidat A alors que les électeurs corrompus ne voulait pas réellement voir le dit candidat A élu.
   
   
   \begin{table}[h]
@@ -459,7 +466,7 @@ sur les possibilités et les restrictions.
 
   Les votes blancs et nuls devraient toujours être comptés, ne serait-ce que pour des raisons de
   statistique.
-  Savoir qu'il y a eu 90\% de vote blanc permet au politique de voir qu'il y a un problème, même
+  Savoir qu'il y a eu 90\% de votes blancs permet de voir qu'il y a un problème, même
   s'il n'y a aucun moyen de savoir ce qui s'est passé, au simple regard de cette statistique.
 
   Dans le cas où l'on veut prendre en compte les votes blancs, nuls ou abstentions, il est primordial
@@ -469,51 +476,52 @@ sur les possibilités et les restrictions.
     Lors d'un référendum contre une décision du gouvernement, il faut qu'il y ait plus de 50\% 
     de vote contre pour que la décision soit révoquée.
 
-    Dans le cas où les votes blancs, nuls ou les abstentions sont prisent en compte dans 
+    Dans le cas où les votes blancs, nuls ou les abstentions sont pris en compte dans 
     le nombre de personnes ayant validement voter, cela augmente le nombre de votes «~contre~» 
-    qu'il y a besoin pour refusé le choix du gouvernement.
+    dont il y a besoin pour refuser le choix du gouvernement.
 
     De ce fait, ces «votes» vont donc dans le sens du gouvernement et ne sont donc pas neutres. 
 
     Si les votes blancs/nuls font juste baisser le quorum, et que si le quorum n'est pas atteint
+%TODO relire encore le paragraphe suivant.
     une seconde votation a lieu, alors, c'est un usage plus correct de ces voix.
-
+    %Une manière de faire qui semble être plus correcte concernant ces voix est en présence dans le cas où les votes blancs/nuls font juste baisser le quorum, et que si le quorum n'est pas atteint
+    %une seconde votation a lieu.
   \end{nota}
 
 
   \subsection{Corps électoral}
 
-  Pour avoir une bonne représentation de ce que veux la population, avoir un faire taux de votes
-  blancs, nuls et d'abstentions n'est pas pas suffisant.
+  Pour avoir une bonne représentation de ce que veut la population, avoir un faible taux de votes
+  blancs ou nuls et d'abstentions n'est pas pas suffisant.
   En effet dans la majorité des pays, une grande partie de la population n'a pas le droit de vote.
 
   \begin{nota}{Droit de vote en Suisse}
     En 2015, 37\%\footnote{au niveau fédéral, source: \url{https://www.swissinfo.ch/fre/democratiedirecte/élections-2019\_qui-peut-voter-en-suisse--et-qui-ne-peut-pas-/45264666}}
-    de la population Suisse n'avait simplement pas le droit de vote.
+    de la population Suisse n'avait simplement pas le droit de vote:
     \begin{enumerate}
-      \item Les étrangers comme dans beaucoup de pays.
-      \item Les jeunes jusqu'à 18 ans, cet âge peut varier en fonction du pays
-      \item Dans certains pays (mais pas la Suisse), les personnes incarcérées, n'ont pas 
+      \item les étrangers comme dans beaucoup de pays.
+      \item les jeunes jusqu'à 18 ans, cet âge peut varier en fonction du pays
+      \item dans certains pays (mais pas la Suisse), les personnes incarcérées, n'ont pas 
         le droit de vote.
-      \item Et enfin toutes les personnes sous curatelle de portée générale ne peuvent 
+      \item et enfin toutes les personnes sous curatelle de portée générale ne peuvent 
         également pas voter.
-      \item Jusqu'à récemment certains pays\footnote{L'Arabie Saoudite a donné le droit de vote aux femmes en 2011, source: \url{https://fr.wikipedia.org/wiki/Droit\_de\_vote\_des\_femmes}} ne donnait pas le droit de vote aux femmes.
+      \item jusqu'à récemment certains pays\footnote{L'Arabie Saoudite a donné le droit de vote aux femmes en 2011, source: \url{https://fr.wikipedia.org/wiki/Droit\_de\_vote\_des\_femmes}} ne donnaient pas le droit de vote aux femmes.
     \end{enumerate}
   \end{nota}
 
   Ces diverses restrictions font qu'une partie de la population vit dans un pays, mais n'a
-  pas la possibilité de participer aux décisions collective.
-  Lorsqu'on essaye d'interpréter un scrutin réel, il faut donc prendre en compte cela.
-  Un candidat élu à 70\% n'est pas élus à 70\% de la population, ni même à 70\% des personnes
-  ayant le droit de vote, ni même à 70\% des personnes inscrites sur les listes électorales,
-  même pas à 70\% des votants, mais à 70\% des votants n'ayant pas voter blanc et dont leur 
-  bulletin n'a pas été considérer comme nul.
-  En fonction du pays et de la votation, cela peut avoir une grande importance pour savoir ce que
-  veut la population générale.
+  pas la possibilité de participer aux décisions collectives.
+  Lorsqu'on essaye d'interpréter un scrutin réel, il faut donc prendre cela en compte.
+  Un candidat élu à 70\% n'est pas élu à 70\% de la population, ni même à 70\% des personnes
+  ayant le droit de vote, ni encore à 70\% des personnes inscrites sur les listes électorales,
+  ni même enfin à 70\% des votants, mais à 70\% des votants n'ayant pas voté blanc et dont leur 
+  bulletin n'a pas été considéré comme nul.
+  En fonction du pays et de la votation, cela peut avoir une grande importance pour déterminer l'opinion de la population générale.
 
-  Ne pas oublier que certains pays donnent le droit vote aux personnes ayant la nationalité, mais 
+  Il faut aussi tenir compte du fait que certains pays donnent aussi le droit vote aux personnes ayant la nationalité, mais 
   résidant à l'étranger.
-  Le résultat ne correspond donc pas à ce que veulent les résidants, mais est influencé par ce
+  Le résultat ne correspond donc pas à ce que veulent les résidants, mais est influencé aussi par ce
   que veulent des personnes vivantes à l'étranger.
 
   \begin{table}[h]
@@ -528,9 +536,9 @@ sur les possibilités et les restrictions.
         \hline
         \hline
         Résultat officiel        &              & 2~810~307 & 35,12          & 64,88          \\
-        Avec vote blanc          & $+58~499$    & 2~868~806 & 34,41 -- 36,45 & 63,55 -- 65,59 \\
-        Avec vote nuls           & $+14~073$    & 2~882~879 & 34,24 -- 36,76 & 63,24 -- 65,76 \\
-        Sans abstentions         & $+2~636~289$ & 5~519~198 & 17,88 -- 66,96 & 33,04 -- 82,12 \\
+        Avec les votes blancs    & $+58~499$    & 2~868~806 & 34,41 -- 36,45 & 63,55 -- 65,59 \\
+        Avec les votes nuls      & $+14~073$    & 2~882~879 & 34,24 -- 36,76 & 63,24 -- 65,76 \\
+        Sans les abstentions     & $+2~636~289$ & 5~519~198 & 17,88 -- 66,96 & 33,04 -- 82,12 \\
         Populatation tot. (2020) & $+3~151~132$ & 8~670~300 & 11,38 -- 78,97 & 21,03 -- 88,62 \\
         \hline
       \end{tabular}
@@ -539,11 +547,12 @@ sur les possibilités et les restrictions.
 
   La Suisse a voté le 26 septembre 2021 sur l'initiative «~99~\%~».
   Cette initiative a été largement refusée à plus de 64\%.
-  Le \aref{tab:votation:99pourcent} montre les pourcentages de la population possible dans le 
-  cas où personne n'aurait voté blanc, aucun bulletin nul décompter, sans abstention et 
+%TODO reformuler OLD="montre les pourcentages de la population possible"...
+  Le \aaref{tab:votation:99pourcent} montre les pourcentages de la population possible dans le 
+  cas où personne n'aurait voté blanc, aucun bulletin nul décompté, sans abstention et 
   finalement si l'ensemble de la population avait le droit de vote et votait.
   Par exemple on sait avec certitude que 21,03\% de la population était contre 
-  (l'initiative a été rejetée), mais la proportion de personnes contre peut varier entre 
+  (l'initiative a été rejetée), mais la proportion de personnes qui sont contre peut varier entre 
   21,03\% et 88,62\% si l'on ne regarde que le résultat du scrutin.
   La population prise en compte et celle de 2020 (une année avant le scrutin).
 
@@ -556,7 +565,8 @@ sur les possibilités et les restrictions.
   débat et donc que les électeurs puissent changer d'avis.
   Les compromis entre candidats sont également impossibles.
 
-  Un scrutin à plusieurs tours réel permet d'améliorer le débat politique, même si un scrutin 
+  Un scrutin à plusieurs tours réels permet d'améliorer le débat politique, même si un scrutin 
+%TODO "certainement plus" ????  
   à 10 tours lasserait certainement plus que le bénéfice possible.
 
   \section{Évaluation}
@@ -576,16 +586,18 @@ sur les possibilités et les restrictions.
       \hline
       \hline
       Avis des perdants & \cellcolor{green}bien & Le vote de chacun est pris en compte pour chacun des candidats. \\
-      \cline{2-3}       & \cellcolor{green!25!yellow}correct & Si le vote de chacun est pris en compte, cependant les électeurs n'ont pas forcement la possibilité de donner toute la nuance voulue. \\
-      \cline{2-3}       & \cellcolor{orange}moyen & De manière générale le vote de chacun est pris en compte. Il existent cependant des cas particuliers plausible ou l'avis de 49\% de la population n'est pas pris en compte. \\
-      \cline{2-3}       & \cellcolor{red}mauvais & L'avis de 49\% de la population n'as pas d’influence sur le résultat. Ces 49\% peuvent changer leur votes comme ils le souhaitent, le candidat élu, le reste avec le même score. \\
-      \cline{2-3}       & \cellcolor{red}trés mauvais & Plus de 50\% de la population peuvent être contre le candidat élu. \\
+      \cline{2-3}       & \cellcolor{green!25!yellow}correct & Si le vote de chacun est pris en compte, les électeurs n'ont cependant pas forcement la possibilité d'exprimer toute la nuance voulue. \\
+      \cline{2-3}       & \cellcolor{orange}moyen & De manière générale le vote de chacun est pris en compte. Il existe cependant des cas particuliers plausibles où l'avis de 49\% de la population n'est pas pris en compte. \\
+      \cline{2-3}       & \cellcolor{red}mauvais & L'avis de 49\% de la population n'a pas d’influence sur le résultat. Ces 49\% peuvent changer leur votes comme ils le souhaitent, le candidat élu, reste élu, et conserve le même score. \\
+      \cline{2-3}       & \cellcolor{red}très mauvais & Plus de 50\% de la population peuvent être contre le candidat élu. \\
       \hline
+%TODO "indépendant AUX candidats non-élus..." quid?      
       Indépendance aux petits candidats & \cellcolor{green}bien & Le résultat est totalement indépendant aux candidats non-élus. \\
       \cline{2-3}
                        & \cellcolor{orange}moyen & La présence d'un petit candidat favorise les candidats proches politiquement. \\
       \cline{2-3}
-                       & \cellcolor{red}mauvais &  La présence d'un petit candidat \textbf{défavorise} les candidats proches politiquement. Moins bien que s'ils les favorisaient, car cela poussent à ne pas proposer de nuance politique qui peux être essentielle pour certaine partie de la population. \\
+%TODO reformuler ligne suivante. (partie droite)
+                       & \cellcolor{red}mauvais &  La présence d'un petit candidat \textbf{défavorise} les candidats proches politiquement. Moins bien que s'ils les favorisaient, car cela pousse à ne pas proposer de nuance politique qui peut être essentielle pour certaines parties de la population. \\
       \hline
       Quasi unanimité du vote  & \cellcolor{green}bien & Le cas où quasiment la totalité de la population ($\frac{3}{4}$) préfère un autre candidat au candidat élu n'est pas possible. \\
       \cline{2-3}
@@ -593,13 +605,13 @@ sur les possibilités et les restrictions.
       \cline{2-3}
                        & \cellcolor{red}mauvais & Plus de $\frac{3}{4}$ de la population peuvent préférer un autre candidat dans un duel. \\
       \hline
-      Manipulabilité & \cellcolor{green}bien & La meilleure technique pour voir son ou ses favori élu consiste à donner ses vrai préférence \\
+      Manipulabilité & \cellcolor{green}bien & La meilleure technique pour voir son ou ses favori élu-s consiste à voter selon ses vraies préférences. \\
       \cline{2-3}
-                     & \cellcolor{green!25!yellow}correct & Le meilleure techniques consiste à donner ses vrai préférences, cependant dans certain cas spécifiques,  pour certain votant uniquement, une meilleures stratégie peux exister mais n'est pas évidente \\
+                     & \cellcolor{green!25!yellow}correct & Le meilleure technique consiste à donner ses vraies préférences, même si dans certain cas spécifiques (pour certains votants uniquement), une meilleures stratégie peux exister. \\
       \cline{2-3}
-                     & \cellcolor{orange}moyen & La meilleure techniques consiste à voté différemment de ces préférences pour donné plus de chance à son ou ses candidats favoris. \\
+                     & \cellcolor{orange}moyen & La meilleure technique consiste à voter différemment de ses préférences pour donner plus de chance à son ou ses candidats favoris. \\
       \cline{2-3}
-                     & \cellcolor{red}mauvais & La meilleure technique de vote consiste à se basé sur les \textbf{sondages} pour donné une voix à un candidat ayant une chance de l'emporté contre qui on est pas trop opposé. \\
+                     & \cellcolor{red}mauvais & La meilleure technique de vote consiste à se baser sur les \textbf{sondages} pour donner une voix à un candidat ayant une chance de l'emporter et contre lequel on est pas trop opposé. \\
       \hline
     \end{tabular}
   \end{center}
@@ -607,9 +619,11 @@ sur les possibilités et les restrictions.
 
   \chapter{Les scrutins}
   
-  Les simulations de scrutins on été réaliser grâce à du code écrit pour l'occasion disponible 
+  Les simulations de scrutins on été réalises grâce à du code écrit pour l'occasion disponible 
   à l'adresse \url{https://github.com/g-roch/heig-tb-report/tree/main/simulation-scrutin}
 
+%TODO dans la suite, 50% +1 c'est la majorité ABSOLUE
+%TODO dans la suite, les calculs 3.5 et 4.5 ne doivent-ils pas être revus?
   \begin{important}[$50\% + 1$ versus $ > 50\%$]{Définition de la majorité}
     On trouve fréquemment l'expression $50\%+1$ pour désigner le nombre de votes requis pour
     obtenir la majorité, alors qu'il faut juste plus de $50\%$ des voix pour la majorité.
@@ -622,8 +636,8 @@ sur les possibilités et les restrictions.
     alors que dans l'autre cas
     \[ \text{au moins }(50\%\text{ de }7) + 1 = \frac{7}{2} + 1 = 4.5 \]
 
-    Nous avons donc un cas où il faut un score $ > 3.5 $ et un autre cas où il faut un score 
-    $ \geqslant 4.5 $.
+    Nous avons donc un cas où il faut un score $ > 3.5 $ (4 voix au minimum) et un autre cas où il faut un score 
+    $ \geqslant 4.5 $ (5 voix au minimum!)
     Le candidat A se retrouve donc élu avec une définition et non élu avec l'autre.
 
     Dans ce document et le code associé seule la définition $> 50\%$ a été utilisée
@@ -632,9 +646,9 @@ sur les possibilités et les restrictions.
   \section{Scrutin proportionnel plurinominal}
 
   Les électeurs votent pour une liste (de candidats) de leur choix.
-  Chaque liste remporte un nombre de sièges proportionnel au nombre de voix reçue.
+  Chaque liste remporte un nombre de sièges proportionnel au nombre de voix reçues.
   Les sièges sont finalement distribués dans chaque liste soit par ordre de présence dans
-  la liste, ou bien en fonction du nombre de voix de chaque candidat dans la liste.
+  la liste, soit en fonction du nombre de voix de chaque candidat dans la liste.
 
   \paragraph{Scrutin avec seuil}
 
@@ -789,7 +803,7 @@ sur les possibilités et les restrictions.
   \subsection{Évaluation}
   \subsubsection{À 2 tours}
   \tabcritere%
-    {\cellcolor{red}trés mauvais}{Une grande part de la population (>50\%) peut être contre l'élu·e.}%
+    {\cellcolor{red}très mauvais}{Une grande part de la population (>50\%) peut être contre l'élu·e.}%
     {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres candidats proches d'eux politiquement.}%
     {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisé dans un des camps, aucun de leurs candidats pourrait atteindre le second tour, alors que ce camp représentent peut-être plus de 75\% de la population}%
     {\cellcolor{red}mauvais}{La meilleure technique de vote consiste à se basé sur des sondage pour avoir une estimation des résultats et voter pour le candidat qui a le plus de chance d'être élu et pour lequel on n'est pas entièrement contre. Les petits candidats qui aurait une chance de l'emporté, mais non présent dans les sondages ou mal classée ne recevront que peu de voix, alors qu'il aurait pu faire de très bon score.}
