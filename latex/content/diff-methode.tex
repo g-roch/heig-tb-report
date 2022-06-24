@@ -665,7 +665,7 @@ concernant les possibilités et les restrictions.
   des candidats.
   En préférentiel, les sièges sont répartis en fonction des préférences des électeurs.
   Ces derniers peuvent changer l'ordre des candidats, biffant/rajoutant certain ou même
-  en cumulant certain candidat de plusieurs foix.
+  en cumulant certains candidats plusieurs fois.
   
   \paragraph{Répartition des sièges}
 
@@ -683,13 +683,13 @@ concernant les possibilités et les restrictions.
   \subsubsection{Majorité absolue}
   Dans le cas d'un scrutin à majorité absolue, l'option avec plus de 50\% de vote est déclarée
   vainqueure.
-  Dans le cas où aucune option n'atteint les 50\%, une tour supplémentaire est généralement
-  organisée.
+  Dans le cas où aucune option n'atteint les 50\%, un tour supplémentaire est généralement
+  organisé.
   Ce tour supplémentaire peut être à la majorité relative dans une volonté de limiter le nombre
-  de tour.
+  de tours.
   
   \begin{nota}{Pourquoi 50\%~?}
-    Pour certain scrutin plus important, le seuil est plus élevé que 50\%, par exemple 60\% ou 70\%. 
+    Pour certains scrutins plus importants, le seuil est plus élevé que 50\%, par exemple 60\% ou 70\%. 
     En quoi est-ce que 50\% est un bon choix, est-ce que ça veut dire que le choix de la moitié
     des votants n'a pas importance~? 
   \end{nota}
@@ -713,7 +713,7 @@ concernant les possibilités et les restrictions.
   \end{algorithm}
 
 
-  \subsection{Nombre de tour}
+  \subsection{Nombre de tours}
 
   Lors d'un scrutin à la majorité relative, un seul tour est nécessaire.
   Pour la variante à la majorité absolue, un candidat n'est pas forcément élu lors du
@@ -725,7 +725,7 @@ concernant les possibilités et les restrictions.
       et abstentions n'influencent pas le résultat}. C'est ce qui est utilisé pour l'élection
       présidentielle française. Ce scrutin est décrit dans l'algorithme \aref{scrutin:maj-uni-2t}.
     \item Éliminer le pire des candidats, s'il y a encore plus que 2 candidats, il peut avoir
-      encore d'autre tour. C'est ce qui est utilisé pour l'élection de chaque membre du
+      encore d'autres tours. C'est ce qui est utilisé pour l'élection de chaque membre du
       conseil fédéral à partir du 3\up{e} tours.
   \end{itemize}
 
@@ -804,14 +804,14 @@ concernant les possibilités et les restrictions.
   \subsubsection{À 2 tours}
   \tabcritere%
     {\cellcolor{red}très mauvais}{Une grande part de la population (>50\%) peut être contre l'élu·e.}%
-    {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres candidats proches d'eux politiquement.}%
+    {\cellcolor{red}mauvais}{Les petits candidats «~volent~» des voix aux autres candidats proches d'eux politiquement.}%
     {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisé dans un des camps, aucun de leurs candidats pourrait atteindre le second tour, alors que ce camp représentent peut-être plus de 75\% de la population}%
     {\cellcolor{red}mauvais}{La meilleure technique de vote consiste à se basé sur des sondage pour avoir une estimation des résultats et voter pour le candidat qui a le plus de chance d'être élu et pour lequel on n'est pas entièrement contre. Les petits candidats qui aurait une chance de l'emporté, mais non présent dans les sondages ou mal classée ne recevront que peu de voix, alors qu'il aurait pu faire de très bon score.}
 
   \subsubsection{À 1 tour}
   \tabcritere%
     {\cellcolor{red}très mauvais}{Une grande part de la population (>50\%) peut être contre l'élu·e.}%
-    {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres candidats proches d'eux politiquement.}%
+    {\cellcolor{red}mauvais}{Les petits candidats «~volent~» des voix aux autres candidats proches d'eux politiquement.}%
     {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisées dans un des camps, et que dans l'autre camp il y a un candidat unique, le résultat sera biaisé en faveur du candidat unique, alors que potentiellement plus de 75\% de le population serait pour un autre candidat, n'importe lequel.}%
     {\cellcolor{red}mauvais}{La meilleure technique de vote consiste à se basé sur des sondage pour avoir une estimation des résultats et voter pour le candidat qui a le plus de chance d'être élu et pour lequel on n'est pas entièrement contre. Les petits candidats qui aurait une chance de l'emporté, mais non présent dans les sondages ou mal classée ne recevront que peu de voix, alors qu'il aurait pu faire de très bon score.}
     
@@ -832,9 +832,10 @@ concernant les possibilités et les restrictions.
   Si tous les électeurs classent l'ensemble des candidats, alors ces deux méthodes donnent le même 
   résultat. Cependant lorsqu'on autorise le classement partiel, il y a des différences.
 
-  Pour évité toute ambigüité, je désignerais la méthode initialement décrite par borda, 
-  la méthode Borda avec distribution des points \textbf{classiques} et la méthode distribuant
-  les points à partir du premier candidat, distribution des points \textbf{moderne}.
+  Pour éviter toute ambigüité du fait de de la présence de deux méthodes Borda, 
+  je désigne par \textbf{classique} la méthode initialement décrite par Borda avec distribution des points à partir du candidat classé en dernier (1 point)
+  et par  \textbf{moderne} la méthode distribuant
+  les points à partir du candidat classé en premier ($n$ points).
 
   \begin{table}
     \begin{center}
@@ -874,7 +875,7 @@ concernant les possibilités et les restrictions.
   Les deux méthodes de distribution des points sont décrites dans les algorithmes \aref{scrutin:borda-classique} et \aref{scrutin:borda-moderne}.
 
   \begin{algorithm}
-    \caption{Méthode Borda (avec distribution des points classique)}%
+    \caption{Méthode Borda (avec distribution des points \textbf{classique})}%
     \label{scrutin:borda-classique}
     \begin{algorithmic}[1]
       \REQUIRE{$votes$[n° du votant] = Liste des choix par ordre de préférence décroisante}
@@ -891,7 +892,7 @@ concernant les possibilités et les restrictions.
   \end{algorithm}
   
   \begin{algorithm}
-    \caption{Méthode Borda (avec distribution des points moderne)}%
+    \caption{Méthode Borda (avec distribution des points \textbf{moderne})}%
     \label{scrutin:borda-moderne}
     \begin{algorithmic}[1]
       \REQUIRE{$votes$[n° du votant] = Liste des choix par ordre de préférence décroisante}
@@ -963,12 +964,12 @@ concernant les possibilités et les restrictions.
     \end{center}
   \end{table}
 
-  Les tableaux~\ref{fig:diff:borda:caslim1:A} à~\aref{fig:diff:borda:caslim1:C} indique les 
+  Les tableaux~\ref{fig:diff:borda:caslim1:A} à~\aref{fig:diff:borda:caslim1:C} indiquent les 
   préférences des électeurs, les tableaux~\ref{fig:diff:borda:caslim1:D} 
   à~\ref{fig:diff:borda:caslim1:F} montrent la même élection avec une tentative de manipulation 
   du vote.
 
-  Nous pouvons y constater que lorsqu'on utilise le décompte de points moderne, une petite 
+  Nous pouvons constater que lorsqu'on utilise le décompte de points moderne, une petite 
   proportion des électeurs (16\%) arrivent à faire basculer le résultat à leur avantage.
 
 
@@ -977,14 +978,14 @@ concernant les possibilités et les restrictions.
   \tabcritere%
     {\cellcolor{green}bien}{Chaque vote est pris en compte même s'il ne concerne pas le candidat élu.}%
     {\cellcolor{orange}moyen}{Les petits candidats offrent un avantage aux candidats proches. Dans le cas d'une élection équilibrée, ce n'est pas un problème.}%
-    {\cellcolor{orange}moyen}{Ne respecte pas ce critère, mais essaye de minimiser les personnes très mécontentes du résultat.}%
+    {\cellcolor{orange}moyen}{Ne respecte pas ce critère, mais essaie de minimiser le nombre de personnes très mécontentes du résultat.}%
     {\cellcolor{green}bien}{Les électeurs on tout intérêt à donner leurs vraies préférences en général}
   \subsubsection{Borda avec distribution des points moderne}
   \tabcritere%
     {\cellcolor{green}bien}{Chaque vote est pris en compte même s'il ne concerne pas le candidat élu.}%
     {\cellcolor{green}bien}{Les candidats non classés en premier n'influence pas les points donnés au premier, pour autant que le nombre total de candidat reste le même.}%
-    {\cellcolor{orange}moyen}{Ne respecte pas ce critère, mais essaye de minimiser les personnes très mécontentes du résultat.}%
-    {\cellcolor{orange}moyen}{Les électeurs on intérêt à classé moins bien leurs seconds choix pour avantage leur candidat favori.}
+    {\cellcolor{orange}moyen}{Ne respecte pas ce critère, mais essaie de minimiser le nombre de personnes très mécontentes du résultat.}%
+    {\cellcolor{orange}moyen}{Les électeurs on intérêt à classer moins bien leurs seconds choix pour avantager leur candidat favori.}
 
 
   \section{Méthode de Condorcet}
@@ -996,7 +997,7 @@ concernant les possibilités et les restrictions.
   \subsection{Paradoxe de Condorcet}
 
   Le paradoxe de Condorcet, lors d'un vote par classement de 3 options (A, B, C).
-  C'est qu'il peut avoir une majorité de votants préférant C à A, une autre majorité 
+  C'est qu'il peut y avoir une majorité de votants préférant C à A, une autre majorité 
   préférant B à C, et qu'une dernière majorité préfère A à B.
   Dans un tel cas, quelleque soit l'option retenue, il y a toujours plus de 50\% des votants
   qui seraient pour changer d'option.
@@ -1037,8 +1038,8 @@ concernant les possibilités et les restrictions.
 
   \subsection{Évaluation}
   \tabcritere%
-    {\cellcolor{red}mauvais}{Seul l'avis de la majorité est prise en compte, l'avis des 49\% restant est ignoré.}%
-    {\cellcolor{green}bien}{Lorsqu'il y a un unique vainqueur, la méthode est résistant au petit candidat.}%
+    {\cellcolor{red}mauvais}{Seul l'avis de la majorité est pris en compte, l'avis des 49\% restant est ignoré.}%
+    {\cellcolor{green}bien}{Lorsqu'il y a un unique vainqueur, la méthode est résistant aux petits candidats.}%
     {\cellcolor{green}bien}{Lorsqu'il y a un unique vainqueur, ce critère est forcement respecté de part la définition du scrutin.}%
     {\cellcolor{green}bien}{Le système de vote pousse les électeurs à donner leur vraie préférence}
 
@@ -1080,8 +1081,8 @@ concernant les possibilités et les restrictions.
 
   \subsection{Évaluation}
   \tabcritere%
-    {\cellcolor{green!25!yellow}correct}{L'avis des perdants est pris en compte, cependant on ne peut indiquer que l'on ne veut pas de 2 candidats, mais que malgré tous, l'un des deux nous est moins défavorable.}%
-    {\cellcolor{green}bien}{Chaque candidat as un score propre, ne dépendant pas des autres candidats.}%
+    {\cellcolor{green!25!yellow}correct}{L'avis des perdants est pris en compte, cependant on ne peut indiquer que l'on ne veut pas de 2 candidats, mais que malgré tout, on est moins défavorable à l'un des deux.}%
+    {\cellcolor{green}bien}{Chaque candidat a un score propre, ne dépendant pas des autres candidats.}%
     {\cellcolor{red}mauvais}{Ne respecte pas ce critère, car pas de distinction entre une faible approbation ou une grande approbation.}%
     {\cellcolor{green}bien}{Cette méthode est faiblement manipulable, car elle est clair et chaque score est parfaitement indépendant.}
 
@@ -1173,14 +1174,15 @@ concernant les possibilités et les restrictions.
   \tabcritere%
     {\cellcolor{red}mauvais}{L'avis des 49\% de la population est ignorée, que ce soit la pire des évaluations ou l'évaluation médiane, ça ne change rien.}%
     {\cellcolor{green}bien}{Chaque candidat a une évaluation propre ne dépendant pas des autres candidats.}%
-    {\cellcolor{red}mauvais}{Seul l'avis médian est pris en compte, on peu construire des simulations ou une majorité de personne préférerait un même autre candidat au candidat élu.}%
-    {\cellcolor{green!25!yellow}correct}{Le meilleure techniques consiste à donner ses vrai préférences, cependant dans certain cas spécifiques, pour certain votant uniquement, une meilleures stratégie peux exister mais n’est pas évidente}
+    {\cellcolor{red}mauvais}{Seul l'avis médian est pris en compte, on peut construire des simulations dans laquelle une majorité de personnes préférerait un même autre candidat au candidat élu.}%
+%TODO ci-dessous REFORMULER éventuellement "mais n'est pas évident"     
+    {\cellcolor{green!25!yellow}correct}{Le meilleure technique consiste à donner ses vraies préférences, cependant dans certain cas spécifiques, pour certains votants uniquement, une meilleure stratégie peut exister mais n’est pas évidente}
 
   \section{Méthode de Coombs et vote alternatif}
 
-  Chaque votant classe tous ou parties des options dans l'ordre de leur préférence.
+  Chaque votant classe tous ou parties des options dans l'ordre de leurs préférences.
   Puis on simule un scrutin à la majorité absolue sans limites de nombre de tours, en retirant le pire candidat
-  entre chaque tour.
+  après chaque tour.
 
   \subsection{Vote alternatif}
   Aussi appelé vote préférentiel, transférable ou Méthode de R, le vote alternatif retire à chaque 
@@ -1191,7 +1193,8 @@ concernant les possibilités et les restrictions.
 
   \subsection{Méthode de Coombs}
   La méthode de Coombs retire à chaque tour le candidat ayant été classé le plus souvent en dernière position.
-  Cette méthode à l'avantage 
+  Cette méthode à l'avantage de prendre en compte les votes négatifs (les candidats classés en dernier).
+%TODO terminer la phrase précédente  
 
   \subsection{Exemple}
 
@@ -1231,16 +1234,16 @@ concernant les possibilités et les restrictions.
   \subsection{Évaluation}
   \subsubsection{Méthode de Coombs}
   \tabcritere%
-    {\cellcolor{orange}moyen}{En retirant le candidat le plus souvent en dernière position, on prend en compte l'avis des perdants. Cela ne suffit pas pour s'assurer qu'il n'y a pas de meilleurs candidats dans le cas où un candidat est élu à 51\%}%
-    {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres}%
-    {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisées dans un des camps}%
-    {\cellcolor{orange}moyen}{Pose globalement les mêmes problèmes que le scrutin majoritaire (\aref{diff:scrutin-majoritaire}), mais est plus complexe à prédire, car il faut prédire tous les tours avant le vote. La meilleure technique de vote se base sur prendre en compte les sondages pour choisir le vote le plus pertinent.}
+    {\cellcolor{orange}moyen}{En retirant le candidat le plus souvent en dernière position, on prend en compte l'avis des perdants. Cela ne suffit pas pour s'assurer qu'il n'y a pas de meilleurs candidats dans le cas où un candidat est élu à 51\%.}%
+    {\cellcolor{red}mauvais}{Les petits candidats «~volent~» des voix aux autres.}%
+    {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisées dans un des camps.}%
+    {\cellcolor{orange}moyen}{Pose globalement les mêmes problèmes que le scrutin majoritaire (\aref{diff:scrutin-majoritaire}), mais est plus complexe à prédire, car il faut prédire tous les tours avant le vote. La meilleure technique de vote se base sur la prise en compte des sondages afin de choisir le vote le plus pertinent.}
   \subsubsection{Vote alternatif}
   \tabcritere%
     {\cellcolor{red}mauvais}{L'avis de ceux n'ayant pas choisi le vainqueur n'est pas pris en compte.}%
-    {\cellcolor{red}mauvais}{Les petits candidats «~vols~» des voix aux autres}%
-    {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisées dans un des camps}%
-    {\cellcolor{orange}moyen}{Pose globalement les mêmes problèmes que le scrutin majoritaire (\aref{diff:scrutin-majoritaire}), mais est plus complexe à prédire, car il faut prédire tous les tours avant le vote. La meilleure technique de vote se base sur prendre en compte les sondages pour choisir le vote le plus pertinent.}
+    {\cellcolor{red}mauvais}{Les petits candidats «~volent~» des voix aux autres.}%
+    {\cellcolor{red}mauvais}{Si les voix sont suffisamment divisées dans un des camps.}%
+    {\cellcolor{orange}moyen}{Pose globalement les mêmes problèmes que le scrutin majoritaire (\aref{diff:scrutin-majoritaire}), mais est plus complexe à prédire, car il faut prédire tous les tours avant le vote. La meilleure technique de vote se base sur la prise en compte des sondages afin de choisir le vote le plus pertinent.}
 
 
   

@@ -8,43 +8,43 @@
 De manière générale l'utilisation du vote électronique par rapport à un vote traditionnel ouvre la voie à 
 des attaques qui était jusqu'à présent impossible. 
 
-Lorsque l'action de voter ne se fait plus dans un isoloirs dans un bureau de vote (ce qui est déjà le cas
+Lorsque l'action de voter ne se fait plus dans un isoloir dans un bureau de vote (ce qui est déjà le cas
 pour le vote par correspondance suisse) il y a une plus grande possibilité de coercition des votants.
-On ne pourra jamais exclure que des votants aient été contraint dans leur choix. 
-Le vote électronique ne résous pas ce problème.
+On ne pourra jamais exclure que des votants aient été contraints dans leur choix. 
+Le vote électronique ne résout pas ce problème.
 
 \section{Cas d'utilisations}
 \subsection{Vote lors d'une assemblée}
 
-Lors d'un assemblée d'une association ou d'une entreprise/coopérative, les décisions sont souvent prise avec
+Lors d'un assemblée d'une association ou d'une entreprise/coopérative, les décisions sont souvent prises par
 des votations sur des propositions.
-C'est votations peuvent être faites par e-voting dans la majorité des cas, cela permet de limité les erreurs 
+C'est votations peuvent être faites par e-voting dans la majorité des cas, cela permet de limiter les erreurs 
 de comptage et d'avoir un résultat plus rapide s'il y a beaucoup de monde.
 Le vote électronique permet également d'avoir une plus grande confiance dans les résultats, car on ne fait pas 
 confiance à un petit groupe chargé du décompte des voix (groupe qui ne contient pas toujours de personne de 
 chaque position possible).
 
-Le corruption des personnes chargées du décompte peux être facile, alors que si l'application utilisé pour
-l'e-voting est externe au groupe, il peut être beaucoup plus difficile de les corrompre.
+Le corruption des personnes chargées du décompte peut être facile, alors que si l'application utilisée pour
+l'e-voting est externe au groupe, il peut être beaucoup plus difficile de la corrompre.
 
 \begin{important}{Vote d'importance}
-	Même pour de petite structure, il peut avoir des risques importants à utilisé un système de vote électronique, 
-	notament s'il y a un ou des oppansants puissants (économiquement, politiquement ou informatiquement), et ce que
-	se soit par rapport à un vote spécifique ou de manière globale à la structure.
+	Même pour de petites structures, il peut avoir des risques importants à utiliser un système de vote électronique, 
+	notamment s'il y a un ou des opposants puissants (économiquement, politiquement ou informatiquement), et ce que
+	ce soit par rapport à un vote spécifique ou de manière globale à la structure.
 \end{important}
 
 \subsection{Prise de décision dans un groupe d'amis}
 
 Dans un groupe d'amis, on peut vouloir prendre une décision importante en prenant au mieux l'avis de tous. 
-Bien sûre dans ce cas, le mieux ce serait qu'il y ai consensus.
-Un scrutin par e-voting permet de récolter les positions de tous, sans qu'il y ai de pression à choisir l'une où 
+Bien sûr dans ce cas, le mieux ce serait qu'il y ait consensus.
+Un scrutin par e-voting permet de récolter les positions de tous, sans qu'il y ait de pression à choisir l'une où 
 l'autre option, car le vote est à peu près secret. 
-Cette façon de faire permet également aux amis qui ne serais pas sur place au moment du choix d'également donné leur avis.
-Lorsque le groupe est petit, le secret du vote est relatif, car pour levé le secret il suffit de connaître l'ensemble des
+Cette façon de faire permet également aux amis qui ne seraient pas sur place au moment du choix de donner également leur avis.
+Lorsque le groupe est petit, le secret du vote est relatif, car pour lever le secret il suffit de connaître l'ensemble des
 vote des autres participant et le résultat (qui est connu de tous).
 Cette technique permet également d'avoir une estimation du vote d'un sous-groupe, en connaissant l'ensemble des autres votes.
-Quelque soit le scrutin, du moment que les résultats détaillés sont connu de tous, il y aura toujours cette limitation au secret, 
-quelque soit la méthode utilisé (e-voting vs traditionnel et type de scrutin).
+Quel que soit le scrutin, du moment que les résultats détaillés sont connu de tous, il y aura toujours cette limitation du secret, et ce  
+quelle que soit la méthode utilisé (e-voting vs traditionnel et type de scrutin).
 
 %\section{Sondage rapide et anonyme au sein d'un groupe}
 %
@@ -58,12 +58,12 @@ quelque soit la méthode utilisé (e-voting vs traditionnel et type de scrutin).
 
 Le choix du scrutin s'est porté sur la méthode Borda (\aaref{sec:scrutin:borda}).
 La publication «~\emph{A Smart Contract System for Decentralized Borda Count Voting}~»~\cite{panja_smart_2020}
-propose un protocole en 2 tour mettant en œuvre la méthode Borda en garantissant la
+propose un protocole en 2 tours mettant en œuvre la méthode Borda en garantissant la
 confidentialité du vote tout le long du processus de vote.
 Leur proposition se base sur un groupe cyclique multiplicatif DSA. 
-L'implémentation réaliser durant ce travail se base sur leur travail en l'adaptant sur les courbes elliptique.
-La groupe utilisé est le groupe de courbe elliptique d'ordre premier ristretto255 construit au dessus de Curve25519.
-Cette courbe respecte donc l'indication que le groupe utiliser doit être d'ordre premier.
+L'implémentation réalisée durant ce travail se base sur leur travail en l'adaptant sur les courbes elliptiques.
+Le groupe utilisé est le groupe de courbe elliptique d'ordre premier ristretto255 construit au dessus de Curve25519.
+Cette courbe respecte donc l'indication que le groupe utilisé doit être d'ordre premier.
 Le code source du Proof-of-concept est disponible à l'adresse \url{https://github.com/g-roch/heig-tb-report/tree/main/app},
 l'ensemble de cette implémentation a été réalisé en Rust durant ce travail de bachelor.
 
@@ -77,9 +77,9 @@ l'ensemble de cette implémentation a été réalisé en Rust durant ce travail 
 
 Pour permettre la confidentialité du vote y compris envers le serveur central réceptionnant
 le bulletin de vote, le protocole de vote fonctionne en 2 tours.
-Lors du premier tours chaque participant publie une clé publique éphémère par candidat/option et une 
+Lors du premier tour chaque participant publie une clé publique éphémère par candidat/option et une 
 preuve NIZK\footnote{Non-interactive zero-knoledge} qu'il a bien connaissance de la clé privée.
-Au début du second tours, chaque participant vérifie toutes les preuves du premier tour.
+Au début du second tour, chaque participant vérifie toutes les preuves du premier tour.
 Le bulletin de vote est ensuite formé à partir de l'ensemble des clés publiques des autres 
 votants et du choix de vote effectué.
 Avec le bulletin de vote, chaque participant publie une preuve NIZK que son vote est bien 
@@ -89,26 +89,26 @@ Soit
 
 \begin{itemize}
 	\item $n$ le nombre de votant
-	\item $k$ le nombre d'option à classer
+	\item $k$ le nombre d'options à classer
 	\item $a_j$ le score associé au rang $j$, lorsque le candidat classé en dernier reçois un score de 0 et le suivant de 1 et ainsi de suite, $a_j = j - 1$, cependant une autre répartition des scores est possible.
 	\item $v_{ij}$ est le score donnée au candidat $j$ par le votant $i$.
 \end{itemize}
 
 \subsection{Premier tour}
 
-Lors du premier tour chaque participant ($i$) générer une pair de clé sur la courbe par option possible.
-La clé privée du votant $i$ pour le candidat $j$ est noté $x_{ij}$ et la clé publique associée 
+Lors du premier tour chaque participant ($i$) génére une paire de clés sur la courbe par option possible.
+La clé privée du votant $i$ pour le candidat $j$ est notée $x_{ij}$ et la clé publique associée 
 est $X_{ij} = x_{ij} G$ avec $G$ le générateur du groupe ristretto255.
 La clé privée est tirée uniformément dans le groupe.
 
-Chaque participant publie les clés publiques pour chaque options $(X_{i1}, X_{i2}, \dots, X_{ik})$ ainsi que les preuves 
+Chaque participant publie les clés publiques pour chaque option $(X_{i1}, X_{i2}, \dots, X_{ik})$ ainsi que les preuves 
 «~non-interactive zero-knowledge~» (NIZK) qu'ils connaissent les clés privées associées \\ $(P_K\{x_{i1}\}, P_K\{x_{i2}\}, \dots, P_K\{x_{ik}\})$. 
 Avec $P_K\{x_{ij}\} = P_K\{x_{ij}: (X_{ij} = x_{ij} G)\}$.
 
 \subsection{Second tour}
 
-Pour le second tour chaque participant télécharge l'ensemble des données publiée au premier 
-tour (voir \aaref{sec:res:data-size} pour un calcul du volume de donnée concerné) et vérifie la
+Pour le second tour chaque participant télécharge l'ensemble des données publiées au premier 
+tour (voir \aaref{sec:res:data-size} pour un calcul du volume de données) et vérifie la
 preuve associée à chaque clé publique.
 
 Chaque participant $i$ calcul $Y_{ij}$ et $Z_{ij}$ pour chaque option.
@@ -120,9 +120,9 @@ Chaque participant $i$ calcul $Y_{ij}$ et $Z_{ij}$ pour chaque option.
 	Z_{ij} = x_{ij} Y_{ij} + v_{ij} G
 \]
 
-Il calcul également $k$ preuves NIZK ($\Pi_m$) que le score $a_{m}$ est bien présent dans un des bulletins 
+Il calcule également $k$ preuves NIZK ($\Pi_m$) que le score $a_{m}$ est bien présent dans un des bulletins 
 $(Z_{i1}, Z_{i2}, \dots, Z_{ik})$ pour tout $m \in (1, 2, \dots k)$.
-Comme le nombre de bulletin et le même que le nombre d'option disponible, on prouve ainsi
+Comme le nombre de bulletins et le même que le nombre d'options disponibles, on prouve ainsi
 que le votant a bien fait une permutation des scores possibles.
 
 \[
@@ -134,8 +134,8 @@ Chaque votant publie ses bulletins de vote $(Z_{i1}, \dots Z_{ik})$ ainsi que le
 
 \section{Calcul du résultat}\label{sec:res:proto:resultat}
 
-Pour calculer ou vérifier le résultat, chaque participant doit télécharger l'ensemble des données générée lors des 
-deux tours (voir \aaref{sec:res:data-size} pour un calcul du volume de donnée concerné).
+Pour calculer ou vérifier le résultat, chaque participant doit télécharger l'ensemble des données générées lors des 
+deux tours (voir \aaref{sec:res:data-size} pour un calcul du volume de données).
 
 On commence par calculer $R_j$ pour chaque option.
 

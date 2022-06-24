@@ -7,15 +7,15 @@
 
 
 \begin{nota}{Estimation}
-	Les valeurs estimées sont préfixée par \textasciitilde{}, plus d'information à la \aaref{sec:intro:notation:estimation}
+	Les valeurs estimées sont préfixées par \textasciitilde{}, plus d'informations à la \aaref{sec:intro:notation:estimation}
 \end{nota}
 
-Les analyses ci-après on été effectué sur un ordinateur de bureau (i7-6700K, 8~cœurs, 8~Gio de RAM).
-Les programmes de test on été écrit et exécuté sur un seul thread, donc seul environ $\frac{1}{8}$ de 
-la capacité du processeur a été utilisé.
+Les analyses ci-après ont été effectuées sur un ordinateur de bureau (i7-6700K, 8~cœurs, 8~Gio de RAM).
+Les programmes de test on été écrits et exécutés sur un seul thread, donc seule $\frac{1}{8}$ environ de 
+la capacité du processeur a été utilisée.
 Durant les tests la fréquence effective du processeur s'est stabilité à 4 GHz.
 
-Dans le tableau suivant, voici le nombre de votant pris en compte pour les simulations de ce chapitre.
+Dans le tableau suivant, voici le nombre de votants pris en compte pour les simulations de ce chapitre.
 
 \begin{table}[H]
   \begin{center}
@@ -24,7 +24,7 @@ Dans le tableau suivant, voici le nombre de votant pris en compte pour les simul
        & Groupe de personne                          & Nb de votant·es & Source \\
       \hline
       \hline
-      $ASSO$ & Petit association                  & 300 & \\
+      $ASSO$ & Petite association                 & 300 & \\
       $LS_p$ & Population lausanoise [2020]       &         140~202 & \href{https://fr.wikipedia.org/wiki/Lausanne}{Wikipédia français: Lausanne}\\
       $MIG_v$ & Migros: ayant voté [2022]         &         630~000 & \href{https://www.rts.ch/info/suisse/13176954-la-vente-dalcool-reste-interdite-a-la-migros-apres-un-non-massif-en-votation.html}{RTS Info, 16 juin 2022}\\
       $MIG_i$ & Migros: coopérateurs [2021]       &       2~280~000 & \href{https://corporate.migros.ch/dam/jcr:d5b1ae79-a8e8-4b98-9f2d-4b4974d39486/faits-et-chiffres-2021.pdf}{Migros Faits et chiffres 2021}\\
@@ -41,13 +41,13 @@ Dans le tableau suivant, voici le nombre de votant pris en compte pour les simul
 
 \section{Taille de données} \label{sec:res:data-size}
 
-Les données publiques générées lors du premier tours corresponds à 88 B par électeur et par option.
-Lors du second tours 104 B suplémentaire sont publié par électeur et par option.
-Les données totals sont donc de 192 B par électeur et par option.
+Les données publiques générées lors du premier tour correspond à 88 B par électeur et par option.
+Lors du second tour 104 B suplémentaires sont publié par électeur et par option.
+Les données totales sont donc de 192 B par électeur et par option.
 
 Nous pouvons constater dans le \aaref{tab:res:perf:size} que la quantité de données générée lors du premier tour et
-que chaque votant a besoin de télécharger pour le second tour est resonable pour de groupe de quelques centaines de personnes.
-Dès que la taille atteint une taille proche d'une ville (Lausanne dans le tableau) la taille deviens importante et peut poser
+que chaque votant a besoin de télécharger pour le second tour est raisonable pour des groupes de quelques centaines de personnes.
+Dès que la taille atteint une taille proche d'une ville (Lausanne dans le tableau) la taille devient importante et peut poser
 problème pour certains votants s'ils n'ont pas une bonne connexion Internet.
 
 \todo{update}
@@ -80,13 +80,13 @@ problème pour certains votants s'ils n'ont pas une bonne connexion Internet.
 
 \section{Vérification des NIZK}
 
-Le \aaref{tab:verif:nizk} présente les durées nécessaire à la vérification des NIZK pour une élections à 30 candidats en fonction 
+Le \aaref{tab:verif:nizk} présente les durées nécessaire à la vérification des NIZK pour une élection à 30 candidats en fonction 
 de la taille de l'électorat.
 La vérification des preuves du premier tours est relativement vite fait.
-Pour les preuves du second tour, les temps de calcul sont beaucoup plus long.
-Cela est problématique car ces preuves doivent être vérifier par chaque personne désirant vérifier les résultats.
+Pour les preuves du second tour, les temps de calcul sont beaucoup plus longs.
+Cela est problématique car ces preuves doivent être vérifiées par chaque personne désirant vérifier les résultats.
 À partir de 140~000 votants, la vérification du résultat ne pourra pas être fait par chaque votant.
-Le code source de test effectué se trouve à l'adresse \url{https://github.com/g-roch/heig-tb-report/tree/main/app/perf/src/bin}
+Le code source des tests effectués se trouve à l'adresse \url{https://github.com/g-roch/heig-tb-report/tree/main/app/perf/src/bin}
 
 \begin{table}[H]
 	\begin{center}
@@ -117,12 +117,13 @@ Le code source de test effectué se trouve à l'adresse \url{https://github.com/
 \section{Calcul du résulat final}\label{sec:res:perf:resultat}
 
 Comme décrit dans la \aaref{sec:res:proto:resultat}, le calcul du résultat final est la résolution d'un logarithme discret (sur une courbe éliptique).
-Ce problème étant connu pour être difficile, voici quelques analyse de brute force pour utilisant la bibliothèque utilisé
+Ce problème étant connu pour être difficile, voici quelques analyse de force brute utilisant la bibliothèque utilisée
 pour l'implémentation de ce projet.
-La valeur recherchée dépands de 3 paramètres: le nombre de votant·e, le nombre d'option disponible et la répartition des votes.
-Les deux premiers paramètres sont facile à estimé ou à défaut d'avoir une borne supérieur.
+La valeur recherchée dépend de 3 paramètres: le nombre de votant·e·s, le nombre d'options disponibles et la répartition des votes.
+Les deux premiers paramètres sont faciles à estimer ou à défaut, de déterminer une borne supérieure.
 
-Le valeur recherchée pour chaque candidat est la somme des votants pondérer par le classement de ce dit-candidat par le votant.
+%TODO Suite pas claire.
+Le valeur recherchée pour chaque candidat est la somme des votants pondérée par le classement de ce dit-candidat par le votant.
 Par exemple pour 3 options :
 
 \[
@@ -131,21 +132,21 @@ Par exemple pour 3 options :
       + 3 \cdot \sum votants_{\text{pos = 3}}
 \]
 
-Le score maximume d'un candidat est donc (si l'ensemble de la population le classe en premier)
+Le score maximum d'un candidat est donc (si l'ensemble de la population le classe en premier)
 
 \[
   score = votants * options 
 \]
 
 Au dela de 30 options, le classement de toutes les options par les votants devient très compliqué.
-Nous estimons donc que 30 options est une borne supérieur pour nos calcul.
+Nous estimons donc que 30 options est une borne supérieur pour nos calculs.
 
-Deux algorithmes ont été écrit pour tester la performence.
-Le premier (\aaref{lst:perf:resultat-1}) calcul à chaque itération la multiplication du générateur 
-par $i$, on obtient ainsi un calcul de 20~000 essaies par seconde.
-Un second algorithme (\aaref{lst:perf:resultat-2}) a été écrit pour essaier d'accélerer le 
-traitement, celui-ci garde en mémoire le résultat de l'itération précédente pour lui ajouter le générateur.
-Il obtient un calcul de 2~400~000 essaies par seconde.
+Deux algorithmes ont été écrits pour tester la performence.
+Le premier (\aaref{lst:perf:resultat-1}) calcule à chaque itération la multiplication du générateur 
+par $i$, on obtient ainsi un calcul de 20~000 essais par seconde.
+Un second algorithme (\aaref{lst:perf:resultat-2}) a été écrit pour essayer d'accélerer le 
+traitement: celui-ci garde en mémoire le résultat de l'itération précédente pour lui ajouter le générateur.
+Il obtient un calcul de 2~400~000 essais par seconde.
 
 
 \begin{table}[H]
@@ -173,11 +174,11 @@ Il obtient un calcul de 2~400~000 essaies par seconde.
   \caption{Temps de calcul des résultat sans optimisation}\label{tab:calc:result}
 \end{table}
 
-Ces deux algorithmes sont facilement parallélisable et donc leur durée divisible par le nombre de thread. 
+Ces deux algorithmes sont facilement parallélisables et donc leur durée divisible par le nombre de threads. 
 Si l'on compare ces durées au temps nécessaire pour la vérification des NIZK, on constate que la vérification des 
-preuves du premier tours sont similaire.
-La vérification des preuves du second tour prends environ 17~000 fois plus de temps.
-Ce qui fait que les temps dans ce tableau sont négligeable en comparaison.
+preuves du premier tours sont de durées comparables.
+La vérification des preuves du second tour prend environ 17~000 fois plus de temps.
+Ce qui fait que les temps dans ce tableau sont négligeables en comparaison.
 
 %\begin{table}[H]
 %  \begin{center}
@@ -246,18 +247,18 @@ fn main() {
 
 \chapter{Vulnérabilité}
 
-Dans cette section, Alice et Bob sont deux votants distincts, Mallory une attaquante active et Victor est une personne externe à la votation 
-souhaitant vérifier le bon déroulement.
+Dans cette section, Alice et Bob sont deux votants distincts, Mallory une attaquante active et Victor une personne externe à la votation qui 
+souhaite en vérifier le bon déroulement.
 
 \section{Bulletin Board compromis}
 
-Dans cette section, on part du principe que Mallory après avoir compromis le Bulletin Board a la capacité
-de distingué chaque votant uniquement sur son adresse IP et de lui retourné un contenu adapté.
+Dans cette section, on part du principe que Mallory après avoir compromis le Bulletin Board, a la capacité
+de distinguer chaque votant uniquement sur son adresse IP et de lui retourner un contenu adapté.
 
-Si le bulletin board est compromis avant le premier tours, alors il n'y a aucune garantie.
-Mallory peut retourner des listes de clés publiques dont elle connaît les clés privées à Alice et Bob et ainsi levé 
-le secret de leur vote. Mallory peut également fournir une autre liste à Victor qui pourra vérifié sans problème les donnes.
-Si Alice, Bob et Victor communique ou si Mallory n'arrive pas à discriminer correctement chaque personne, cette attaque est 
+Si le bulletin board est compromis avant le premier tour, alors il n'y a aucune garantie.
+Mallory peut retourner des listes de clés publiques dont elle connaît les clés privées à Alice et Bob et ainsi lever 
+le secret de leur vote. Mallory peut également fournir une autre liste à Victor qui pourra vérifier sans problème les données.
+Si Alice, Bob et Victor communiquent ou si Mallory n'arrive pas à discriminer correctement chaque personne, cette attaque est 
 détectable.
 
 Dans le cas où le BB est compromis après le téléchargement des données du premier tour par les votants, Mallory n'a pas accès au vote
@@ -265,10 +266,10 @@ d'Alice et Bob.
 Cependant elle peut toujours fournir une série de donnée forgée pour l'occasion à Victor. 
 Pour détecter cette attaque il suffit à Victor de vérifier avec Alice ou Bob que leur clé privée est bien dans les donnée fournie par le «~BB~». 
 Lorsque Mallory compromet le BB après le téléchargement pour le second tour, elle n'a que 2 possibilités, fournir les bons résultats 
-ou fournir des résultats entièrement forgé.
+ou fournir des résultats entièrement forgés.
 
-Pour une détection plus facile de ces attaques, chaque participant devrait vérifié après la votation que ses bulletin de vote son bien dans la liste
-des bulletins publié par le BB.
+Pour une détection plus facile de ces attaques, chaque participant devrait vérifier après la votation que ses bulletins de vote sont bien dans la liste
+des bulletins publiés par le BB.
 
 \section{Ordinateur du votant compromis}
 
@@ -277,65 +278,74 @@ mais Mallory peut également récupérer les clés privées éphémères associ�
 
 \section{Impossibilité de participation au second tour}
 
-Si pour des raisons externes ou suite à une attaque de Mallory, un votant (Bob par exemple) ne peut pas participé au second tour, le 
-calcul du résultat devient par la même impossible. Si Mallory veux simplement nuire à la votation, simplement empêcher un seul votant 
+Si pour des raisons externes ou suite à une attaque de Mallory, un votant (Bob par exemple) ne peut pas participer au second tour, le 
+calcul du résultat devient par la même impossible. Si Mallory veut simplement nuire à la votation, empêcher un seul votant 
 de participer au second tour suffit.
 
 \chapter{Retour sur les objectifs}
 
 \section{Seules les personnes autorisées peuvent participer (et qu'une seule fois)}
 
-Pour cette objectif (objectif 2 de la section~\aref{ssec:cdc:cdc:objprinc}),
-il faut identifier le votant, ce que mon implémentation ne fait pas encore, il se base 
-uniquement sur la bonne fois de chaqu'un lorsqu'ils annoncent leur numéro de votant.
-Cependant l'authentification du votant doit ce faire avec une méthode qui permet de connaître
-le droit de vote de la personne, de multiple technique existent pour cela.
+Pour cet objectif (objectif 2 de la section~\aref{ssec:cdc:cdc:objprinc}),
+il faut identifier le votant, ce que mon implémentation ne fait pas encore, puisqu'il se base 
+uniquement sur la bonne foi de chaqu'un lorsqu'il annonce son numéro de votant.
+Cependant l'authentification du votant doit se faire avec une méthode qui permet de connaître
+le droit de vote de la personne. De multiples techniques existent pour celà.
 
-Ce qui est faisable à moindre coût serais d'utiliser un service OAuth et d'utiliser l'identifiant
+Ce qui est faisable à moindre coût serait d'utiliser un service OAuth et d'utiliser l'identifiant
 d'utilisateur retourné par OAuth comme identifiant de votant
-Cette méthode permet (du moment que le serveur n'est pas compromis, lors de la phase 1) de permettre
+Cette méthode permet (du moment que le serveur n'est pas compromis lors de la phase 1)
 à tout le monde de vérifier qui a voté.
 
 Chaque bulletin de vote est lié au numéro de votant. 
-Cette information étant public, il est trivial de vérifier que chaque identifiant n'est présent
-qu'une seul fois dans les bulletin de vote final, pour s'assurer que personne n'a voter de 
-multiple fois.
+Cette information étant publique, il est trivial de vérifier que chaque identifiant n'est présent
+qu'une seul fois dans les bulletin de vote final, pour s'assurer que personne n'a voté à plusieurs reprise.
 Cependant si le serveur est compromis lors du premier tour de vote, un votant pourrait très bien
-générer plusieurs clé de vote associer à des numéro de votant fantaisiste et donc voter 
+générer plusieurs clé de vote associées à des numéros de votant fantaisistes et donc voter 
 plusieurs fois.
 
 \section{Seul le votant connait son vote}
 
-Effectivement dans le programme implémenter seul le votant connait sont vote, ni le serveur, 
-ni les entités devant calculés le résultat de la votation ne le connait.
+Effectivement dans le programme implémenté seul le votant connait sont vote: ni le serveur, 
+ni les entités devant calculer le résultat de la votation n'y ont accès.
 La seul manière de connaître le vote d'une personne et de connaître le vote de l'ensemble 
 des autres votants.\footnote{Il suffit de soustraire l'ensemble des autres vote au résultat
-pour obtenir cette information, mais tout système de vote où les résultats sont publique est
+pour obtenir cette information, mais tout système de vote dont les résultats sont publics est
 sujet à ce problème}
-Si le BB est compromis avant le premier tour, le secret du vote n'est pas garantie.
+Si le BB est compromis avant le premier tour, le secret du vote n'est pas garanti.
 
 \section{Le votant n'a pas moyen de prouver ce qu'il a voté}
 
 S'il utilise le programme fourni, le votant ne peut pas obtenir des informations prouvant ce qu'il a voté.
-Cependant s'il utilise un programme modifié, ce dernier peux sans problème lui révéler les clés de déchiffrements
+Cependant s'il utilise un programme modifié, ce dernier peut sans problème lui révéler les clés de déchiffrement
 de ses bulletins de vote, et donc un moyen de prouver ce qu'il a voté.
 
 \section{Chacun peut vérifier que son vote a bien été pris en compte}
 
 Tout les votants peuvent télécharger les données de la votation, vérifier que leur vote est bien dedans et que le résultat 
 correspond au résultat officiel.
-Cependant dans le cas où le BB aurait été compromis, il faut rajouter une vérification que le jeux de donnée est bien le même que celui
+Cependant dans le cas où le BB aurait été compromis, il faut rajouter une vérification que le jeu de données est bien le même que celui
 que les autorités ont utilisé pour calculer le résultat, par exemple avec un hash de l'ensemble des données.
 
 \chapter{Conclusion}
-\todo{}
 
-\section{résumé++}
-\section{dificulté}
-%\chapter{Lecture d'article}
-% sec difficulté interprétation des sources
-%\chapter{Clarté de la documentation des modules rust}
-\section{la suite}
+Durant ce travail, un résumé de diverses méthodes de vote et leurs avantages et inconvénients a été fait.
+Une implémentation en rust d'un simulateur de scrutin a été écrit et utilisé pour générer les tableaux
+de résultats des différents scrutins de ce rapport.
+De cette analyse est ressortie qu'il n'y a pas de système de vote parfait. Le meilleur selon les critères sélectionnés est la méthode Borda.
+
+Un POC de e-voting a été écrit en rust. Il fonctionne avec un système de 2 tours. Lors du premier tour
+les votants publient leurs clés publiques temporaires et lors du second tour, ils publient leur bulletin de vote.
+Ni le serveur, ni les personnes vérifiant les résultats n'ont la possibilité de savoir quel sont les votes de chaque votant.
+
+\paragraph{Suite à donner}
+
+Dans le cas où ce projet est réutilisé pour une application réelle, une review complète du code doit être menée, ainsi
+qu'une amélioration de l'interface utilisateur pour le rendre plus facilement utilisable.
+Améliorer le code pour permettre d'utiliser des scores différents pour chaque rang lors de diverses votations. 
+
+Une amélioration utile serait également de modifier le protocole pour permettre les votes partiels, cependant il faudrait 
+analyser en profondeur les modifications nécessaires du NIZK du second tour.
 
 
 

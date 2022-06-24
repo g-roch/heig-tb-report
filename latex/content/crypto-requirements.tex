@@ -3,52 +3,50 @@
 \chapter{Propriété requise}
 \section{Bulletin Board}
 
-Le Bulletin Board est l'emplacement ou sont afficher l'ensemble des bulletins et informations publique des votants. 
-Toutes personnes, participant ou non à l'élection doit pouvoir y avoir accès en lecture pour vérifier que la votation se passe correctement~\cite{gharadaghy_verifiability_2010}.
-Dans la plupart des cas il y a besoin que ce qui y est publiée ne puisse pas y être retirée.
+Le Bulletin Board est l'emplacement où sont affichés l'ensemble des bulletins et informations publiques des votants. 
+Toute personne, participant ou non à l'élection doit y avoir accès en lecture pour vérifier que la votation se passe correctement~\cite{gharadaghy_verifiability_2010}.
+Dans la plupart des cas il y a besoin que ce qui y est publié ne puisse pas en être retiré.
 Cependant, on peut choisir de permettre à un votant de changer son vote (jusqu'au moment du décompte) et dans ce cas, les bulletins précédents 
-peuvent aux choix être supprimer ou conserver.
+peuvent aux choix être supprimés ou conservés.
 
 \section{Authentification du votant}
 
-Affin que seul les personnes ayant le droit de vote puissent participer, une authentification du votant doit être mise en place.
-Cette authentification doit se faire sur tout les serveurs avec lesquels le votant interagis de manière confidentiel, elle ne doit
+Afin que seules les personnes ayant le droit de vote puissent participer, une authentification du votant doit être mise en place.
+Cette authentification doit se faire sur tous les serveurs avec lesquels le votant interagit de manière confidentielle, elle ne doit
 cependant pas être requise dans le cas d'une simple consultation des données publiques de la votation afin de permettre à tous de vérifier
 le bon déroulement du scrutin.
 
-Il y a 2 grande manière d'effectuer cette authentification : avec des codes d'accès unique transmis avant chaque votation ou avec des codes d'accès
-conserver de votation en votation pouvant potentiellement également servir à d'autre authentification.
+Il y a deux grandes manières d'effectuer cette authentification : avec des codes d'accès uniques transmis avant chaque votation ou avec des codes d'accès
+conservés de votation en votation pouvant potentiellement également servir à d'autres authentifications.
 
-Lors de l'utilisation de code d'accès unique par votation, les canaux de transmission doivent être le plus sûre possible.
-Dans la mesure du possible plusieurs canaux différent devrait être utilisé, et qu'un seul canal ne suffisent pas pour s'authentifié.
-Un risque majeur est l'usurpation des codes d'accès et que la fraude ne puisse être détectée à temps.
-Il est également important que toutes les électrices et tous les électeurs reçoivent à temps leur code d'accès, dans le cas contraire, elles 
-seraient impactée dans l'exercice de leur droit de vote.
-L'avantage de cette technique, c'est que les codes d'accès peuvent être généré de manière à ne permettre, dès ce moment là, aucun lien entre le vote
-et l'identité du ou de la votantes.
+Lors de l'utilisation de code d'accès unique par votation, les canaux de transmission doivent être le plus sûrs possible.
+Dans la mesure du possible plusieurs canaux différents devrait être utilisés, et qu'au moins deux canaux différents soient nécessaires pour accomplir son authentification.
+Un risque majeur est l'usurpation des codes d'accès non-détectée à temps.
+Il est également important que toutes les électrices et tous les électeurs reçoivent à temps leur code d'accès, car dans le cas contraire, l'exercice de leur droit de vote serait compromis.
+L'avantage de cette technique, est que les codes d'accès peuvent être générés de manière à ne permettre, dès ce moment là, aucun lien entre le vote
+et l'identité du ou de la votant-e.
 
-L'utilisation de code d'accès permanent, permets de simplifié leur diffusion et les risques de retard de livraison juste avant les votations.
-Un lien peu être fait par le serveur entre le bulletin de vote déposé et le numéro d'électeur ou directement l'identité du ou de la votante.
-L'utilisation d'un passeport numérique comme cela se fait en Estonie~\cite{vassil_diffusion_2016} permet de simplifié considérablement le processus
+L'utilisation de code d'accès permanents, permet de simplifier leur diffusion et d'éviter les risques de retard de livraison juste avant les votations.
+Un lien peut être fait par le serveur entre le bulletin de vote déposé et le numéro d'électeur ou directement l'identité du ou de la votant-e.
+L'utilisation d'un passeport numérique comme cela se fait en Estonie~\cite{vassil_diffusion_2016} permet de simplifier considérablement le processus
 pour les votants.
 
-Dans le cadre de ce projet l'authentification du votant n'a pas été faites, cependant comme le protocole mis en place en avait besoin, le POC utiliser 
-simplement le numéro d'électeur que le client dit être, il n'y a aucun vérification.
+Dans le cadre de ce projet l'authentification du votant n'a pas été faite, cependant comme le protocole mis en place en avait besoin, le POC utilise 
+simplement le numéro d'électeur mentionné par le client, sans authentification.
 
 \section{Confidentialité du vote}
 
-La confidentialité du vote est le fait que personne ne peut faire le lien entre une personne et ce qu'elle a voté.
+La confidentialité du vote est le principe qui veut qu'aucun lien ne peut être fait entre une personne et ce qu'elle a voté.
 C'est le premier rempart contre la coercition des votants.
-Un vote publique permet de menacer une personne pour la forcé à changer son vote, et la menace peut être mise à exécution
+Un vote public permet de menacer une personne pour la forcé à changer son vote, et la menace peut être mise à exécution
 car le changement ou non-changement du vote sera connu de tous.
 
-La confidentialité inconditionnel est qu'en tout temps, le secret du vote soit préservé.
-Y compris lorsque les serveurs centraux sont compromis et ce à quelque soit le moment de la 
-compromission du ou des serveurs.
+La confidentialité inconditionnelle est qu'en tout temps, le secret du vote soit préservé.
+Y compris lorsque les serveurs centraux sont compromis et ce quelque soit le moment où leur compromission a lieu.
 La vérifiabilité universelle est que le résultat du vote peut être vérifié quelque soit le niveau de compromission
 des serveurs.
 
-Un confidentialité inconditionnel est incompatible avec la vérifiabilité universelle du 
+Un confidentialité inconditionnelle est incompatible avec la vérifiabilité universelle du 
 résultat~\cite{chevallier-mames_incompatible_2010,gharadaghy_verifiability_2010}.
 Un choix doit donc être fait sur qu'est-ce qui est le plus important pour le cas d'utilisation désiré.
 
@@ -57,39 +55,36 @@ Un choix doit donc être fait sur qu'est-ce qui est le plus important pour le ca
 Si un votant peut prouver ce qu'il a voté à des tiers, ces dernier peuvent le contraindre à leur révéler son vote.
 Dans ce cas, comme lorsque le vote est publique, le votant peut être contraint dans son vote. 
 Pour évité ce problème, les scrutins traditionnel utilise des isoloirs et des bulletins de vote 
-standardisé.\footnote{Cependant avec les technologies actuelles, cette sécurité est moindre, car un votant pourrait 
+standardisés.\footnote{Cependant avec les technologies actuelles, cette sécurité est moindre, car un votant pourrait 
 	choisir (ou être contraint) de se filmer lors de son vote et ainsi en créer une preuve.}
 
-Lors d'un vote électronique, le votant peux avoir accès à des informations qui lui permette de déchiffrer son vote.
+Lors d'un vote électronique, le votant peut avoir accès à des informations qui lui permette de déchiffrer son vote.
 Avec l'utilisation de machine à voter, ces informations peuvent être plus ou moins masquée au votant, mais lors
 de l'utilisation de l'e-voting à travers Internet, c'est le terminal de l'utilisateur qui est utilisé.
 Grâce à la maîtrise de ce terminal (en étant le propriétaire ou en l'ayant compromis) les informations permettant
-de prouve le vote peuvent être récupérée et transmise.
+de prouve le vote peuvent être récupérées et transmises.
 
 \section{Vérifiabilité}
 
 \begin{important}{Important}
   La vérifiabilité se base sur des propriétés cryptographiques (sauf s'il y a publication 
   de l'ensemble des votes) et donc on doit partir du principe que l'ordinateur sur lequel 
-  est effectué la vérification n'est pas compromi.
+  est effectué la vérification n'est pas compromis.
 
   Cela vaut lors de la vérification du décompte mais également 
-  lors de la vérification par le votant de son vote.
+  lors de la vérification de son vote par le votant.
 \end{important}
 
-\subsection{pour le votant}
-Le votant reçois immédiatement une preuve que son vote a belle et bien été pris en 
-compte~\cite{adida_ballot_2006}.
-\todo{ci-dessus, pas le cas chez moi}
+Le votant reçoit immédiatement une preuve que son vote a bel et bien été pris en 
+compte~\cite{adida_ballot_2006}, cependant dans certain cas, le votant doit attendre que 
+le scrutin soit clôt pour pouvoir faire une telle vérification.
 
 Dans Helios~\cite{noauthor_helios_nodate}, si Alice vérifie que son bulletin contient
-correctement sont vote, le système l'empèche d'utilise ce bulletin comme vote pour limiter
+correctement son vote, le système l'empèche d'utiliser ce bulletin comme vote pour limiter
 la coercition possible des votants.
 Alice n'a ainsi pas de preuve qu'elle peut fournir à autrui de ce qu'elle a voté.
-\todo{Phase 2 de vérification? \originalcite[7]{gharadaghy_verifiability_2010}}
 
-\subsection{du résultat}
-N'importe qui (même ne participant pas à la votation) peux vérifié le résultat.
-\todo{}
+N'importe qui (même ne participant pas à la votation) peut vérifier le résultat final du scrutin.
+
 
 \end{document}
