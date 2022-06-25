@@ -66,6 +66,8 @@
 
     \frontmatter
     \maketitle
+    
+    \subfile{publishable-summary}
 
     \makeatletter % Required for \@ macro
     \begin{signedpage}{Préambule}{\@shortschool\\[0.5em] Le Chef du Département}{\@location}{\@date}
@@ -88,6 +90,7 @@
     \summary[0]
 
     \mainmatter
+	\nocite{*}
 
 
     \chapter{Cahier des charges}
@@ -108,7 +111,7 @@
 
     \dominitoc
     \tableofcontents
-    \listoffigures
+    %\listoffigures
     \listoftables
     \subfile{bibliography}
     %\addcontentsline{toc}{chapter}{\indexname}

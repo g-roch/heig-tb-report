@@ -13,7 +13,7 @@
 Les analyses ci-après ont été effectuées sur un ordinateur de bureau (i7-6700K, 8~cœurs, 8~Gio de RAM).
 Les programmes de test on été écrits et exécutés sur un seul thread, donc seule $\frac{1}{8}$ environ de 
 la capacité du processeur a été utilisée.
-Durant les tests la fréquence effective du processeur s'est stabilité à 4 GHz.
+Durant les tests la fréquence effective du processeur s'est stabilisée à 4 GHz.
 
 Dans le tableau suivant, voici le nombre de votants pris en compte pour les simulations de ce chapitre.
 
@@ -41,16 +41,14 @@ Dans le tableau suivant, voici le nombre de votants pris en compte pour les simu
 
 \section{Taille de données} \label{sec:res:data-size}
 
-Les données publiques générées lors du premier tour correspond à 88 B par électeur et par option.
-Lors du second tour 104 B suplémentaires sont publié par électeur et par option.
-Les données totales sont donc de 192 B par électeur et par option.
+Les données publiques générées lors du premier tour correspond à 88~B par électeur et par option.
+Lors du second tour 104~B supplémentaires sont publiés par électeur et par option.
+Le volume totale des données est donc de 192~B par électeur et par option.
 
 Nous pouvons constater dans le \aaref{tab:res:perf:size} que la quantité de données générée lors du premier tour et
 que chaque votant a besoin de télécharger pour le second tour est raisonable pour des groupes de quelques centaines de personnes.
 Dès que la taille atteint une taille proche d'une ville (Lausanne dans le tableau) la taille devient importante et peut poser
 problème pour certains votants s'ils n'ont pas une bonne connexion Internet.
-
-\todo{update}
 
 \begin{table}[H]
   \begin{center}
@@ -80,9 +78,9 @@ problème pour certains votants s'ils n'ont pas une bonne connexion Internet.
 
 \section{Vérification des NIZK}
 
-Le \aaref{tab:verif:nizk} présente les durées nécessaire à la vérification des NIZK pour une élection à 30 candidats en fonction 
+Le \aaref{tab:verif:nizk} présente les durées nécessaires à la vérification des NIZK pour une élection à 30 candidats en fonction 
 de la taille de l'électorat.
-La vérification des preuves du premier tours est relativement vite fait.
+La vérification des preuves du premier tour est relativement vite faite.
 Pour les preuves du second tour, les temps de calcul sont beaucoup plus longs.
 Cela est problématique car ces preuves doivent être vérifiées par chaque personne désirant vérifier les résultats.
 À partir de 140~000 votants, la vérification du résultat ne pourra pas être fait par chaque votant.
@@ -114,16 +112,16 @@ Le code source des tests effectués se trouve à l'adresse \url{https://github.c
 \end{table}
 
 
-\section{Calcul du résulat final}\label{sec:res:perf:resultat}
+\section{Calcul du résultat final}\label{sec:res:perf:resultat}
 
 Comme décrit dans la \aaref{sec:res:proto:resultat}, le calcul du résultat final est la résolution d'un logarithme discret (sur une courbe éliptique).
-Ce problème étant connu pour être difficile, voici quelques analyse de force brute utilisant la bibliothèque utilisée
+Ce problème étant connu pour être difficile, voici quelques analyses de force brute utilisant la bibliothèque utilisée
 pour l'implémentation de ce projet.
 La valeur recherchée dépend de 3 paramètres: le nombre de votant·e·s, le nombre d'options disponibles et la répartition des votes.
-Les deux premiers paramètres sont faciles à estimer ou à défaut, de déterminer une borne supérieure.
+Les deux premiers paramètres sont faciles à estimer ou à défaut, il est aisé de déterminer une borne supérieure.
 
 %TODO Suite pas claire.
-Le valeur recherchée pour chaque candidat est la somme des votants pondérée par le classement de ce dit-candidat par le votant.
+Le valeur recherchée pour chaque candidat est la somme des votants pondérée par le classement du dit candidat par le votant.
 Par exemple pour 3 options :
 
 \[
@@ -141,10 +139,10 @@ Le score maximum d'un candidat est donc (si l'ensemble de la population le class
 Au dela de 30 options, le classement de toutes les options par les votants devient très compliqué.
 Nous estimons donc que 30 options est une borne supérieur pour nos calculs.
 
-Deux algorithmes ont été écrits pour tester la performence.
+Deux algorithmes ont été écrits pour tester la performance.
 Le premier (\aaref{lst:perf:resultat-1}) calcule à chaque itération la multiplication du générateur 
 par $i$, on obtient ainsi un calcul de 20~000 essais par seconde.
-Un second algorithme (\aaref{lst:perf:resultat-2}) a été écrit pour essayer d'accélerer le 
+Un second algorithme (\aaref{lst:perf:resultat-2}) a été écrit pour essayer d’accélérer le 
 traitement: celui-ci garde en mémoire le résultat de l'itération précédente pour lui ajouter le générateur.
 Il obtient un calcul de 2~400~000 essais par seconde.
 
@@ -176,9 +174,9 @@ Il obtient un calcul de 2~400~000 essais par seconde.
 
 Ces deux algorithmes sont facilement parallélisables et donc leur durée divisible par le nombre de threads. 
 Si l'on compare ces durées au temps nécessaire pour la vérification des NIZK, on constate que la vérification des 
-preuves du premier tours sont de durées comparables.
-La vérification des preuves du second tour prend environ 17~000 fois plus de temps.
-Ce qui fait que les temps dans ce tableau sont négligeables en comparaison.
+preuves du premier tour ont des durées comparables.
+La vérification des preuves du second tour prend environ 17~000 fois plus de temps,
+ce qui fait que les temps dans ce tableau sont négligeables en comparaison.
 
 %\begin{table}[H]
 %  \begin{center}
@@ -219,7 +217,7 @@ fn main() {
             break;
         }
 
-        // hidden: affichage du temps de calcul à interval régulier
+        // hidden: affichage du temps de calcul à intervalle régulier
     }
 }
 \end{lstlisting}%
@@ -240,7 +238,7 @@ fn main() {
             break;
         }
 
-        // hidden: affichage du temps de calcul à interval régulier
+        // hidden: affichage du temps de calcul à intervalle régulier
     }
 }
 \end{lstlisting}%
@@ -252,20 +250,20 @@ souhaite en vérifier le bon déroulement.
 
 \section{Bulletin Board compromis}
 
-Dans cette section, on part du principe que Mallory après avoir compromis le Bulletin Board, a la capacité
+Dans cette section, on part du principe que Mallory après avoir compromis le Bulletin Board (BB), a la capacité
 de distinguer chaque votant uniquement sur son adresse IP et de lui retourner un contenu adapté.
 
 Si le bulletin board est compromis avant le premier tour, alors il n'y a aucune garantie.
-Mallory peut retourner des listes de clés publiques dont elle connaît les clés privées à Alice et Bob et ainsi lever 
+Mallory peut retourner à Alice et Bob des listes de clés publiques dont elle connaît les clés privées et ainsi lever 
 le secret de leur vote. Mallory peut également fournir une autre liste à Victor qui pourra vérifier sans problème les données.
 Si Alice, Bob et Victor communiquent ou si Mallory n'arrive pas à discriminer correctement chaque personne, cette attaque est 
 détectable.
 
-Dans le cas où le BB est compromis après le téléchargement des données du premier tour par les votants, Mallory n'a pas accès au vote
+Dans le cas où le BB est compromis après le téléchargement par les votants des données du premier tour, Mallory n'a pas accès au vote
 d'Alice et Bob.
-Cependant elle peut toujours fournir une série de donnée forgée pour l'occasion à Victor. 
-Pour détecter cette attaque il suffit à Victor de vérifier avec Alice ou Bob que leur clé privée est bien dans les donnée fournie par le «~BB~». 
-Lorsque Mallory compromet le BB après le téléchargement pour le second tour, elle n'a que 2 possibilités, fournir les bons résultats 
+Cependant elle peut toujours fournir à Victor une série de données forgée pour l'occasion. 
+Pour détecter cette attaque il suffit à Victor de vérifier avec Alice ou Bob que leur clé privée est bien dans les donnée fournie par le BB. 
+Lorsque Mallory compromet le BB après le téléchargement pour le second tour, elle n'a que 2 possibilités: fournir les bons résultats 
 ou fournir des résultats entièrement forgés.
 
 Pour une détection plus facile de ces attaques, chaque participant devrait vérifier après la votation que ses bulletins de vote sont bien dans la liste
@@ -282,35 +280,35 @@ Si pour des raisons externes ou suite à une attaque de Mallory, un votant (Bob 
 calcul du résultat devient par la même impossible. Si Mallory veut simplement nuire à la votation, empêcher un seul votant 
 de participer au second tour suffit.
 
-\chapter{Retour sur les objectifs}
+\chapter{Retour sur les objectifs et conclusion}
 
 \section{Seules les personnes autorisées peuvent participer (et qu'une seule fois)}
 
 Pour cet objectif (objectif 2 de la section~\aref{ssec:cdc:cdc:objprinc}),
-il faut identifier le votant, ce que mon implémentation ne fait pas encore, puisqu'il se base 
-uniquement sur la bonne foi de chaqu'un lorsqu'il annonce son numéro de votant.
+il faut identifier le votant, ce que mon implémentation ne fait pas encore, puisqu'elle se base 
+uniquement sur la bonne foi de chacun lorsqu'il annonce son numéro de votant.
 Cependant l'authentification du votant doit se faire avec une méthode qui permet de connaître
-le droit de vote de la personne. De multiples techniques existent pour celà.
+le droit de vote de la personne. De multiples techniques existent pour cela.
 
 Ce qui est faisable à moindre coût serait d'utiliser un service OAuth et d'utiliser l'identifiant
-d'utilisateur retourné par OAuth comme identifiant de votant
+d'utilisateur retourné par OAuth comme identifiant de votant.
 Cette méthode permet (du moment que le serveur n'est pas compromis lors de la phase 1)
 à tout le monde de vérifier qui a voté.
 
 Chaque bulletin de vote est lié au numéro de votant. 
 Cette information étant publique, il est trivial de vérifier que chaque identifiant n'est présent
-qu'une seul fois dans les bulletin de vote final, pour s'assurer que personne n'a voté à plusieurs reprise.
+qu'une seul fois parmi les bulletins de vote finaux, pour s'assurer que personne n'a voté à plusieurs reprises.
 Cependant si le serveur est compromis lors du premier tour de vote, un votant pourrait très bien
 générer plusieurs clé de vote associées à des numéros de votant fantaisistes et donc voter 
 plusieurs fois.
 
 \section{Seul le votant connait son vote}
 
-Effectivement dans le programme implémenté seul le votant connait sont vote: ni le serveur, 
+Effectivement dans le programme implémenté seul le votant connait son vote: ni le serveur, 
 ni les entités devant calculer le résultat de la votation n'y ont accès.
-La seul manière de connaître le vote d'une personne et de connaître le vote de l'ensemble 
-des autres votants.\footnote{Il suffit de soustraire l'ensemble des autres vote au résultat
-pour obtenir cette information, mais tout système de vote dont les résultats sont publics est
+La seul manière de connaître le vote d'une personne est de connaître le vote de l'ensemble 
+des autres votants.\footnote{Il suffit de soustraire l'ensemble des autres votes au résultat
+pour obtenir cette information, mais tout système de vote dont les résultats détaillés sont publics est
 sujet à ce problème}
 Si le BB est compromis avant le premier tour, le secret du vote n'est pas garanti.
 
@@ -318,23 +316,23 @@ Si le BB est compromis avant le premier tour, le secret du vote n'est pas garant
 
 S'il utilise le programme fourni, le votant ne peut pas obtenir des informations prouvant ce qu'il a voté.
 Cependant s'il utilise un programme modifié, ce dernier peut sans problème lui révéler les clés de déchiffrement
-de ses bulletins de vote, et donc un moyen de prouver ce qu'il a voté.
+de ses bulletins de vote, et donc lui fournir un moyen de prouver ce qu'il a voté.
 
 \section{Chacun peut vérifier que son vote a bien été pris en compte}
 
-Tout les votants peuvent télécharger les données de la votation, vérifier que leur vote est bien dedans et que le résultat 
+Chaque votant peut télécharger les données de la votation, vérifier que son vote est bien dedans et que le résultat 
 correspond au résultat officiel.
 Cependant dans le cas où le BB aurait été compromis, il faut rajouter une vérification que le jeu de données est bien le même que celui
 que les autorités ont utilisé pour calculer le résultat, par exemple avec un hash de l'ensemble des données.
 
-\chapter{Conclusion}
+\section{Conclusion}
 
 Durant ce travail, un résumé de diverses méthodes de vote et leurs avantages et inconvénients a été fait.
 Une implémentation en rust d'un simulateur de scrutin a été écrit et utilisé pour générer les tableaux
 de résultats des différents scrutins de ce rapport.
-De cette analyse est ressortie qu'il n'y a pas de système de vote parfait. Le meilleur selon les critères sélectionnés est la méthode Borda.
+De cette analyse est ressorti qu'il n'y a pas de système de vote parfait. Le meilleur selon les critères sélectionnés s'avère être la méthode Borda.
 
-Un POC de e-voting a été écrit en rust. Il fonctionne avec un système de 2 tours. Lors du premier tour
+Un POC de e-voting a été écrit en rust. Il fonctionne avec un système à 2 tours. Lors du premier tour
 les votants publient leurs clés publiques temporaires et lors du second tour, ils publient leur bulletin de vote.
 Ni le serveur, ni les personnes vérifiant les résultats n'ont la possibilité de savoir quel sont les votes de chaque votant.
 
@@ -342,9 +340,8 @@ Ni le serveur, ni les personnes vérifiant les résultats n'ont la possibilité 
 
 Dans le cas où ce projet est réutilisé pour une application réelle, une review complète du code doit être menée, ainsi
 qu'une amélioration de l'interface utilisateur pour le rendre plus facilement utilisable.
-Améliorer le code pour permettre d'utiliser des scores différents pour chaque rang lors de diverses votations. 
-
-Une amélioration utile serait également de modifier le protocole pour permettre les votes partiels, cependant il faudrait 
+Il serait également utile d'améliorer le code pour permettre d'utiliser des scores différents pour chaque rang lors de diverses votations, 
+ainsi que de modifier le protocole pour permettre les votes partiels. Cependant il faudrait 
 analyser en profondeur les modifications nécessaires du NIZK du second tour.
 
 

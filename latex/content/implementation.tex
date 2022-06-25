@@ -3,17 +3,17 @@
 \begin{document}
 \part{Implémentation}
 
-\chapter{Cas d'utilisations}\label{chap:usecase}
+\chapter{Cas d'utilisation}\label{chap:usecase}
 
 De manière générale l'utilisation du vote électronique par rapport à un vote traditionnel ouvre la voie à 
-des attaques qui était jusqu'à présent impossible. 
+des attaques qui étaient jusqu'à présent impossible. 
 
 Lorsque l'action de voter ne se fait plus dans un isoloir dans un bureau de vote (ce qui est déjà le cas
 pour le vote par correspondance suisse) il y a une plus grande possibilité de coercition des votants.
 On ne pourra jamais exclure que des votants aient été contraints dans leur choix. 
 Le vote électronique ne résout pas ce problème.
 
-\section{Cas d'utilisations}
+\section{Cas d'utilisation}
 \subsection{Vote lors d'une assemblée}
 
 Lors d'un assemblée d'une association ou d'une entreprise/coopérative, les décisions sont souvent prises par
@@ -44,7 +44,7 @@ Lorsque le groupe est petit, le secret du vote est relatif, car pour lever le se
 vote des autres participant et le résultat (qui est connu de tous).
 Cette technique permet également d'avoir une estimation du vote d'un sous-groupe, en connaissant l'ensemble des autres votes.
 Quel que soit le scrutin, du moment que les résultats détaillés sont connu de tous, il y aura toujours cette limitation du secret, et ce  
-quelle que soit la méthode utilisé (e-voting vs traditionnel et type de scrutin).
+quelle que soit la méthode utilisé (e-voting versus traditionnel et type de scrutin).
 
 %\section{Sondage rapide et anonyme au sein d'un groupe}
 %
@@ -69,7 +69,7 @@ l'ensemble de cette implémentation a été réalisé en Rust durant ce travail 
 
 \begin{nota}{Vote partiel}
 	L'implémentation proposée et décrite dans ce document ne permet pas au votant d'effectuer des votes 
-	partiels (où seul une partie des options serait classé).
+	partiels (où seule une partie des options serait classée).
 \end{nota}
 
 
@@ -88,10 +88,10 @@ une permutation des choix possible.
 Soit 
 
 \begin{itemize}
-	\item $n$ le nombre de votant
+	\item $n$ le nombre de votants
 	\item $k$ le nombre d'options à classer
-	\item $a_j$ le score associé au rang $j$, lorsque le candidat classé en dernier reçois un score de 0 et le suivant de 1 et ainsi de suite, $a_j = j - 1$, cependant une autre répartition des scores est possible.
-	\item $v_{ij}$ est le score donnée au candidat $j$ par le votant $i$.
+	\item $a_j$ le score associé au rang $j$, lorsque le candidat classé en dernier reçoit un score de 0 et le suivant de 1 et ainsi de suite, $a_j = j - 1$, cependant une autre répartition des scores est possible.
+	\item $v_{ij}$ est le score donné au candidat $j$ par le votant $i$.
 \end{itemize}
 
 \subsection{Premier tour}
@@ -147,7 +147,7 @@ Le résultat final est $r_j$ qui est donné par la relation $R_j = r_j G$.
 Le calcul du résultat final est le calcul du logarithme discret sur $R_j$.
 C'est un problème difficile sur de grands nombres, cependant pour des nombres 
 relativement petits, une recherche par force brute est possible.
-Le temps de calcul est parfaitement raisonnable et fonctionnel, même pour de très grands groupes, 
+Le temps de calcul est parfaitement raisonnable et fonctionnel, même pour de très grands groupes de personnes; 
 une analyse détaillée est faite dans la \aaref{sec:res:perf:resultat}.
 
 Si le résultat est déjà connu et que seule la vérification est nécessaire, le calcul de $R_j$ est nécessaire, mais il n'y

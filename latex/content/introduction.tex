@@ -19,7 +19,7 @@
   pour les représenter ou pour accomplir toute autre tâche.
   Une votation est une action par laquelle un groupe de personne (les votantes et votants) choisissent une (ou des) options.
   Une élection est donc simplement une votation dans laquelle les options possibles sont des personnes.
-  Sauf mention contraire, dans ce document ce qui est dit pour l'un l'est également pour l'autre.
+  Sauf mention contraire, dans ce document ce qui est dit pour l'un est également valable pour l'autre.
 
   \paragraph{Quorum}
   Le quorum est le taux de participation requis pour que la votation soit validée.
@@ -40,7 +40,7 @@
   	\colorbox{red}{A rejeter}
   \end{center}
 
-  Par manque de place à certains endroits, ces abréviations sont utilisé~:
+  Par manque de place à certains endroits, ces abréviations sont utilisés~:
 
   \begin{center}
 	\colorbox{green}{Ex} $\succ$
@@ -65,9 +65,9 @@
   	\begin{itemize}
   		\item le pourcentage de personnes que représente cette ligne
   		\item le nombre exact de votants correspondant 
-  		\item l'identifiant de la ligne en chiffres romains en minuscules
+  		\item l'identifiant de la ligne en chiffres romains minuscules
   	\end{itemize}
-  	\item Les candidats/options sont représentés par des lettres latines en majuscules
+  	\item Les candidats/options sont représentés par des lettres latines majuscules
   	\item Les tableaux \ref{fig:intro:notation:note-A:votesn} et \ref{fig:intro:notation:note-A:votes} indiquent 
   	  pour chaque candidat/option, l'appréciation qui leur est donnée.
   	\item Les tableaux \ref{fig:intro:notation:note-A:votesc} et \ref{fig:intro:notation:note-A:votes} indiquent 
@@ -83,7 +83,7 @@
   	Pour la plupart des scrutins étudiées, les intentions de vote décrites dans le tableau correspondent à ce qui est réelement pris en
   	compte pour le calcul du vainqueur ou de la vainqueure.
   	
-  	Dans le cas de scrutin à plusieurs tours avec éliminations les tableaux intermédiaires ne sont pas affichés mais correspondent aux mêmes 
+  	Dans le cas de scrutin à plusieurs tours avec éliminations, les tableaux intermédiaires ne sont pas affichés mais correspondent aux mêmes 
   	classement et notation mais en retirant une ou plusieurs des options.
   \end{nota}
   
@@ -119,19 +119,19 @@
   \end{table}
   
   
-  \todo{Est-ce le cas ?? Certains exemples dans ce document sont issus de cas réels, ceci uniquement affin de montrer la plausibilité de tels cas. Bien sûr le fonctionnement est identique en cas d'inversion des bords politiques des candidats/options dans les exemples.}
+%  \todo{Est-ce le cas ?? Certains exemples dans ce document sont issus de cas réels, ceci uniquement affin de montrer la plausibilité de tels cas. Bien sûr le fonctionnement est identique en cas d'inversion des bords politiques des candidats/options dans les exemples.}
   
   \subsection{Estimation}\label{sec:intro:notation:estimation}
   
   Dans la section résultats, certains résultat ont été estimés, d'autres calculés ou mesurés.
   Si une valeur est issue d'une estimation ou d'un calcul approximatif il est précédé du symbole \textasciitilde.
-  Dans les cas d'un calcul exact (exemple nombre de bytes) la valeur n'est pas préfixée, même s'il n'a pas été mesuré.
+  Dans le cas d'un calcul exact (exemple nombre de bytes) la valeur n'est pas préfixée, même s'il n'a pas été mesuré.
   Dans le cas d'une mesure (d'une durée par exemple) d'un algorithme ayant effectivement été lancé pendant cette durée, la valeur est présentée telle quelle.
 
   \section{Type de scrutin}
   Lorsqu'on vit en groupe, on a régulièrement besoin de prendre des décisions.
-  Les deux techniques les plus utilisées sont laisser un petit groupe choisir pour les autres, ou 
-  interroger les membres du groupe pour connaître leur position.
+  Les deux techniques les plus utilisées sont de laisser un petit groupe choisir pour les autres, ou 
+  d'interroger les membres du groupe pour connaître leur position.
   Pour connaître la position des membres d'un groupe, on organise un scrutin avec une méthode pour décompter
   les voix.
   Cependant lorsqu'il faut choisir un petit groupe qui aura le pouvoir, les possibilités pour le désigner sont
@@ -144,24 +144,24 @@
   	incompatible avec une prise de décision direct (dans le cadre d'une démocratie directe) et ne concerne donc pas le présent travail.\footnote{Malgré certaines idées reçues, le tirage au sort est bel et bien utilisé, même par l'état français (pour les conventions citoyennes).}
   	\item[Élection] On peut organiser un scrutin pour connaître la position de la population sur qui serait le/la plus 
   	à même de la représenter. 
-  	Dans ce cas c'est une votation ou les options possibles ne sont pas des propositions concrètes mais une liste de personnes.
-  	À l'exception du cas trivial, où tout le monde est d'accord, il faut également se mettre d'accord sur la manière
+  	Dans ce cas c'est une votation où les options possibles ne sont pas des propositions concrètes mais une liste de personnes.
+  	À l'exception du cas trivial où tout le monde est d'accord, il faut également se mettre d'accord sur la manière
   	de décompter les points attribués à chaque candidat·es.
   \end{description}
   
-  Dans ce document, seuls les scrutins permettant à la fois d'élire et de prendre une décision en direct sont étudilés.
+  Dans ce document, seuls les scrutins permettant à la fois d'élire et de prendre une décision en direct sont étudiés.
   Dans ce cadre, certains exemples parlent de candidats alors que d'autre parlent d'options, ces termes sont donc quasiment 
   interchangeables pour l'analyse de fonctionnement des scrutins.
   
   \subsection[Referendum, cas particulier]{Referendum, cas particulier du cas général d'une élection}
   
   Le referendum tel que pratiqué en Suisse et dans d'autre pays, est simplement un cas particulier d'une votation/élection. 
-  C'est une votation dans laquelle les choix possible/candidat sont remplacés par 2 options: \emph{pour} ou \emph{contre} la décision
+  C'est une votation dans laquelle les choix possibles/candidats sont remplacés par 2 options: \emph{pour} ou \emph{contre} la décision
   du gouvernement.
   Si le scrutin utilisé le permet, une liste de possibilités plus complète peut être proposée à la population, notamment 
   toutes les positions intermédiaires viables. 
   
-  Les initiatives populaires en Suisse en sont un exemple, 3 possibilités sont proposées à la population : 
+  Les initiatives populaires en Suisse en sont un exemple, 3 possibilités sont proposées à la population~: 
   \begin{enumerate}
   	\item refuser tout changement
   	\item la modification proposée par le texte de l'initiative populaire
@@ -172,7 +172,7 @@
   Ce choix de scrutin fait qu'il y a donc 3 questions posées et un choix final pas forcement intuitif pour tous.
   Des scrutins mieux adaptés à ce genre de situation sont abordés plus loin dans ce document.
   
-  \todo{Lien vers meilleures scrutin pour 3 options}
+%  \todo{Lien vers meilleures scrutin pour 3 options}
   
   \section[Le non-vote dans les simulations]{Le non-vote (blanc, nul et abstention) dans les simulations}
   
@@ -181,7 +181,7 @@
   Les votes blancs, nuls et les abstentions ne sont donc pas simulés. Cependant lorsque le protocole de vote prévoit de 
   classer les candidats, la possibilité a été laissée de ne pas classer certain des candidats.
   
-  Dans le cas d'une utilisation réele d'un scrutin, la question de la manière de décompter les votes blancs ou nuls et les abstentions 
+  Dans le cas d'une utilisation réelle d'un scrutin, la question de la manière de décompter les votes blancs ou nuls et les abstentions 
   doit faire l'objet d'une réflexion et ne pas donner d'avantage à un camp plutôt qu'à l'autre.
   
 \end{document}
