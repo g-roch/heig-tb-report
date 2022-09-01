@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 lib = { path = "../lib" }
 zkp = { version = "0.8" }
+sha2 = "0.9"
 si-scale = "0.1"
 rayon = "1.5"
 

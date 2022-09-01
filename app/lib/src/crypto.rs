@@ -23,6 +23,9 @@ pub mod pr2 {
 
     use zkp::rand::thread_rng;
 
+    use serde::Deserialize;
+    use serde::Serialize;
+
     #[derive(Copy, Clone)]
     pub struct ProveAssignments<'a> {
         pub x: &'a Scalar,
@@ -43,6 +46,7 @@ pub mod pr2 {
         pub Y: &'a Vec<CompressedRistretto>,
         pub A: &'a CompressedRistretto,
     }
+    #[derive(Deserialize, Serialize, Clone)]
     pub struct CompactProof {
         pub c: Vec<Scalar>,
         pub r: Vec<Scalar>,
@@ -192,7 +196,7 @@ where
     x_i: Option<Vec<Scalar>>,
 
     /// Score for candidat
-    v_i: Vec<u64>,
+    v_i: Option<Vec<u64>>,
 }
 
 impl<'a, Rng> Crypto<'a, Rng>
@@ -211,8 +215,14 @@ where
             rng,
             options,
             x_i: None,
-            v_i,
+            v_i: Some(v_i),
         }
+    }
+    pub fn unset_option(&mut self) {
+        self.v_i = None;
+    }
+    pub fn set_option(&mut self, v_i: &Vec<u64>) {
+        self.v_i = Some(v_i.clone())
     }
 
     /// Make round 1 for the user
@@ -354,7 +364,7 @@ where
     }
 
     #[allow(non_snake_case)]
-    fn calc_Yi(
+    pub fn calc_Yi(
         round_1: &Vec<(Vec<CompressedRistretto>, Vec<pr1::CompactProof>)>,
         calc_i: usize,
     ) -> Option<Vec<RistrettoPoint>> {
@@ -365,7 +375,11 @@ where
     }
 
     fn candidat_of_rank(&self, j: usize) -> Option<usize> {
-        self.v_i.iter().position(|p| *p as usize == j)
+        self.v_i
+            .as_ref()
+            .unwrap()
+            .iter()
+            .position(|p| *p as usize == j)
     }
 
     #[allow(non_snake_case)]
@@ -388,7 +402,7 @@ where
             .ok_or(())?;
         let x_i = self.x_i.clone().ok_or(())?;
         let Z_i: Vec<_> = (0..k)
-            .map(|j| x_i[j] * Y_i[j] + Scalar::from(self.v_i[j]) * G)
+            .map(|j| x_i[j] * Y_i[j] + Scalar::from(self.v_i.as_ref().unwrap()[j]) * G)
             .collect();
         let A: Vec<_> = (0..k).map(|j| Scalar::from(self.options[j]) * G).collect();
 

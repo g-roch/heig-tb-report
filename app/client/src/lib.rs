@@ -16,20 +16,20 @@ where
     let term = Term::stderr();
     let theme = ColorfulTheme::default();
     loop {
-        let selected_id = match MultiSelect::with_theme(&theme)
-            .with_prompt("Selectionez les options tolérable pour vous.")
-            .items(&items)
-            .report(true)
-            .interact_on_opt(&term)?
-        {
-            Some(v) => v,
-            None => continue,
-        };
+        //let selected_id = match MultiSelect::with_theme(&theme)
+        //    .with_prompt("Selectionez les options tolérable pour vous.")
+        //    .items(&items)
+        //    .report(true)
+        //    .interact_on_opt(&term)?
+        //{
+        //    Some(v) => v,
+        //    None => continue,
+        //};
 
         let selected: Vec<&T> = items
             .iter()
             .enumerate()
-            .filter_map(|(id, opt)| selected_id.contains(&id).then(|| opt))
+            .filter_map(|(_id, opt)| Some(opt))
             .collect();
 
         let ordered_id = match Sort::with_theme(&theme)

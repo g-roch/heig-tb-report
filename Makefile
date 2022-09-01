@@ -61,7 +61,7 @@ diff-%: none-file
 	find diff-$*/$(LATEXDIR) -name '*.tex' -delete
 	latexdiff-vc --git -d diff-$* -r $* $(shell find $(LATEXDIR) -name '*.tex') 
 	sed -i '/%DIF PREAMBLE/d' $$(find diff-$*/$(LATEXDIR)/*/ -name '*.tex')
-	cd diff-$*/$(LATEXDIR) && $(MAKE) all
+	cd diff-$*/$(LATEXDIR) && $(MAKE) report.pdf
 	for f in diff-$*/$(LATEXDIR)/*.pdf; do\
 		new=$$(echo $$f | sed 's~/$(LATEXDIR)/~/diff-$*-~') ;\
 		cp $$f $$new ;\

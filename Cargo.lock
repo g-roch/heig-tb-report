@@ -170,10 +170,12 @@ dependencies = [
 name = "board"
 version = "0.1.0"
 dependencies = [
+ "curve25519-dalek-ng",
  "lazy_static",
  "lib",
  "rocket",
  "rocket_contrib",
+ "serde_json",
 ]
 
 [[package]]
@@ -226,10 +228,13 @@ name = "client"
 version = "0.1.0"
 dependencies = [
  "console",
+ "curve25519-dalek-ng",
  "dialoguer",
  "lib",
  "reqwest",
+ "serde_json",
  "tokio",
+ "zkp",
 ]
 
 [[package]]
@@ -1372,6 +1377,7 @@ dependencies = [
  "curve25519-dalek-ng",
  "lib",
  "rayon",
+ "sha2 0.9.9",
  "si-scale",
  "zkp",
 ]

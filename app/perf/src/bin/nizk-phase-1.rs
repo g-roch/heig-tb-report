@@ -1,26 +1,44 @@
 fn main() {
+    use curve25519_dalek::constants as dalek_constants;
     use curve25519_dalek::ristretto::CompressedRistretto;
+    use curve25519_dalek::ristretto::RistrettoPoint;
     use lib::crypto::pr1;
     use lib::crypto::Crypto;
     use rayon::prelude::*;
+    use sha2::Sha512;
+    use std::time::Instant;
+    use zkp::Transcript;
 
-    let options = vec![0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    let n = 80_000;
-
-    let mut round_1: Vec<_> = (1..n as u64)
-        .into_par_iter()
-        .map(|i_voterid| {
-            let rng = zkp::rand::thread_rng();
-            let mut crypto = Crypto::new(i_voterid, rng, &options, options.clone());
-            crypto.vote_round_1()
-        })
-        .collect();
-
+    let options: Vec<_> = (0..30).collect();
+    let k = options.len();
     let rng = zkp::rand::thread_rng();
     let mut crypto = Crypto::new(0, rng, &options, options.clone());
-    round_1.insert(0, crypto.vote_round_1());
+    let votant = crypto.vote_round_1();
+    let start = Instant::now();
 
-    Crypto::<zkp::rand::rngs::ThreadRng>::verify_round_1(&round_1);
+    let G = &dalek_constants::RISTRETTO_BASEPOINT_COMPRESSED;
+    for i in 0u64.. {
+        let ID = RistrettoPoint::hash_from_bytes::<Sha512>(&0usize.to_le_bytes()).compress();
+        votant
+            .0
+            .iter()
+            .zip(votant.1.iter())
+            .enumerate()
+            .map(|(j, (X, proof))| {
+                let mut transcript = Transcript::new(b"prove1");
+                transcript.append_u64(b"j", j as u64);
+                pr1::verify_compact(
+                    &proof,
+                    &mut transcript,
+                    pr1::VerifyAssignments { ID: &ID, X, G },
+                )
+            })
+            .collect::<Result<Vec<_>, _>>()
+            .unwrap();
 
-    println!("{}", round_1.len());
+        if 0 == i % 1000 {
+            let duration = Instant::now() - start;
+            println!("{i} x {k} NIZK 1 verification en {duration:?}");
+        }
+    }
 }
