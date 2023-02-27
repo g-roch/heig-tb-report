@@ -2,6 +2,10 @@
 
 Implémentation d’un POC d’un système de e-voting avec la méthode Borda.
 
+## SÉCURITÉ
+
+CE PROJET EST INACTIF, AUCUNE MISE À JOURS DE SÉCURITÉ N'EST EFFECTUÉ.
+
 ## Fonctionnalité
 
  - Modèle de rapport de TB
